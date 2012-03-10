@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BillList.Applications.Documents.DocumentType" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAoAIAAAAAgICAAIAAAAQAKAAAAASAAAAEAAAAAAAA=</HashCode>
+      <FileName>Documents\DocumentType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BillList.Applications.Documents.Document" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAEAQAABAAAAAAAAAAAEAAAEBAAABAAAA=</HashCode>
+      <FileName>Documents\Document.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FMStudio.Application.Documents.SolutionDocument">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Documents\SolutionDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FMStudio.Application.Documents.SolutionDocumentType">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="BillList.Applications.Documents.DocumentType" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="1.191" />
+        <Point X="7.25" Y="1.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAoAAAAAAAAAAAAAAAAAQAKAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\SolutionDocumentType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BillList.Applications.Documents.IDocument">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAABAAAAAAAAAAAAAAAABAAABAAAA=</HashCode>
+      <FileName>Documents\IDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DocumentType" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="BillList.Applications.Documents.IDocumentType">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAoAIAAAAAgICAAAAAAAAACAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Documents\IDocumentType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

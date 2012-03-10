@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Application", "FMStudio.Application\FMStudio.Application.csproj", "{62C0496C-FB93-4C42-830B-2A29FAF102DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Application.Test", "FMStudio.Application.Test\FMStudio.Application.Test.csproj", "{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB7E4B60-2F16-4141-B5CD-CBB9A0282F33}"
+	ProjectSection(SolutionItems) = preProject
+		Financial Management Studio.vsmdi = Financial Management Studio.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{86EDB89B-0C97-4EBC-AD74-3E0034BAD47C}"
+	ProjectSection(SolutionItems) = preProject
+		BigEgg.Framework.UnitTesting.dll = BigEgg.Framework.UnitTesting.dll
+		BigEgg.Framework.UnitTesting.XML = BigEgg.Framework.UnitTesting.XML
+		Common.dll = Common.dll
+		Common.xml = Common.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Financial Management Studio.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62C0496C-FB93-4C42-830B-2A29FAF102DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C0496C-FB93-4C42-830B-2A29FAF102DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C0496C-FB93-4C42-830B-2A29FAF102DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C0496C-FB93-4C42-830B-2A29FAF102DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86EDB89B-0C97-4EBC-AD74-3E0034BAD47C} = {AB7E4B60-2F16-4141-B5CD-CBB9A0282F33}
+	EndGlobalSection
+EndGlobal
