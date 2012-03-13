@@ -8,8 +8,6 @@ namespace BillList.Applications.Documents
 
         string FullFilePath { get; set; }
 
-        string AliasName { get; set; }
-
         bool Modified { get; set; }
     }
 }

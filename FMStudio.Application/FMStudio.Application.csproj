@@ -68,6 +68,10 @@
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\ShellService.cs" />
+    <Compile Include="ViewModels\NewSolutionViewModel.cs" />
+    <Compile Include="ViewModels\SaveChangesViewModel.cs" />
+    <Compile Include="Views\INewSolutionView.cs" />
+    <Compile Include="Views\ISaveChangesView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -83,10 +87,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

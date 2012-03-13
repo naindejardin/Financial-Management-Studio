@@ -14,13 +14,13 @@ namespace FMStudio.Application.Services
         private readonly ObservableCollection<IDocument> documents;
         private readonly ReadOnlyObservableCollection<IDocument> readOnlyDocuments;
         private IDocument activeDocument;
-        private SolutionDocument solution;
+        private SolutionDocument solutionDoc;
         private RecentFileList recentFileList;
-        private ICommand newCommand;
-        private ICommand openCommand;
-        private ICommand closeCommand;
-        private ICommand saveCommand;
-        private ICommand saveAsCommand;
+        //private ICommand newCommand;
+        //private ICommand openCommand;
+        //private ICommand closeCommand;
+        //private ICommand saveCommand;
+        //private ICommand saveAsCommand;
         private ICommand newSolutionCommand;
         private ICommand openSolutionCommand;
         private ICommand closeSolutionCommand;
@@ -54,9 +54,17 @@ namespace FMStudio.Application.Services
             }
         }
 
-        public SolutionDocument Solution
+        public SolutionDocument SolutionDoc
         {
-            get { return this.solution; }
+            get { return this.solutionDoc; }
+            set 
+            { 
+                if (this.solutionDoc != value)
+                {
+                    this.solutionDoc = value; 
+                    RaisePropertyChanged("SolutionDoc");
+                }
+            }
         }
 
 
@@ -73,57 +81,57 @@ namespace FMStudio.Application.Services
             }
         }
 
-        public ICommand NewCommand
-        {
-            get { return this.newCommand; }
-            set
-            {
-                if (this.newCommand != value)
-                {
-                    this.newCommand = value;
-                    RaisePropertyChanged("NewCommand");
-                }
-            }
-        }
+        //public ICommand NewCommand
+        //{
+        //    get { return this.newCommand; }
+        //    set
+        //    {
+        //        if (this.newCommand != value)
+        //        {
+        //            this.newCommand = value;
+        //            RaisePropertyChanged("NewCommand");
+        //        }
+        //    }
+        //}
 
-        public ICommand OpenCommand
-        {
-            get { return this.openCommand; }
-            set
-            {
-                if (this.openCommand != value)
-                {
-                    this.openCommand = value;
-                    RaisePropertyChanged("OpenCommand");
-                }
-            }
-        }
+        //public ICommand OpenCommand
+        //{
+        //    get { return this.openCommand; }
+        //    set
+        //    {
+        //        if (this.openCommand != value)
+        //        {
+        //            this.openCommand = value;
+        //            RaisePropertyChanged("OpenCommand");
+        //        }
+        //    }
+        //}
 
-        public ICommand CloseCommand
-        {
-            get { return this.closeCommand; }
-            set
-            {
-                if (this.closeCommand != value)
-                {
-                    this.closeCommand = value;
-                    RaisePropertyChanged("CloseCommand");
-                }
-            }
-        }
+        //public ICommand CloseCommand
+        //{
+        //    get { return this.closeCommand; }
+        //    set
+        //    {
+        //        if (this.closeCommand != value)
+        //        {
+        //            this.closeCommand = value;
+        //            RaisePropertyChanged("CloseCommand");
+        //        }
+        //    }
+        //}
 
-        public ICommand SaveCommand
-        {
-            get { return this.saveCommand; }
-            set
-            {
-                if (this.saveCommand != value)
-                {
-                    this.saveCommand = value;
-                    RaisePropertyChanged("SaveCommand");
-                }
-            }
-        }
+        //public ICommand SaveCommand
+        //{
+        //    get { return this.saveCommand; }
+        //    set
+        //    {
+        //        if (this.saveCommand != value)
+        //        {
+        //            this.saveCommand = value;
+        //            RaisePropertyChanged("SaveCommand");
+        //        }
+        //    }
+        //}
 
 
         public ICommand NewSolutionCommand
@@ -181,13 +189,13 @@ namespace FMStudio.Application.Services
 
         public void AddDocument(IDocument document)
         {
-            Solution.AddDocument(document);
+            SolutionDoc.AddDocument(document);
             documents.Add(document);
         }
 
         public void RemoveDocument(IDocument document)
         {
-            Solution.RemoveDocument(document);
+            SolutionDoc.RemoveDocument(document);
             documents.Remove(document);
         }
     }

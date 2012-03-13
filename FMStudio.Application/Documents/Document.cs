@@ -7,7 +7,6 @@ namespace BillList.Applications.Documents
     {
         private readonly IDocumentType documentType;
         private string fullFilePath;
-        private string aliasName;
         private bool modified;
 
 
@@ -29,19 +28,6 @@ namespace BillList.Applications.Documents
                 {
                     this.fullFilePath = value;
                     RaisePropertyChanged("FullFilePath");
-                }
-            }
-        }
-
-        public string AliasName
-        {
-            get { return this.aliasName; }
-            set
-            {
-                if (this.aliasName != value)
-                {
-                    this.aliasName = value;
-                    RaisePropertyChanged("AliasName");
                 }
             }
         }

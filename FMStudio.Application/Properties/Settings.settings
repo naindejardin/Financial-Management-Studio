@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FMStudio.Application.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="RecentFileList" Type="BigEgg.Framework.Applications.RecentFileList" Scope="User">
+    <Setting Name="RecentSolutionList" Type="BigEgg.Framework.Applications.RecentFileList" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

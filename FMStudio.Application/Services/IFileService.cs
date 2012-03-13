@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using BillList.Applications.Documents;
+using FMStudio.Application.Documents;
 
 namespace FMStudio.Application.Services
 {
@@ -10,19 +11,19 @@ namespace FMStudio.Application.Services
     {
         ReadOnlyObservableCollection<IDocument> Documents { get; }
 
-        IDocument SolutionDocument { get; set; }
+        SolutionDocument SolutionDoc { get; set; }
 
         IDocument ActiveDocument { get; set; }
 
         RecentFileList RecentFileList { get; }
 
-        ICommand NewCommand { get; }
+        //ICommand NewCommand { get; }
 
-        ICommand OpenCommand { get; }
+        //ICommand OpenCommand { get; }
 
-        ICommand CloseCommand { get; }
+        //ICommand CloseCommand { get; }
 
-        ICommand SaveCommand { get; }
+        //ICommand SaveCommand { get; }
 
         ICommand NewSolutionCommand { get; }
 

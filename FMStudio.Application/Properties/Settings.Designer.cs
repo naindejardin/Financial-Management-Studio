@@ -25,12 +25,12 @@ namespace FMStudio.Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::BigEgg.Framework.Applications.RecentFileList RecentFileList {
+        public global::BigEgg.Framework.Applications.RecentFileList RecentSolutionList {
             get {
-                return ((global::BigEgg.Framework.Applications.RecentFileList)(this["RecentFileList"]));
+                return ((global::BigEgg.Framework.Applications.RecentFileList)(this["RecentSolutionList"]));
             }
             set {
-                this["RecentFileList"] = value;
+                this["RecentSolutionList"] = value;
             }
         }
     }

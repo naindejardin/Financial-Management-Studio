@@ -43,14 +43,13 @@ namespace BillList.Applications.Documents
             if (document != null)
             {
                 document.FullFilePath = fullFilePath;
-                document.AliasName = Path.GetFileNameWithoutExtension(fullFilePath);
             }
             return document;
         }
 
         public virtual bool CanOpen() { return false; }
 
-        public IDocument Open(string fullFilePath, string aliasName)
+        public IDocument Open(string fullFilePath)
         {
             if (string.IsNullOrEmpty(fullFilePath)) { throw new ArgumentException("fullFilePath must not be null or empty."); }
             if (!CanOpen()) { throw new NotSupportedException("The Open operation is not supported. CanOpen returned false."); }
@@ -60,7 +59,6 @@ namespace BillList.Applications.Documents
             if (document != null) 
             {
                 document.FullFilePath = fullFilePath;
-                document.AliasName = aliasName; 
             }
             return document;
         }

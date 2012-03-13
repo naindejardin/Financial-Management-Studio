@@ -61,11 +61,38 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Financial Data Files.
+        ///   Looks up a localized string similar to The application cannot open the solution &apos;{0}&apos;..
         /// </summary>
-        internal static string DataFiles {
+        internal static string CannotOpenSolution {
             get {
-                return ResourceManager.GetString("DataFiles", resourceCulture);
+                return ResourceManager.GetString("CannotOpenSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application cannot save the file &apos;{0}&apos;..
+        /// </summary>
+        internal static string CannotSaveFile {
+            get {
+                return ResourceManager.GetString("CannotSaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Financial Data Documents (*.data).
+        /// </summary>
+        internal static string DataDocuments {
+            get {
+                return ResourceManager.GetString("DataDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Solution &apos;{0}&apos; has already existed..
+        /// </summary>
+        internal static string SolutionAlreadyExisted {
+            get {
+                return ResourceManager.GetString("SolutionAlreadyExisted", resourceCulture);
             }
         }
         

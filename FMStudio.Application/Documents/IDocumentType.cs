@@ -13,7 +13,7 @@
 
         bool CanOpen();
 
-        IDocument Open(string fullFilePath, string aliasName);
+        IDocument Open(string fullFilePath);
 
         bool CanSave(IDocument document);
 

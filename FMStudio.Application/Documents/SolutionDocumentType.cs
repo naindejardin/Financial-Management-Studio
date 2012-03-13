@@ -17,7 +17,7 @@ namespace FMStudio.Application.Documents
 
         public override bool CanOpen() { return true; }
 
-        public override bool CanSave(IDocument document) { return document is SolutionDocument; }
+        public override bool CanSave(IDocument document) { return true; }
 
         protected override IDocument NewCore(string fullFilePath)
         {
