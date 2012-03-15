@@ -43,7 +43,6 @@ namespace FMStudio.Application.Test.Documents
                 documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution")) as SolutionDocument;
             Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution.sln")));
             Assert.IsNotNull(document);
-            Assert.AreEqual("TestSolution", document.AliasName);
             XDocument xdoc = new XDocument(
                 new XComment("Financial Management Studio Solution File, Format Version 1.00"),
                 new XComment("FM Studio 1.0.0"),
@@ -61,16 +60,13 @@ namespace FMStudio.Application.Test.Documents
         {
             SolutionDocumentType documentType = new SolutionDocumentType();
             IDocument document = documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution"));
-            Assert.AreEqual("TestSolution", document.AliasName);
 
             Assert.IsTrue(documentType.CanSave(document));
             documentType.Save(document, Path.Combine(Environment.CurrentDirectory, "TestSolution2"));
-            Assert.AreEqual("TestSolution", document.AliasName);
             Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.sln")));
 
             Assert.IsTrue(documentType.CanOpen());
-            IDocument openedDocument = documentType.Open("TestSolution.sln", "Alias");
-            Assert.AreEqual("Alias", openedDocument.AliasName);
+            IDocument openedDocument = documentType.Open("TestSolution.sln");
 
             // Note: What's missing is to compare the document content of both documents.
         }
@@ -82,10 +78,6 @@ namespace FMStudio.Application.Test.Documents
             IDocument document = documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution"));
 
             Assert.AreEqual(document.DocumentType, documentType);
-
-            Assert.AreEqual("TestSolution", document.AliasName);
-            AssertHelper.PropertyChangedEvent(document, x => x.AliasName, () => document.AliasName = "TestSolution2");
-            Assert.AreEqual("TestSolution2", document.AliasName);
 
             Assert.IsFalse(document.Modified);
             AssertHelper.PropertyChangedEvent(document, x => x.Modified, () => document.Modified = true);

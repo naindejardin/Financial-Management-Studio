@@ -2,7 +2,7 @@
 
 namespace FMStudio.Application.Views
 {
-    public interface ISaveChangesView : IView
+    public interface IDialogView : IView
     {
         void ShowDialog(object owner);
 

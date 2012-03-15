@@ -189,13 +189,11 @@ namespace FMStudio.Application.Services
 
         public void AddDocument(IDocument document)
         {
-            SolutionDoc.AddDocument(document);
             documents.Add(document);
         }
 
         public void RemoveDocument(IDocument document)
         {
-            SolutionDoc.RemoveDocument(document);
             documents.Remove(document);
         }
     }

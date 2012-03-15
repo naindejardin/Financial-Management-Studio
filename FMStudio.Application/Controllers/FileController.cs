@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using BigEgg.Framework.Applications;
+using BigEgg.Framework.Applications.Services;
 using BillList.Applications.Documents;
 using FMStudio.Application.Documents;
 using FMStudio.Application.Properties;
 using FMStudio.Application.Services;
-using FMStudio.Application.Views;
 using FMStudio.Application.ViewModels;
-using System.IO;
-using BigEgg.Framework.Applications.Services;
-using System.Globalization;
-using System.Diagnostics;
+using FMStudio.Application.Views;
 
 namespace FMStudio.Application.Controllers
 {
@@ -159,7 +159,7 @@ namespace FMStudio.Application.Controllers
         internal SolutionDocument NewSolution()
         {
             // Show the new solutiion view to the user
-            INewSolutionView newSolutionView = container.GetExportedValue<INewSolutionView>();
+            IDialogView newSolutionView = container.GetExportedValue<IDialogView>();
             NewSolutionViewModel newSolutionViewModel = 
                 new NewSolutionViewModel(newSolutionView, "NewSolution", 
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ApplicationInfo.ProductName));
@@ -217,7 +217,7 @@ namespace FMStudio.Application.Controllers
             if (!modifiedDocuments.Any()) { return true; }
 
             // Show the save changes view to the user
-            ISaveChangesView saveChangesView = container.GetExportedValue<ISaveChangesView>();
+            IDialogView saveChangesView = container.GetExportedValue<IDialogView>();
             SaveChangesViewModel saveChangesViewModel = new SaveChangesViewModel(saveChangesView, modifiedDocuments);
             bool? dialogResult = saveChangesViewModel.ShowDialog(shellService.ShellView);
 

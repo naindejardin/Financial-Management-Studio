@@ -30,11 +30,11 @@ namespace FMStudio.Application.Test
             MockDocumentTypeBase documentType2 = new MockDocumentTypeBase("Financial Data Files", ".fdd");
             AssertHelper.ExpectedException<NotSupportedException>(() =>
                 documentType.New(Path.Combine(Environment.CurrentDirectory, "TestDocument1")));
-            AssertHelper.ExpectedException<NotSupportedException>(() => documentType.Open("TestDocument1.fdd", "alias"));
+            AssertHelper.ExpectedException<NotSupportedException>(() => documentType.Open("TestDocument1.fdd"));
             AssertHelper.ExpectedException<NotSupportedException>(() =>
                 documentType.Save(new DocumentBaseMock(documentType2), "TestDocument1.fdd"));
 
-            AssertHelper.ExpectedException<ArgumentException>(() => documentType.Open("", "alias"));
+            AssertHelper.ExpectedException<ArgumentException>(() => documentType.Open(""));
             AssertHelper.ExpectedException<ArgumentException>(() =>
                 documentType.Save(new DocumentBaseMock(documentType2), ""));
             AssertHelper.ExpectedException<ArgumentNullException>(() => documentType.Save(null, "TestDocument1.fdd"));
