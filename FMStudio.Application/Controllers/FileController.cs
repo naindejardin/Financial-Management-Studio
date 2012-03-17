@@ -123,9 +123,15 @@ namespace FMStudio.Application.Controllers
 
         private void NewSolutionCommand(object commandParameter)
         {
-            string fullFileName = commandParameter as string;
-            if (!string.IsNullOrEmpty(fullFileName))
+            IList<string> fileInfo = commandParameter as IList<string>;
+
+            if ((fileInfo != null) && (fileInfo.Count == 2)
+                && (!string.IsNullOrEmpty(fileInfo[0])) 
+                && (!string.IsNullOrEmpty(fileInfo[1])))
             {
+                SolutionDocumentType documentType = new SolutionDocumentType();
+                string fullFileName = Path.Combine(fileInfo[0], fileInfo[1],
+                                 fileInfo[1] + documentType.FileExtension);
                 NewSolution(fullFileName);
             }
             else
@@ -160,9 +166,21 @@ namespace FMStudio.Application.Controllers
         {
             // Show the new solutiion view to the user
             IDialogView newSolutionView = container.GetExportedValue<IDialogView>();
+            string defaultSolutionLocation = Settings.Default.DefaultNewSolutionLocation;
+            if (!Directory.Exists(defaultSolutionLocation))
+            {
+                defaultSolutionLocation = Settings.Default.DefaultNewSolutionLocation
+                    = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
+                        ApplicationInfo.ProductName);
+                Directory.CreateDirectory(defaultSolutionLocation);
+            }
+
             NewSolutionViewModel newSolutionViewModel = 
-                new NewSolutionViewModel(newSolutionView, "NewSolution", 
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ApplicationInfo.ProductName));
+                new NewSolutionViewModel(
+                    newSolutionView, 
+                    Resources.DefaultNewSolutionName,
+                    defaultSolutionLocation);
             bool? dialogResult = newSolutionViewModel.ShowDialog(shellService.ShellView);
 
             if (dialogResult == true)
@@ -171,7 +189,7 @@ namespace FMStudio.Application.Controllers
 
                 SolutionDocumentType documentType = new SolutionDocumentType();
                 return NewSolutionCore(Path.Combine(newSolutionViewModel.Location, newSolutionViewModel.SolutionName,
-                                 newSolutionViewModel.SolutionName, documentType.FileExtension));
+                                 newSolutionViewModel.SolutionName + documentType.FileExtension));
             }
             else
                 return null;
@@ -182,8 +200,17 @@ namespace FMStudio.Application.Controllers
             SolutionDocumentType documentType = new SolutionDocumentType();
             FileType fileType = new FileType(documentType.Description, documentType.FileExtension);
             FileDialogResult result = fileDialogService.ShowOpenFileDialog(shellService.ShellView, fileType);
+
             if (result.IsValid)
             {
+                if ((SolutionDoc != null) && (SolutionDoc.FullFilePath == result.FileName))
+                {
+                    messageService.ShowMessage(shellService.ShellView,
+                        string.Format(CultureInfo.CurrentCulture,
+                        Resources.SolutionAlreadyOpened, Path.GetFileNameWithoutExtension(result.FileName)));
+                    return null;
+                }
+
                 if (!CanSolutionClose()) { return SolutionDoc; }
 
                 return OpenSolutionCore(result.FileName);
@@ -212,7 +239,7 @@ namespace FMStudio.Application.Controllers
         private bool CanSolutionClose()
         {
             List<IDocument> modifiedDocuments = Documents.Where(d => d.Modified).ToList();
-            if (SolutionDoc.Modified)
+            if ((SolutionDoc != null) && (SolutionDoc.Modified))
                 modifiedDocuments.Add(SolutionDoc);
             if (!modifiedDocuments.Any()) { return true; }
 
@@ -235,13 +262,34 @@ namespace FMStudio.Application.Controllers
 
         private SolutionDocument NewSolutionCore(string fullFilePath, FileType fileType = null)
         {
+            if (String.IsNullOrWhiteSpace(Path.GetDirectoryName(fullFilePath)))
+            {
+                messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.NewSolutionPathInvalid, fullFilePath));
+                return null;
+            }
+
             // Check if solution already exists
             if (Directory.Exists(Path.GetDirectoryName(fullFilePath)))
+            {
                 messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.SolutionAlreadyExisted, Path.GetFileNameWithoutExtension(fullFilePath)));
+                return null;
+            }
 
             SolutionDocumentType documentType = new SolutionDocumentType();
-            SolutionDocument document = documentType.New(fullFilePath) as SolutionDocument;
-            fileService.SolutionDoc = document;
+            SolutionDocument document = null;
+            try
+            {
+                document = documentType.New(fullFilePath) as SolutionDocument;
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError(e.ToString());
+                messageService.ShowError(shellService.ShellView,
+                    string.Format(CultureInfo.CurrentCulture,
+                    Resources.CannotNewSolution, Path.GetFileNameWithoutExtension(fullFilePath)));
+                return null;
+            }
+            SolutionDoc = document;
 
             recentSolutionList.AddFile(fullFilePath);
             return document;

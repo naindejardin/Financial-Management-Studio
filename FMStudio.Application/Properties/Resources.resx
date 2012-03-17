@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotNewSolution" xml:space="preserve">
+    <value>The application cannot create the solution '{0}'.</value>
+  </data>
   <data name="CannotOpenSolution" xml:space="preserve">
     <value>The application cannot open the solution '{0}'.</value>
   </data>
@@ -126,8 +129,17 @@
   <data name="DataDocuments" xml:space="preserve">
     <value>Financial Data Documents (*.data)</value>
   </data>
+  <data name="DefaultNewSolutionName" xml:space="preserve">
+    <value>NewSolution</value>
+  </data>
+  <data name="NewSolutionPathInvalid" xml:space="preserve">
+    <value>The solution path '{0}' is invalid.</value>
+  </data>
   <data name="SolutionAlreadyExisted" xml:space="preserve">
-    <value>The Solution '{0}' has already existed.</value>
+    <value>The solution '{0}' has already existed.</value>
+  </data>
+  <data name="SolutionAlreadyOpened" xml:space="preserve">
+    <value>The solution  '{0}' has already opened.</value>
   </data>
   <data name="SolutionDocuments" xml:space="preserve">
     <value>FMStuido Solution Documents (*.sln)</value>

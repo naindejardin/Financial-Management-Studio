@@ -61,6 +61,15 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The application cannot create the solution &apos;{0}&apos;..
+        /// </summary>
+        internal static string CannotNewSolution {
+            get {
+                return ResourceManager.GetString("CannotNewSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The application cannot open the solution &apos;{0}&apos;..
         /// </summary>
         internal static string CannotOpenSolution {
@@ -88,11 +97,38 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Solution &apos;{0}&apos; has already existed..
+        ///   Looks up a localized string similar to NewSolution.
+        /// </summary>
+        internal static string DefaultNewSolutionName {
+            get {
+                return ResourceManager.GetString("DefaultNewSolutionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The solution path &apos;{0}&apos; is invalid..
+        /// </summary>
+        internal static string NewSolutionPathInvalid {
+            get {
+                return ResourceManager.GetString("NewSolutionPathInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The solution &apos;{0}&apos; has already existed..
         /// </summary>
         internal static string SolutionAlreadyExisted {
             get {
                 return ResourceManager.GetString("SolutionAlreadyExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The solution  &apos;{0}&apos; has already opened..
+        /// </summary>
+        internal static string SolutionAlreadyOpened {
+            get {
+                return ResourceManager.GetString("SolutionAlreadyOpened", resourceCulture);
             }
         }
         

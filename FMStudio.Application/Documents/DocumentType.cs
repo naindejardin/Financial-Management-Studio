@@ -33,7 +33,7 @@ namespace BillList.Applications.Documents
             if (string.IsNullOrEmpty(fullFilePath)) { throw new ArgumentException("fullFilePath must not be null or empty."); }
             if (!CanNew()) { throw new NotSupportedException("The New operation is not supported. CanNew returned false."); }
 
-            if (fullFilePath.Substring(fullFilePath.Length-4-1,4).CompareTo(FileExtension) != 0)
+            if (fullFilePath.Substring(fullFilePath.Length - 4, 4).CompareTo(FileExtension) != 0)
                 fullFilePath = fullFilePath + FileExtension;
 
             if (File.Exists(fullFilePath)) 
@@ -71,7 +71,7 @@ namespace BillList.Applications.Documents
             if (string.IsNullOrEmpty(fullFilePath)) { throw new ArgumentException("fileName must not be null or empty."); }
             if (!CanSave(document)) { throw new NotSupportedException("The Save operation is not supported. CanSave returned false."); }
 
-            if (fullFilePath.Substring(fullFilePath.Length - 4 - 1, 4).CompareTo(FileExtension) != 0)
+            if (fullFilePath.Substring(fullFilePath.Length - 4, 4).CompareTo(FileExtension) != 0)
                 fullFilePath = fullFilePath + FileExtension;
 
             SaveCore(document, fullFilePath);

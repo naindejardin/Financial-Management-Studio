@@ -59,16 +59,24 @@ namespace FMStudio.Application.Test.Documents
         public void SaveAndOpenDocumentTest()
         {
             SolutionDocumentType documentType = new SolutionDocumentType();
-            IDocument document = documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution"));
+            SolutionDocument document = documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution")) as SolutionDocument;
 
             Assert.IsTrue(documentType.CanSave(document));
             documentType.Save(document, Path.Combine(Environment.CurrentDirectory, "TestSolution2"));
             Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.sln")));
 
             Assert.IsTrue(documentType.CanOpen());
-            IDocument openedDocument = documentType.Open("TestSolution.sln");
+            SolutionDocument openedDocument = documentType.Open("TestSolution2.sln") as SolutionDocument;
 
-            // Note: What's missing is to compare the document content of both documents.
+            Assert.AreEqual(document.AliasName, openedDocument.AliasName);
+
+            //  Modify the alias name
+            document.AliasName = "NewAlias";
+            openedDocument = null;
+            Assert.AreEqual("NewAlias", document.AliasName);
+            documentType.Save(document, Path.Combine(Environment.CurrentDirectory, "TestSolution2"));
+            openedDocument = documentType.Open("TestSolution2.sln") as SolutionDocument;
+            Assert.AreEqual("NewAlias", openedDocument.AliasName);
         }
 
         [TestMethod]
@@ -82,6 +90,27 @@ namespace FMStudio.Application.Test.Documents
             Assert.IsFalse(document.Modified);
             AssertHelper.PropertyChangedEvent(document, x => x.Modified, () => document.Modified = true);
             Assert.IsTrue(document.Modified);
+        }
+
+        [TestMethod]
+        public void AliasModifyTest()
+        {
+            SolutionDocumentType documentType = new SolutionDocumentType();
+            Assert.IsTrue(documentType.CanNew());
+            SolutionDocument document =
+                documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution")) as SolutionDocument;
+            document.AliasName = "NewAlias";
+            
+            XDocument xdoc = new XDocument(
+                new XComment("Financial Management Studio Solution File, Format Version 1.00"),
+                new XComment("FM Studio 1.0.0"),
+                new XElement("Solution",
+                    new XElement("SolutionProperty",
+                        new XAttribute("AliasName", "NewAlias")
+                    )
+                )
+            );
+            Assert.AreEqual(xdoc.ToString(), document.SolutionXML.ToString());
         }
     }
 }

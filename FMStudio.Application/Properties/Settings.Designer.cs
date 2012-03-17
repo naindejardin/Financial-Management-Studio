@@ -33,5 +33,17 @@ namespace FMStudio.Application.Properties {
                 this["RecentSolutionList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultNewSolutionLocation {
+            get {
+                return ((string)(this["DefaultNewSolutionLocation"]));
+            }
+            set {
+                this["DefaultNewSolutionLocation"] = value;
+            }
+        }
     }
 }

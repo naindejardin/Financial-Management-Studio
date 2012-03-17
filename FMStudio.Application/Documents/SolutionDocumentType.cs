@@ -31,7 +31,10 @@ namespace FMStudio.Application.Documents
                 )
             );
             if (!Directory.Exists(Path.GetDirectoryName(fullFilePath)))
+            {
+                string directory = Path.GetDirectoryName(fullFilePath);
                 Directory.CreateDirectory(Path.GetDirectoryName(fullFilePath));
+            }
 
             xdoc.Save(fullFilePath);
 

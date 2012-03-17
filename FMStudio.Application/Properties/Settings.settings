@@ -5,5 +5,8 @@
     <Setting Name="RecentSolutionList" Type="BigEgg.Framework.Applications.RecentFileList" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DefaultNewSolutionLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

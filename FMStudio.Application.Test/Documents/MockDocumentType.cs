@@ -21,8 +21,6 @@ namespace FMStudio.Application.Test.Documents
 
         public string FullFilePath { get; private set; }
 
-        public string AliasName { get; private set; }
-
         public bool ThrowException { get; set; }
 
 
@@ -30,7 +28,6 @@ namespace FMStudio.Application.Test.Documents
         {
             DocumentOperation = DocumentOperation.None;
             FullFilePath = null;
-            AliasName = null;
             Document = null;
         }
 
@@ -41,7 +38,6 @@ namespace FMStudio.Application.Test.Documents
             CheckThrowException();
             DocumentOperation = DocumentOperation.New;
             FullFilePath = fullFilePath;
-            AliasName = Path.GetFileNameWithoutExtension(fullFilePath);
             return new MockDocument(this);
         }
 
@@ -52,7 +48,6 @@ namespace FMStudio.Application.Test.Documents
             CheckThrowException();
             DocumentOperation = DocumentOperation.Open;
             FullFilePath = Path.GetFullPath(fullFilePath);
-            AliasName = Path.GetFileNameWithoutExtension(fullFilePath);
             return new MockDocument(this);
         }
 
@@ -64,7 +59,6 @@ namespace FMStudio.Application.Test.Documents
             DocumentOperation = DocumentOperation.Save;
             Document = document;
             FullFilePath = Path.GetFullPath(fullFilePath);
-            AliasName = Path.GetFileNameWithoutExtension(fullFilePath);
         }
 
         private void CheckThrowException()
