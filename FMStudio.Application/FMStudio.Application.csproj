@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\IApplicationController.cs" />
     <Compile Include="Documents\Document.cs" />
     <Compile Include="Documents\DocumentType.cs" />
     <Compile Include="Documents\IDocument.cs" />
@@ -66,12 +67,20 @@
     </Compile>
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\ShellService.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NewSolutionViewModel.cs" />
     <Compile Include="ViewModels\SaveChangesViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModel.cs" />
+    <Compile Include="Views\ContentViewState.cs" />
     <Compile Include="Views\IDialogView.cs" />
+    <Compile Include="Views\IMainView.cs" />
+    <Compile Include="Views\IShellView.cs" />
+    <Compile Include="Views\IStartView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

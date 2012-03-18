@@ -135,6 +135,9 @@
   <data name="NewSolutionPathInvalid" xml:space="preserve">
     <value>The solution path '{0}' is invalid.</value>
   </data>
+  <data name="RestartApplication" xml:space="preserve">
+    <value>Please restart the application so that the configuration changes take effect.</value>
+  </data>
   <data name="SolutionAlreadyExisted" xml:space="preserve">
     <value>The solution '{0}' has already existed.</value>
   </data>

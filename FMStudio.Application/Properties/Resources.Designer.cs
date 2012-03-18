@@ -115,6 +115,15 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please restart the application so that the configuration changes take effect..
+        /// </summary>
+        internal static string RestartApplication {
+            get {
+                return ResourceManager.GetString("RestartApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The solution &apos;{0}&apos; has already existed..
         /// </summary>
         internal static string SolutionAlreadyExisted {
