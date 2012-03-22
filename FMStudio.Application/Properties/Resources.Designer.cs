@@ -97,6 +97,15 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewFile.
+        /// </summary>
+        internal static string DefaultNewDocumentName {
+            get {
+                return ResourceManager.GetString("DefaultNewDocumentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NewSolution.
         /// </summary>
         internal static string DefaultNewSolutionName {

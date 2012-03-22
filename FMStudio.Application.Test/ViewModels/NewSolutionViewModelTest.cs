@@ -12,7 +12,7 @@ namespace FMStudio.Application.Test.ViewModels
         public void NewSolutionViewModelCloseTest()
         {
             MockDialogView view = new MockDialogView();
-            NewSolutionViewModel viewModel = new NewSolutionViewModel(
+            NewSolutionDialogViewModel viewModel = new NewSolutionDialogViewModel(
                 view, "NewSolutioin", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
             object owner = new object();

@@ -12,7 +12,7 @@ namespace FMStudio.Application.Test.Views
         public Action<MockDialogView> ShowDialogAction { get; set; }
         public bool IsVisible { get; private set; }
         public object Owner { get; private set; }
-        public NewSolutionViewModel ViewModel { get { return ViewHelper.GetViewModel<NewSolutionViewModel>(this); } }
+        public NewSolutionDialogViewModel ViewModel { get { return ViewHelper.GetViewModel<NewSolutionDialogViewModel>(this); } }
 
 
         public void ShowDialog(object owner)

@@ -68,11 +68,18 @@
     <Compile Include="Services\FileServiceTest.cs" />
     <Compile Include="Services\MockFileDialogService.cs" />
     <Compile Include="Services\MockMessageService.cs" />
+    <Compile Include="Services\MockPresentationService.cs" />
     <Compile Include="TestClassBase.cs" />
     <Compile Include="ViewModels\DialogViewModelTest.cs" />
+    <Compile Include="ViewModels\MainViewModelTest.cs" />
     <Compile Include="ViewModels\NewSolutionViewModelTest.cs" />
     <Compile Include="ViewModels\SaveChangesViewModelTest.cs" />
+    <Compile Include="ViewModels\ShellViewModelTest.cs" />
+    <Compile Include="ViewModels\StartViewModelTest.cs" />
     <Compile Include="Views\MockDialogView.cs" />
+    <Compile Include="Views\MockMainView.cs" />
+    <Compile Include="Views\MockShellView.cs" />
+    <Compile Include="Views\MockStartView.cs" />
     <Compile Include="Views\MockView.cs" />
   </ItemGroup>
   <ItemGroup>

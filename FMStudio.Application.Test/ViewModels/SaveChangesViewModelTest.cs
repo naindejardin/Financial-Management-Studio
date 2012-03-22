@@ -24,7 +24,7 @@ namespace FMStudio.Application.Test.ViewModels
             };
 
             MockDialogView view = new MockDialogView();
-            SaveChangesViewModel viewModel = new SaveChangesViewModel(view, documents);
+            SaveChangesDialogViewModel viewModel = new SaveChangesDialogViewModel(view, documents);
 
             Assert.AreEqual(documents, viewModel.Documents);
         }

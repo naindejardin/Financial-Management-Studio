@@ -20,11 +20,14 @@ namespace FMStudio.Application.Test
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new TypeCatalog(
                 typeof(FileController), 
-                typeof(FileService), typeof(ShellService)
+                typeof(FileService), typeof(ShellService),
+                typeof(MainViewModel), typeof(ShellViewModel), typeof(StartViewModel)
             ));
             catalog.Catalogs.Add(new TypeCatalog(
+                typeof(MockPresentationService),
                 typeof(MockMessageService), typeof(MockFileDialogService),
-                typeof(MockDialogView)
+                typeof(MockShellView), typeof(MockMainView), typeof(MockDialogView),
+                typeof(MockStartView)
             ));
 
             this.container = new CompositionContainer(catalog);

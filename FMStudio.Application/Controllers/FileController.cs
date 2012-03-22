@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace FMStudio.Application.Controllers
     [Export]
     internal class FileController : Controller
     {
+        #region Members
         private readonly CompositionContainer container;
         private readonly IMessageService messageService;
         private readonly IFileDialogService fileDialogService;
@@ -31,16 +33,16 @@ namespace FMStudio.Application.Controllers
         private readonly FileService fileService;
         private readonly List<IDocumentType> documentTypes;
         private readonly RecentFileList recentSolutionList;
-        //private readonly DelegateCommand newCommand;
-        //private readonly DelegateCommand openCommand;
-        //private readonly DelegateCommand closeCommand;
-        //private readonly DelegateCommand saveCommand;
+        private readonly DelegateCommand newDocumentCommand;
+        private readonly DelegateCommand closeDocumentCommand;
+        private readonly DelegateCommand saveDocumentCommand;
+        private readonly DelegateCommand saveAllDocumentCommand;
         private readonly DelegateCommand newSolutionCommand;
-        private readonly DelegateCommand openSolutionCommand;
+        private readonly DelegateCommand openSolutionCommand; 
         private readonly DelegateCommand closeSolutionCommand;
-        private readonly DelegateCommand saveSolutionCommand;
+        private readonly DelegateCommand showSolutionCommand;
         private IDocument lastActiveDocument;
-
+        #endregion
 
         [ImportingConstructor]
         public FileController(CompositionContainer container, IMessageService messageService, IFileDialogService fileDialogService,
@@ -52,33 +54,34 @@ namespace FMStudio.Application.Controllers
             this.shellService = shellService;
             this.fileService = fileService;
             this.documentTypes = new List<IDocumentType>();
-            //this.newCommand = new DelegateCommand(NewCommand);
-            //this.openCommand = new DelegateCommand(OpenCommand);
-            //this.closeCommand = new DelegateCommand(CloseCommand, CanCloseCommand);
-            //this.saveCommand = new DelegateCommand(SaveCommand, CanSaveCommand);
+
+            this.newDocumentCommand = new DelegateCommand(NewDocumentCommand, CanNewDocumentCommand);
+            this.closeDocumentCommand = new DelegateCommand(CloseDocumentCommand, CanCloseDocumentCommand);
+            this.saveDocumentCommand = new DelegateCommand(SaveDocumentCommand, CanSaveDocumentCommand);
+            this.saveAllDocumentCommand = new DelegateCommand(SaveAllDocumentCommand, CanSaveAllDocumentCommand);
             this.newSolutionCommand = new DelegateCommand(NewSolutionCommand);
             this.openSolutionCommand = new DelegateCommand(OpenSolutionCommand);
             this.closeSolutionCommand = new DelegateCommand(CloseSolutionCommand, CanCloseSolutionCommand);
-            this.saveSolutionCommand = new DelegateCommand(SaveSolutionCommand, CanSaveSolutionCommand);
+            this.showSolutionCommand = new DelegateCommand(ShowSolutionCommand, CanShowSolutionCommand);
 
-            //this.fileService.NewCommand = newCommand;
-            //this.fileService.OpenCommand = openCommand;
-            //this.fileService.CloseCommand = closeCommand;
-            //this.fileService.SaveCommand = saveCommand;
-            this.fileService.NewSolutionCommand = newSolutionCommand;
-            this.fileService.OpenSolutionCommand = openSolutionCommand;
-            this.fileService.CloseSolutionCommand = closeSolutionCommand;
-            this.fileService.SaveSolutionCommand = saveSolutionCommand;
+            this.fileService.NewDocumentCommand = this.newDocumentCommand;
+            this.fileService.CloseDocumentCommand = this.closeDocumentCommand;
+            this.fileService.SaveDocumentCommand = this.saveDocumentCommand;
+            this.fileService.SaveAllDocumentCommand = this.saveAllDocumentCommand;
+            this.fileService.NewSolutionCommand = this.newSolutionCommand;
+            this.fileService.OpenSolutionCommand = this.openSolutionCommand;
+            this.fileService.CloseSolutionCommand = this.closeSolutionCommand;
+            this.fileService.ShowSolutionCommand = this.showSolutionCommand;
 
             this.recentSolutionList = Settings.Default.RecentSolutionList;
             if (this.recentSolutionList == null) { this.recentSolutionList = new RecentFileList(); }
-            this.fileService.RecentFileList = recentSolutionList;
+            this.fileService.RecentSolutionList = recentSolutionList;
 
-            //AddWeakEventListener(fileService, FileServicePropertyChanged);
+            AddWeakEventListener(fileService, FileServicePropertyChanged);
         }
 
-
-        private ReadOnlyObservableCollection<IDocument> Documents { get { return fileService.Documents; } }
+        #region Properties
+        private ReadOnlyObservableCollection<IDocument> OpenedDocuments { get { return fileService.OpenedDocuments; } }
 
         private IDocument ActiveDocument
         {
@@ -91,8 +94,9 @@ namespace FMStudio.Application.Controllers
             get { return fileService.SolutionDoc; }
             set { fileService.SolutionDoc = value; }
         }
+        #endregion
 
-
+        #region Public Methods
         public void Initialize()
         {
             //documentTypes.Add(new SolutionDocumentType());
@@ -107,8 +111,10 @@ namespace FMStudio.Application.Controllers
         {
             Settings.Default.RecentSolutionList = recentSolutionList;
         }
+        #endregion
 
-
+        #region Command Implement
+        #region Command Line Methods
         public IDocument NewSolution(string fullFileName)
         {
             if (string.IsNullOrEmpty(fullFileName)) { throw new ArgumentException("The argument fullFileName must not be null or empty."); }
@@ -120,7 +126,59 @@ namespace FMStudio.Application.Controllers
             if (string.IsNullOrEmpty(fullFileName)) { throw new ArgumentException("The argument fullFileName must not be null or empty."); }
             return OpenSolutionCore(fullFileName);
         }
+        #endregion
 
+        #region Command Methods
+        private bool CloseSolution()
+        {
+            if (!CanDocumentsClose(OpenedDocuments)) { return false; }
+
+            SolutionDoc = null;
+            ActiveDocument = null;
+            while (OpenedDocuments.Any())
+            {
+                fileService.RemoveDocument(OpenedDocuments.First());
+            }
+            return true;
+        }
+
+        private bool CanDocumentsClose(IEnumerable<IDocument> documentsToClose)
+        {
+            List<IDocument> modifiedDocuments = documentsToClose.Where(d => d.Modified).ToList();
+            if (!modifiedDocuments.Any()) { return true; }
+
+            // Show the save changes view to the user
+            ISaveChangesDialogView saveChangesView = container.GetExportedValue<ISaveChangesDialogView>();
+            SaveChangesDialogViewModel saveChangesViewModel = new SaveChangesDialogViewModel(saveChangesView, modifiedDocuments);
+            bool? dialogResult = saveChangesViewModel.ShowDialog(shellService.ShellView);
+
+            if (dialogResult == true)
+            {
+                foreach (IDocument document in modifiedDocuments)
+                {
+                    SaveDocument(document);
+                }
+            }
+
+            return dialogResult != null;
+        }
+
+        private bool CanNewDocumentCommand() { return SolutionDoc != null; }
+
+        private void NewDocumentCommand() { NewDocument(); }
+
+        private bool CanCloseDocumentCommand() { return ActiveDocument != null; }
+
+        private void CloseDocumentCommand() { CloseDocument(ActiveDocument); }
+
+        private bool CanSaveDocumentCommand() { return ActiveDocument != null && ActiveDocument.Modified; }
+
+        private void SaveDocumentCommand() { SaveDocument(ActiveDocument); }
+
+        private bool CanSaveAllDocumentCommand() { return OpenedDocuments.Where(d => d.Modified).Any(); }
+
+        private void SaveAllDocumentCommand() { SaveAllDocument(); }
+        
         private void NewSolutionCommand(object commandParameter)
         {
             IList<string> fileInfo = commandParameter as IList<string>;
@@ -157,35 +215,82 @@ namespace FMStudio.Application.Controllers
 
         private void CloseSolutionCommand() { CloseSolution(); }
 
-        private bool CanSaveSolutionCommand() { return SolutionDoc != null && SolutionDoc.Modified; }
+        private bool CanShowSolutionCommand() { return SolutionDoc != null; }
 
-        private void SaveSolutionCommand() { SaveSolution(); }
+        private void ShowSolutionCommand() { ShowSolution(); }
+        #endregion
 
+        #region Command Implement Mehods
+        private IDocument NewDocument()
+        {
+            // Show the new document view to the user
+            INewDocumentDialogView newDocumentView = container.GetExportedValue<INewDocumentDialogView>();
+            NewDocumentDialogViewModel newDocumentViewModel = 
+                new NewDocumentDialogViewModel(
+                    newDocumentView, documentTypes.Where(d=> d.CanNew()).Select(d => d));
+
+            bool? dialogResult = newDocumentViewModel.ShowDialog(shellService.ShellView);
+
+            if (dialogResult == true)
+            {
+                return NewCore(Path.Combine(Path.GetDirectoryName(SolutionDoc.FullFilePath), 
+                    newDocumentViewModel.FileName + newDocumentViewModel.SelectDocumentType.FileExtension));
+            }
+            else
+                return null;
+        }
+
+        private void SaveDocument(IDocument document)
+        {
+            IEnumerable<IDocumentType> saveTypes = documentTypes.Where(d => d.CanSave(document));
+            IDocumentType documentType = saveTypes.First(d => d.FileExtension == Path.GetExtension(document.FullFilePath));
+            SaveCore(documentType, document);
+        }
+
+        private void SaveAllDocument()
+        {
+            List<IDocument> modifiedDocuments = OpenedDocuments.Where(d => d.Modified).ToList();
+            if (!modifiedDocuments.Any()) { return; }
+
+            // Show the save changes view to the user
+            foreach (IDocument document in modifiedDocuments)
+            {
+                SaveDocument(document);
+            }
+        }
+
+        private bool CloseDocument(IDocument document)
+        {
+            if (!CanDocumentsClose(new IDocument[] { document })) { return false; }
+
+            if (ActiveDocument == document)
+            {
+                ActiveDocument = null;
+            }
+            fileService.RemoveDocument(document);
+            return true;
+        }
 
         internal SolutionDocument NewSolution()
         {
             // Show the new solutiion view to the user
-            IDialogView newSolutionView = container.GetExportedValue<IDialogView>();
-            string defaultSolutionLocation = Settings.Default.DefaultNewSolutionLocation;
-            if (!Directory.Exists(defaultSolutionLocation))
+            INewSolutionDialogView newSolutionView = container.GetExportedValue<INewSolutionDialogView>();
+            if (!Directory.Exists(Settings.Default.DefaultNewSolutionLocation))
             {
-                defaultSolutionLocation = Settings.Default.DefaultNewSolutionLocation
+                Settings.Default.DefaultNewSolutionLocation
                     = Path.Combine(
                         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
                         ApplicationInfo.ProductName);
-                Directory.CreateDirectory(defaultSolutionLocation);
+                Directory.CreateDirectory(Settings.Default.DefaultNewSolutionLocation);
             }
 
-            NewSolutionViewModel newSolutionViewModel = 
-                new NewSolutionViewModel(
-                    newSolutionView, 
-                    Resources.DefaultNewSolutionName,
-                    defaultSolutionLocation);
+            NewSolutionDialogViewModel newSolutionViewModel =
+                new NewSolutionDialogViewModel(newSolutionView);
             bool? dialogResult = newSolutionViewModel.ShowDialog(shellService.ShellView);
 
             if (dialogResult == true)
             {
-                if (!CanSolutionClose()) { return SolutionDoc; }
+                if (!CloseSolution()) { return SolutionDoc; }
 
                 SolutionDocumentType documentType = new SolutionDocumentType();
                 return NewSolutionCore(Path.Combine(newSolutionViewModel.Location, newSolutionViewModel.SolutionName,
@@ -195,7 +300,7 @@ namespace FMStudio.Application.Controllers
                 return null;
         }
 
-        private IDocument OpenSolution()
+        internal IDocument OpenSolution()
         {
             SolutionDocumentType documentType = new SolutionDocumentType();
             FileType fileType = new FileType(documentType.Description, documentType.FileExtension);
@@ -205,100 +310,61 @@ namespace FMStudio.Application.Controllers
             {
                 if ((SolutionDoc != null) && (SolutionDoc.FullFilePath == result.FileName))
                 {
-                    messageService.ShowMessage(shellService.ShellView,
+                    this.messageService.ShowMessage(shellService.ShellView,
                         string.Format(CultureInfo.CurrentCulture,
                         Resources.SolutionAlreadyOpened, Path.GetFileNameWithoutExtension(result.FileName)));
                     return null;
                 }
 
-                if (!CanSolutionClose()) { return SolutionDoc; }
+                if (!CloseSolution()) { return SolutionDoc; }
 
                 return OpenSolutionCore(result.FileName);
             }
             return null;
         }
 
-        private void SaveSolution()
+        private void ShowSolution()
         {
-            SolutionDocumentType documentType = new SolutionDocumentType();
-            SaveCore(documentType, SolutionDoc);
+            List<IDocument> solutionDocuments = OpenedDocuments.Where(d => d is SolutionDocument).ToList();
+            if (solutionDocuments.Any()) { return; }
+
+            this.fileService.AddDocument(this.fileService.SolutionDoc);
         }
+        #endregion
 
-        private bool CloseSolution()
-        {
-            if (!CanSolutionClose()) { return false; }
-
-            SolutionDoc = null;
-            while (Documents.Any())
-            {
-                fileService.RemoveDocument(Documents.First());
-            }
-            return true;
-        }
-
-        private bool CanSolutionClose()
-        {
-            List<IDocument> modifiedDocuments = Documents.Where(d => d.Modified).ToList();
-            if ((SolutionDoc != null) && (SolutionDoc.Modified))
-                modifiedDocuments.Add(SolutionDoc);
-            if (!modifiedDocuments.Any()) { return true; }
-
-            // Show the save changes view to the user
-            IDialogView saveChangesView = container.GetExportedValue<IDialogView>();
-            SaveChangesViewModel saveChangesViewModel = new SaveChangesViewModel(saveChangesView, modifiedDocuments);
-            bool? dialogResult = saveChangesViewModel.ShowDialog(shellService.ShellView);
-
-            if (dialogResult == true)
-            {
-                foreach (IDocument document in modifiedDocuments)
-                {
-                    SaveDocument(document);
-                }
-            }
-
-            return dialogResult != null;
-        }
-
-
-        private SolutionDocument NewSolutionCore(string fullFilePath, FileType fileType = null)
+        #region Command Core Methods
+        private SolutionDocument NewSolutionCore(string fullFilePath)
         {
             if (String.IsNullOrWhiteSpace(Path.GetDirectoryName(fullFilePath)))
             {
-                messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.NewSolutionPathInvalid, fullFilePath));
+                this.messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.NewSolutionPathInvalid, fullFilePath));
                 return null;
             }
 
             // Check if solution already exists
             if (Directory.Exists(Path.GetDirectoryName(fullFilePath)))
             {
-                messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.SolutionAlreadyExisted, Path.GetFileNameWithoutExtension(fullFilePath)));
+                this.messageService.ShowError(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.SolutionAlreadyExisted, Path.GetFileNameWithoutExtension(fullFilePath)));
                 return null;
             }
 
             SolutionDocumentType documentType = new SolutionDocumentType();
-            SolutionDocument document = null;
-            try
+            if (fullFilePath
+                .Substring(fullFilePath.Length - documentType.FileExtension.Length)
+                .CompareTo(documentType.FileExtension) != 0)
             {
-                document = documentType.New(fullFilePath) as SolutionDocument;
+                fullFilePath = fullFilePath + documentType.FileExtension;
             }
-            catch (Exception e)
-            {
-                Trace.TraceError(e.ToString());
-                messageService.ShowError(shellService.ShellView,
-                    string.Format(CultureInfo.CurrentCulture,
-                    Resources.CannotNewSolution, Path.GetFileNameWithoutExtension(fullFilePath)));
-                return null;
-            }
-            SolutionDoc = document;
 
-            recentSolutionList.AddFile(fullFilePath);
-            return document;
+            NewCore(fullFilePath);
+
+            this.recentSolutionList.AddFile(fullFilePath);
+            return this.fileService.SolutionDoc;
         }
 
         private SolutionDocument OpenSolutionCore(string fullFilePath)
         {
             SolutionDocumentType documentType = new SolutionDocumentType();
-
             SolutionDocument document = null;
             try
             {
@@ -307,7 +373,7 @@ namespace FMStudio.Application.Controllers
             catch (Exception e)
             {
                 Trace.TraceError(e.ToString());
-                messageService.ShowError(shellService.ShellView, 
+                this.messageService.ShowError(shellService.ShellView, 
                     string.Format(CultureInfo.CurrentCulture, 
                     Resources.CannotOpenSolution, Path.GetFileNameWithoutExtension(fullFilePath)));
                 return null;
@@ -315,8 +381,32 @@ namespace FMStudio.Application.Controllers
             if (document != null)
             {
                 SolutionDoc = document as SolutionDocument;
-                recentSolutionList.AddFile(document.FullFilePath);
+                this.recentSolutionList.AddFile(document.FullFilePath);
             }
+            return document;
+        }
+
+        private IDocument NewCore(string fullFilePath)
+        {
+            IDocument document = null;
+            try
+            {
+                IDocumentType documentType = this.documentTypes.First(d => d.FileExtension == Path.GetExtension(fullFilePath));
+                if (documentType == null)
+                {
+                    throw new ArgumentException("documentType is not an item of the DocumentTypes collection.");
+                }
+                document = documentType.New(fullFilePath);
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError(e.ToString());
+                this.messageService.ShowError(shellService.ShellView,
+                    string.Format(CultureInfo.CurrentCulture,
+                    Resources.CannotNewSolution, Path.GetFileNameWithoutExtension(fullFilePath)));
+                return null;
+            }
+            this.fileService.AddDocument(document);
             return document;
         }
 
@@ -333,20 +423,42 @@ namespace FMStudio.Application.Controllers
                     string.Format(CultureInfo.CurrentCulture, Resources.CannotSaveFile, document.FullFilePath));
             }
         }
+        #endregion
+        #endregion
 
-        private void SaveDocument(IDocument document)
+        #region Private Methods
+        private void FileServicePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (document is SolutionDocument)
+            if (e.PropertyName == "ActiveDocument")
             {
-                SolutionDocumentType documentType = new SolutionDocumentType();
-                SaveCore(documentType, document);
+                if (lastActiveDocument != null) { RemoveWeakEventListener(lastActiveDocument, ActiveDocumentPropertyChanged); }
+
+                lastActiveDocument = fileService.ActiveDocument;
+
+                if (lastActiveDocument != null) { AddWeakEventListener(lastActiveDocument, ActiveDocumentPropertyChanged); }
+
+                UpdateCommands();
             }
-            else
+            else if (e.PropertyName == "SolutionDoc")
             {
-                IEnumerable<IDocumentType> saveTypes = documentTypes.Where(d => d.CanSave(document));
-                IDocumentType documentType = saveTypes.First(d => d.FileExtension == Path.GetExtension(document.FullFilePath));
-                SaveCore(documentType, document);
+                newDocumentCommand.RaiseCanExecuteChanged();
             }
         }
+
+        private void ActiveDocumentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Modified")
+            {
+                UpdateCommands();
+            }
+        }
+
+        private void UpdateCommands()
+        {
+            closeDocumentCommand.RaiseCanExecuteChanged();
+            saveDocumentCommand.RaiseCanExecuteChanged();
+            saveAllDocumentCommand.RaiseCanExecuteChanged();
+        }
+        #endregion
     }
 }

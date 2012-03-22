@@ -9,6 +9,8 @@ using BigEgg.Framework.Applications.Services;
 using FMStudio.Application.Properties;
 using FMStudio.Application.Services;
 using FMStudio.Application.Views;
+using System.ComponentModel;
+using System.IO;
 
 namespace FMStudio.Application.ViewModels
 {
@@ -37,10 +39,10 @@ namespace FMStudio.Application.ViewModels
             this.fileService = fileService;
             this.documentViews = new ObservableCollection<object>();
             this.englishCommand = new DelegateCommand(() => SelectLanguage(new CultureInfo("en-US")));
-            this.chineseCommand = new DelegateCommand(() => SelectLanguage(new CultureInfo("ch-CN")));
+            this.chineseCommand = new DelegateCommand(() => SelectLanguage(new CultureInfo("zh-CN")));
             this.aboutCommand = new DelegateCommand(ShowAboutMessage);
 
-            AddWeakEventListener(documentViews, DocumentViewsCollectionChanged);
+            AddWeakEventListener(fileService, FileServicePropertyChanged);
         }
 
 
@@ -109,19 +111,17 @@ namespace FMStudio.Application.ViewModels
 
         private void ShowAboutMessage()
         {
-            messageService.ShowMessage(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, Resources.AboutText,
+            messageService.ShowMessage(shellService.ShellView, string.Format(CultureInfo.CurrentCulture, "About",
                 ApplicationInfo.ProductName, ApplicationInfo.Version));
+
+            //  Note: will use a ViewModel instead of this.
         }
 
-        private void DocumentViewsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void FileServicePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!documentViews.Any())
+            if (e.PropertyName == "SolutionName")
             {
-                ViewCore.ContentViewState = ContentViewState.StartViewVisible;
-            }
-            else
-            {
-                ViewCore.ContentViewState = ContentViewState.DocumentViewVisible;
+                shellService.SolutionName = fileService.SolutionName;
             }
         }
     }

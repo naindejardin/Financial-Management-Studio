@@ -9,21 +9,23 @@ namespace FMStudio.Application.Services
 {
     public interface IFileService : INotifyPropertyChanged
     {
-        ReadOnlyObservableCollection<IDocument> Documents { get; }
+        ReadOnlyObservableCollection<IDocument> OpenedDocuments { get; }
 
         SolutionDocument SolutionDoc { get; set; }
 
         IDocument ActiveDocument { get; set; }
 
-        RecentFileList RecentFileList { get; }
+        string SolutionName { get; }
 
-        //ICommand NewCommand { get; }
+        RecentFileList RecentSolutionList { get; }
 
-        //ICommand OpenCommand { get; }
+        ICommand NewDocumentCommand { get; }
 
-        //ICommand CloseCommand { get; }
+        ICommand CloseDocumentCommand { get; }
 
-        //ICommand SaveCommand { get; }
+        ICommand SaveDocumentCommand { get; }
+
+        ICommand SaveAllDocumentCommand { get; }
 
         ICommand NewSolutionCommand { get; }
 
@@ -31,6 +33,6 @@ namespace FMStudio.Application.Services
 
         ICommand CloseSolutionCommand { get; }
 
-        ICommand SaveSolutionCommand { get; }
+        ICommand ShowSolutionCommand { get; }
     }
 }

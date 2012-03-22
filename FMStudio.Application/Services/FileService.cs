@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
@@ -8,34 +10,35 @@ using FMStudio.Application.Documents;
 
 namespace FMStudio.Application.Services
 {
-    [Export]
+    [Export(typeof(IFileService)), Export]
     internal class FileService : DataModel, IFileService
     {
-        private readonly ObservableCollection<IDocument> documents;
-        private readonly ReadOnlyObservableCollection<IDocument> readOnlyDocuments;
+        #region Members
+        private readonly ObservableCollection<IDocument> openedDocuments;
+        private readonly ReadOnlyObservableCollection<IDocument> readOnlyOpenedDocuments;
         private IDocument activeDocument;
         private SolutionDocument solutionDoc;
-        private RecentFileList recentFileList;
-        //private ICommand newCommand;
-        //private ICommand openCommand;
-        //private ICommand closeCommand;
-        //private ICommand saveCommand;
-        //private ICommand saveAsCommand;
+        private RecentFileList recentSolutionList;
+        private ICommand newDocumentCommand;
+        private ICommand closeDocumentCommand;
+        private ICommand saveDocumentCommand;
+        private ICommand saveAllDocumentCommand;
         private ICommand newSolutionCommand;
         private ICommand openSolutionCommand;
         private ICommand closeSolutionCommand;
-        private ICommand saveSolutionCommand;
-
+        private ICommand showSolutionCommand;
+        #endregion
 
         [ImportingConstructor]
         public FileService()
         {
-            this.documents = new ObservableCollection<IDocument>();
-            this.readOnlyDocuments = new ReadOnlyObservableCollection<IDocument>(documents);
+            this.openedDocuments = new ObservableCollection<IDocument>();
+            this.readOnlyOpenedDocuments = new ReadOnlyObservableCollection<IDocument>(this.openedDocuments);
+            SolutionName = String.Empty;
         }
 
-
-        public ReadOnlyObservableCollection<IDocument> Documents { get { return this.readOnlyDocuments; } }
+        #region Properties
+        public ReadOnlyObservableCollection<IDocument> OpenedDocuments { get { return this.readOnlyOpenedDocuments; } }
 
         public IDocument ActiveDocument
         {
@@ -44,7 +47,7 @@ namespace FMStudio.Application.Services
             {
                 if (this.activeDocument != value)
                 {
-                    if (value != null && !this.documents.Contains(value))
+                    if (value != null && !this.openedDocuments.Contains(value))
                     {
                         throw new ArgumentException("value is not an item of the Documents collection.");
                     }
@@ -61,78 +64,90 @@ namespace FMStudio.Application.Services
             { 
                 if (this.solutionDoc != value)
                 {
-                    this.solutionDoc = value; 
+                    if (value != null)
+                    {
+                        SolutionName = value.AliasName;
+                        this.solutionDoc = value;
+                        AddWeakEventListener(SolutionDoc, SolutionDocPropertyChanged);
+                    }
+                    else
+                    {
+                        SolutionName = String.Empty;
+                        RemoveWeakEventListener(SolutionDoc, SolutionDocPropertyChanged);
+                        this.solutionDoc = value;
+                    }
                     RaisePropertyChanged("SolutionDoc");
+                    RaisePropertyChanged("SolutionName");
                 }
             }
         }
 
+        public string SolutionName { get; private set; }
 
-        public RecentFileList RecentFileList
+        public RecentFileList RecentSolutionList
         {
-            get { return this.recentFileList; }
+            get { return this.recentSolutionList; }
             set
             {
-                if (this.recentFileList != value)
+                if (this.recentSolutionList != value)
                 {
-                    this.recentFileList = value;
+                    this.recentSolutionList = value;
                     RaisePropertyChanged("RecentFileList");
                 }
             }
         }
 
-        //public ICommand NewCommand
-        //{
-        //    get { return this.newCommand; }
-        //    set
-        //    {
-        //        if (this.newCommand != value)
-        //        {
-        //            this.newCommand = value;
-        //            RaisePropertyChanged("NewCommand");
-        //        }
-        //    }
-        //}
+        public ICommand NewDocumentCommand
+        {
+            get { return this.newDocumentCommand; }
+            set
+            {
+                if (this.newDocumentCommand != value)
+                {
+                    this.newDocumentCommand = value;
+                    RaisePropertyChanged("NewDocumentCommand");
+                }
+            }
+        }
 
-        //public ICommand OpenCommand
-        //{
-        //    get { return this.openCommand; }
-        //    set
-        //    {
-        //        if (this.openCommand != value)
-        //        {
-        //            this.openCommand = value;
-        //            RaisePropertyChanged("OpenCommand");
-        //        }
-        //    }
-        //}
+        public ICommand CloseDocumentCommand
+        {
+            get { return this.closeDocumentCommand; }
+            set
+            {
+                if (this.closeDocumentCommand != value)
+                {
+                    this.closeDocumentCommand = value;
+                    RaisePropertyChanged("CloseDocumentCommand");
+                }
+            }
+        }
 
-        //public ICommand CloseCommand
-        //{
-        //    get { return this.closeCommand; }
-        //    set
-        //    {
-        //        if (this.closeCommand != value)
-        //        {
-        //            this.closeCommand = value;
-        //            RaisePropertyChanged("CloseCommand");
-        //        }
-        //    }
-        //}
-
-        //public ICommand SaveCommand
-        //{
-        //    get { return this.saveCommand; }
-        //    set
-        //    {
-        //        if (this.saveCommand != value)
-        //        {
-        //            this.saveCommand = value;
-        //            RaisePropertyChanged("SaveCommand");
-        //        }
-        //    }
-        //}
-
+        public ICommand SaveDocumentCommand
+        {
+            get { return this.saveDocumentCommand; }
+            set
+            {
+                if (this.saveDocumentCommand != value)
+                {
+                    this.saveDocumentCommand = value;
+                    RaisePropertyChanged("SaveDocumentCommand");
+                }
+            }
+        }
+        
+        public ICommand SaveAllDocumentCommand
+        {
+            get { return this.saveAllDocumentCommand; }
+            set
+            {
+                if (this.saveAllDocumentCommand != value)
+                {
+                    this.saveAllDocumentCommand = value;
+                    RaisePropertyChanged("SaveAllDocumentCommand");
+                }
+            }
+        }
 
         public ICommand NewSolutionCommand
         {
@@ -173,28 +188,63 @@ namespace FMStudio.Application.Services
             }
         }
 
-        public ICommand SaveSolutionCommand
+        public ICommand ShowSolutionCommand
         {
-            get { return this.saveSolutionCommand; }
+            get { return this.showSolutionCommand; }
             set
             {
-                if (this.saveSolutionCommand != value)
+                if (this.showSolutionCommand != value)
                 {
-                    this.saveSolutionCommand = value;
-                    RaisePropertyChanged("SaveSolutionCommand");
+                    this.showSolutionCommand = value;
+                    RaisePropertyChanged("ShowSolutionCommand");
                 }
             }
         }
+        #endregion
 
-
+        #region Public Methods
         public void AddDocument(IDocument document)
         {
-            documents.Add(document);
+            if (document is SolutionDocument)
+            {
+                if (SolutionDoc == null)
+                {
+                    SolutionDoc = document as SolutionDocument;
+                }
+                else
+                {
+                    if (SolutionDoc != OpenedDocuments.First(d => d is SolutionDocument))
+                    {
+                        throw new ArgumentException("Already have a solution opened");
+                    }
+                }
+            }
+            openedDocuments.Add(document);
         }
 
         public void RemoveDocument(IDocument document)
         {
-            documents.Remove(document);
+            openedDocuments.Remove(document);
         }
+        #endregion
+
+        #region Private Methods
+        private void SolutionDocPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "AliasName")
+            {
+                if (SolutionDoc != null)
+                {
+                    SolutionName = SolutionDoc.AliasName;
+                    RaisePropertyChanged("SolutionName");
+                }
+                else
+                {
+                    SolutionName = String.Empty;
+                    RaisePropertyChanged("SolutionName");
+                }
+            }
+        }
+        #endregion
     }
 }

@@ -6,6 +6,6 @@ namespace FMStudio.Application.Services
     {
         object ShellView { get; }
 
-        string DocumentName { get; set; }
+        string SolutionName { get; set; }
     }
 }

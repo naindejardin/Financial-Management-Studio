@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\SolutionDocumentController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\IApplicationController.cs" />
     <Compile Include="Documents\Document.cs" />
@@ -70,16 +73,22 @@
     <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\ShellService.cs" />
-    <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\DialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\NewSolutionViewModel.cs" />
-    <Compile Include="ViewModels\SaveChangesViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\NewDocumentDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\NewSolutionDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\SaveChangesDialogViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\SolutionViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="Views\ContentViewState.cs" />
-    <Compile Include="Views\IDialogView.cs" />
+    <Compile Include="Views\Dialog\IDialogView.cs" />
     <Compile Include="Views\IMainView.cs" />
+    <Compile Include="Views\Dialog\INewDocumentDialogView.cs" />
+    <Compile Include="Views\Dialog\INewSolutionDialogView.cs" />
+    <Compile Include="Views\Dialog\ISaveChangesDialogView.cs" />
     <Compile Include="Views\IShellView.cs" />
+    <Compile Include="Views\ISolutionView.cs" />
     <Compile Include="Views\IStartView.cs" />
   </ItemGroup>
   <ItemGroup>

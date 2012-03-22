@@ -129,6 +129,9 @@
   <data name="DataDocuments" xml:space="preserve">
     <value>Financial Data Documents (*.data)</value>
   </data>
+  <data name="DefaultNewDocumentName" xml:space="preserve">
+    <value>NewFile</value>
+  </data>
   <data name="DefaultNewSolutionName" xml:space="preserve">
     <value>NewSolution</value>
   </data>

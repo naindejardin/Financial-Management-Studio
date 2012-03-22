@@ -6,24 +6,25 @@ namespace FMStudio.Application.Services
     [Export(typeof(IShellService)), Export]
     internal class ShellService : DataModel, IShellService
     {
-        private string documentName;
+        private string solutionName;
         private object shellView;
 
 
         [ImportingConstructor]
         public ShellService()
         {
+            this.solutionName = string.Empty;
         }
 
-        public string DocumentName
+        public string SolutionName
         {
-            get { return documentName; }
+            get { return this.solutionName; }
             set
             {
-                if (documentName != value)
+                if (this.solutionName != value)
                 {
-                    documentName = value;
-                    RaisePropertyChanged("DocumentName");
+                    this.solutionName = value;
+                    RaisePropertyChanged("SolutionName");
                 }
             }
         }

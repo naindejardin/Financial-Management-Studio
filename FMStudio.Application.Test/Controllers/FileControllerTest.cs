@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BigEgg.Framework.Applications.Services;
 using BigEgg.Framework.UnitTesting;
 using BillList.Applications.Documents;
 using FMStudio.Application.Controllers;
+using FMStudio.Application.Documents;
 using FMStudio.Application.Services;
-using FMStudio.Application.Test.Documents;
 using FMStudio.Application.Test.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BigEgg.Framework.Applications.Services;
-using System.Collections.Generic;
-using FMStudio.Application.Documents;
 
 namespace FMStudio.Application.Test.Controllers
 {
@@ -19,6 +18,7 @@ namespace FMStudio.Application.Test.Controllers
     {
         protected override void OnTestCleanup()
         {
+            base.OnTestCleanup();
             if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution")))
                 Directory.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution"), true);
             if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "NewSolution")))
@@ -31,7 +31,7 @@ namespace FMStudio.Application.Test.Controllers
         public void NewSolutionViaCommandLineTest()
         {
             FileController fileController = Container.GetExportedValue<FileController>();
-            FileService fileService = Container.GetExportedValue<FileService>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
 
             Assert.IsNull(fileService.SolutionDoc);
 
@@ -66,7 +66,7 @@ namespace FMStudio.Application.Test.Controllers
         {
             MockFileDialogService fileDialogService = Container.GetExportedValue<MockFileDialogService>();
             FileController fileController = Container.GetExportedValue<FileController>();
-            FileService fileService = Container.GetExportedValue<FileService>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
 
             Assert.IsNull(fileService.SolutionDoc);
 
@@ -111,7 +111,7 @@ namespace FMStudio.Application.Test.Controllers
         public void OpenSolutionViaCommandLineTest()
         {
             FileController fileController = Container.GetExportedValue<FileController>();
-            FileService fileService = Container.GetExportedValue<FileService>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
 
             Assert.IsNull(fileService.SolutionDoc);
 
@@ -155,7 +155,7 @@ namespace FMStudio.Application.Test.Controllers
         public void SaveSolutionTest()
         {
             FileController fileController = Container.GetExportedValue<FileController>();
-            FileService fileService = Container.GetExportedValue<FileService>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
 
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
@@ -173,7 +173,7 @@ namespace FMStudio.Application.Test.Controllers
         public void OpenSaveSolutionTest()
         {
             MockFileDialogService fileDialogService = Container.GetExportedValue<MockFileDialogService>();
-            FileService fileService = Container.GetExportedValue<FileService>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
 
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
@@ -190,6 +190,18 @@ namespace FMStudio.Application.Test.Controllers
             Assert.IsFalse(fileService.SaveSolutionCommand.CanExecute(null));
 
             //  NOTE: Not test when solution document is modified.
+        }
+
+        [TestMethod]
+        public void CloseDocumentTest()
+        {
+            FileController fileController = Container.GetExportedValue<FileController>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
+
+            fileService.NewSolutionCommand.Execute(new List<string> {
+                Environment.CurrentDirectory, "NewSolution"});
+            fileService.CloseSolutionCommand.Execute(null);
+            Assert.IsNull(fileService.SolutionDoc);
         }
     }
 }

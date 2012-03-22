@@ -1,4 +1,5 @@
-﻿namespace FMStudio.Application.Controllers
+﻿//♦
+namespace FMStudio.Application.Controllers
 {
     /// <summary>
     /// Responsible for the application lifecycle.
