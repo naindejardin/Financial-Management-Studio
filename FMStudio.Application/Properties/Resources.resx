@@ -148,6 +148,6 @@
     <value>The solution  '{0}' has already opened.</value>
   </data>
   <data name="SolutionDocuments" xml:space="preserve">
-    <value>FMStuido Solution Documents (*.sln)</value>
+    <value>FMStuido Solution Documents (*.fmsln)</value>
   </data>
 </root>

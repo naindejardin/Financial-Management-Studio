@@ -1,8 +1,8 @@
 ﻿using System;
+using System.IO;
 using BigEgg.Framework.UnitTesting;
 using BillList.Applications.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace FMStudio.Application.Test
 {
@@ -12,7 +12,7 @@ namespace FMStudio.Application.Test
         [TestMethod]
         public void ConstructorTest()
         {
-            AssertHelper.ExpectedException<ArgumentException>(() => new MockDocumentTypeBase("", ".sln"));
+            AssertHelper.ExpectedException<ArgumentException>(() => new MockDocumentTypeBase("", ".fmsln"));
             AssertHelper.ExpectedException<ArgumentException>(() => new MockDocumentTypeBase("FMS Solution Documents", null));
             AssertHelper.ExpectedException<ArgumentException>(() => new MockDocumentTypeBase("FMS Solution Documents", "sln"));
 
@@ -22,7 +22,7 @@ namespace FMStudio.Application.Test
         [TestMethod]
         public void CheckBaseImplementation()
         {
-            MockDocumentTypeBase documentType = new MockDocumentTypeBase("FMStuido Solution Documents", ".sln");
+            MockDocumentTypeBase documentType = new MockDocumentTypeBase("FMStuido Solution Documents", ".fmsln");
             Assert.IsFalse(documentType.CanNew());
             Assert.IsFalse(documentType.CanOpen());
             Assert.IsFalse(documentType.CanSave(null));

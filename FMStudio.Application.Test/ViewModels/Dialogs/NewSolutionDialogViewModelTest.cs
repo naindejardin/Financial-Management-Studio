@@ -1,19 +1,18 @@
 ﻿using System;
 using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
+using FMStudio.Application.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Application.Test.ViewModels
 {
     [TestClass]
-    public class NewSolutionViewModelTest
+    public class NewSolutionDialogViewModelTest
     {
         [TestMethod]
-        public void NewSolutionViewModelCloseTest()
+        public void NewSolutionDialogViewModelCloseTest()
         {
-            MockDialogView view = new MockDialogView();
-            NewSolutionDialogViewModel viewModel = new NewSolutionDialogViewModel(
-                view, "NewSolutioin", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            MockNewSolutionDialogView view = new MockNewSolutionDialogView();
+            NewSolutionDialogViewModel viewModel = new NewSolutionDialogViewModel(view);
 
             object owner = new object();
             view.ShowDialogAction = v =>

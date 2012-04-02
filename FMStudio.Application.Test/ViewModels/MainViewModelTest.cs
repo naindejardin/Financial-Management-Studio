@@ -21,8 +21,45 @@ namespace FMStudio.Application.Test.ViewModels
             base.OnTestCleanup();
             if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution")))
                 Directory.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution"), true);
+            if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "NewSolution")))
+                Directory.Delete(Path.Combine(Environment.CurrentDirectory, "NewSolution"), true);
         }
 
+
+        [TestMethod]
+        public void SolutionDocumentViewTest()
+        {
+            IFileService documentManager = Container.GetExportedValue<IFileService>();
+            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
+
+            Assert.IsFalse(mainViewModel.DocumentViews.Any());
+            Assert.IsNull(mainViewModel.ActiveDocumentView);
+
+            mainViewModel.FileService.NewSolutionCommand.Execute(new List<string> {
+                Environment.CurrentDirectory, "NewSolution"});
+
+            Assert.AreEqual(mainViewModel.DocumentViews.Single(), mainViewModel.ActiveDocumentView);
+            Assert.AreEqual(1, mainViewModel.DocumentViews.Count);
+
+            mainViewModel.FileService.CloseSolutionCommand.Execute(null);
+
+            Assert.IsFalse(mainViewModel.DocumentViews.Any());
+            Assert.IsNull(mainViewModel.ActiveDocumentView);
+        }
+
+        [TestMethod]
+        public void PropertiesWithNotification()
+        {
+            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
+
+            object startView = new object();
+            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.StartView, () => mainViewModel.StartView = startView);
+            Assert.AreEqual(startView, mainViewModel.StartView);
+
+            ICommand exitCommand = new DelegateCommand(() => { });
+            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.ExitCommand, () => mainViewModel.ExitCommand = exitCommand);
+            Assert.AreEqual(exitCommand, mainViewModel.ExitCommand);
+        }
 
         [TestMethod]
         public void SelectLanguageTest()
@@ -57,43 +94,14 @@ namespace FMStudio.Application.Test.ViewModels
 
             //  Open the solution.
             fileDialogService.Result = new FileDialogResult(
-                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"),
-                new FileType("FMStuido Solution Documents (*.sln)", ".sln"));
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"),
+                new FileType("FMStuido Solution Documents (*.fmsln)", ".fmsln"));
             fileService.OpenSolutionCommand.Execute(null);
             Assert.AreEqual("NewSolution", shellService.SolutionName);
 
             AssertHelper.PropertyChangedEvent(shellService, x => x.SolutionName,
                 () => fileService.SolutionDoc.AliasName = "TestSolution");
             Assert.AreEqual("TestSolution", shellService.SolutionName);
-        }
-
-        [TestMethod]
-        public void PropertiesWithNotification()
-        {
-            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
-
-            object startView = new object();
-            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.StartView, () => mainViewModel.StartView = startView);
-            Assert.AreEqual(startView, mainViewModel.StartView);
-
-            ICommand exitCommand = new DelegateCommand(() => { });
-            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.ExitCommand, () => mainViewModel.ExitCommand = exitCommand);
-            Assert.AreEqual(exitCommand, mainViewModel.ExitCommand);
-        }
-
-        [TestMethod]
-        public void DocumentViewTest()
-        {
-            IFileService documentManager = Container.GetExportedValue<IFileService>();
-            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
-
-            Assert.IsFalse(mainViewModel.DocumentViews.Any());
-            Assert.IsNull(mainViewModel.ActiveDocumentView);
-
-            mainViewModel.FileService.NewSolutionCommand.Execute(new List<string> {
-                Environment.CurrentDirectory, "NewSolution"});
-
-            Assert.AreEqual(mainViewModel.DocumentViews.Single(), mainViewModel.ActiveDocumentView);
         }
     }
 }

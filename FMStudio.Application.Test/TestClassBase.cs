@@ -13,20 +13,21 @@ namespace FMStudio.Application.Test
     public abstract class TestClassBase
     {
         private readonly CompositionContainer container;
-
+        private SolutionDocumentController solutionDocumentController;
 
         public TestClassBase()
         {
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new TypeCatalog(
-                typeof(FileController), 
-                typeof(FileService), typeof(ShellService),
+                typeof(ApplicationController), typeof(FileController), typeof(SolutionDocumentController),
+                typeof(FileService), typeof(ShellService), typeof(MockEnvironmentService),
                 typeof(MainViewModel), typeof(ShellViewModel), typeof(StartViewModel)
             ));
             catalog.Catalogs.Add(new TypeCatalog(
                 typeof(MockPresentationService),
                 typeof(MockMessageService), typeof(MockFileDialogService),
-                typeof(MockShellView), typeof(MockMainView), typeof(MockDialogView),
+                typeof(MockShellView), typeof(MockMainView), typeof(MockSolutionView),
+                typeof(MockNewDocumentDialogView), typeof(MockNewSolutionDialogView), typeof(MockSaveChangesDialogView),
                 typeof(MockStartView)
             ));
 
@@ -43,6 +44,7 @@ namespace FMStudio.Application.Test
         [TestInitialize]
         public void TestInitialize()
         {
+            solutionDocumentController = Container.GetExportedValue<SolutionDocumentController>();
             Container.GetExportedValue<FileController>().Initialize();
 
             OnTestInitialize();

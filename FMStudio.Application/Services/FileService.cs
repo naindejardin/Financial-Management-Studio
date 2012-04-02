@@ -49,7 +49,7 @@ namespace FMStudio.Application.Services
                 {
                     if (value != null && !this.openedDocuments.Contains(value))
                     {
-                        throw new ArgumentException("value is not an item of the Documents collection.");
+                        throw new ArgumentException("value is not an item of the Opened Documents collection.");
                     }
                     this.activeDocument = value;
                     RaisePropertyChanged("ActiveDocument");
@@ -92,7 +92,7 @@ namespace FMStudio.Application.Services
                 if (this.recentSolutionList != value)
                 {
                     this.recentSolutionList = value;
-                    RaisePropertyChanged("RecentFileList");
+                    RaisePropertyChanged("RecentSolutionList");
                 }
             }
         }
@@ -213,18 +213,20 @@ namespace FMStudio.Application.Services
                 }
                 else
                 {
-                    if (SolutionDoc != OpenedDocuments.First(d => d is SolutionDocument))
+                    if (SolutionDoc != document as SolutionDocument)
                     {
                         throw new ArgumentException("Already have a solution opened");
                     }
                 }
             }
-            openedDocuments.Add(document);
+            this.openedDocuments.Add(document);
+            ActiveDocument = document;
         }
 
         public void RemoveDocument(IDocument document)
         {
             openedDocuments.Remove(document);
+            ActiveDocument = null;
         }
         #endregion
 

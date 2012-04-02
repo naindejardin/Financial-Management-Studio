@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FMStudio.Application.Documents;
-using System.Xml.Linq;
 using System.IO;
-using BillList.Applications.Documents;
+using System.Xml.Linq;
 using BigEgg.Framework.UnitTesting;
+using BillList.Applications.Documents;
+using FMStudio.Application.Documents;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Application.Test.Documents
 {
@@ -19,10 +16,10 @@ namespace FMStudio.Application.Test.Documents
         [TestCleanup]
         public void TestCleanup()
         {
-            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution.sln")))
-                File.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution.sln"));
-            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.sln")))
-                File.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution2.sln"));
+            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution.fmsln")))
+                File.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution.fmsln"));
+            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.fmsln")))
+                File.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution2.fmsln"));
         }
 
 
@@ -30,8 +27,8 @@ namespace FMStudio.Application.Test.Documents
         public void DocumentTypeTest()
         {
             SolutionDocumentType documentType = new SolutionDocumentType();
-            Assert.AreEqual(".sln", documentType.FileExtension);
-            Assert.AreEqual("FMStuido Solution Documents (*.sln)", documentType.Description);
+            Assert.AreEqual(".fmsln", documentType.FileExtension);
+            Assert.AreEqual("FMStuido Solution Documents (*.fmsln)", documentType.Description);
         }
 
         [TestMethod]
@@ -41,7 +38,7 @@ namespace FMStudio.Application.Test.Documents
             Assert.IsTrue(documentType.CanNew());
             SolutionDocument document =
                 documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution")) as SolutionDocument;
-            Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution.sln")));
+            Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution.fmsln")));
             Assert.IsNotNull(document);
             XDocument xdoc = new XDocument(
                 new XComment("Financial Management Studio Solution File, Format Version 1.00"),
@@ -63,10 +60,10 @@ namespace FMStudio.Application.Test.Documents
 
             Assert.IsTrue(documentType.CanSave(document));
             documentType.Save(document, Path.Combine(Environment.CurrentDirectory, "TestSolution2"));
-            Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.sln")));
+            Assert.IsTrue(File.Exists(Path.Combine(Environment.CurrentDirectory, "TestSolution2.fmsln")));
 
             Assert.IsTrue(documentType.CanOpen());
-            SolutionDocument openedDocument = documentType.Open("TestSolution2.sln") as SolutionDocument;
+            SolutionDocument openedDocument = documentType.Open("TestSolution2.fmsln") as SolutionDocument;
 
             Assert.AreEqual(document.AliasName, openedDocument.AliasName);
 
@@ -75,7 +72,7 @@ namespace FMStudio.Application.Test.Documents
             openedDocument = null;
             Assert.AreEqual("NewAlias", document.AliasName);
             documentType.Save(document, Path.Combine(Environment.CurrentDirectory, "TestSolution2"));
-            openedDocument = documentType.Open("TestSolution2.sln") as SolutionDocument;
+            openedDocument = documentType.Open("TestSolution2.fmsln") as SolutionDocument;
             Assert.AreEqual("NewAlias", openedDocument.AliasName);
         }
 

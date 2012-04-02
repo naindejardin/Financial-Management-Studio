@@ -1,11 +1,13 @@
-﻿using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
+﻿using System;
+using BigEgg.Framework.Applications;
+using FMStudio.Application.Test.Views.Dialogs;
+using FMStudio.Application.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Application.Test.ViewModels.Dialogs
 {
     [TestClass]
-    public class DialogViewModelTest
+    public class DialogViewModelBaseTest
     {
         [TestMethod]
         public void DialogViewModelCloseTest()
@@ -48,6 +50,18 @@ namespace FMStudio.Application.Test.ViewModels
             public MockDialogViewModel(MockDialogView view)
                 : base(view)
             {
+            }
+        }
+
+        private class MockDialogView : MockDialogViewBase
+        {
+            public Action<MockDialogView> ShowDialogAction { get; set; }
+            public MockDialogViewModel ViewModel { get { return ViewHelper.GetViewModel<MockDialogViewModel>(this); } }
+
+
+            protected override void OnShowDialogAction()
+            {
+                if (ShowDialogAction != null) { ShowDialogAction(this); }
             }
         }
     }

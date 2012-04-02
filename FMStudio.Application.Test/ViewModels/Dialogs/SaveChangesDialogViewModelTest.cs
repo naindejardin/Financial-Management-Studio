@@ -4,16 +4,16 @@ using System.IO;
 using BillList.Applications.Documents;
 using FMStudio.Application.Test.Documents;
 using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
+using FMStudio.Application.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Application.Test.ViewModels
 {
     [TestClass]
-    public class SaveChangesViewModelTest
+    public class SaveChangesDialogViewModelTest
     {
         [TestMethod]
-        public void SaveChangesViewModelCloseTest()
+        public void SaveChangesDialogViewModelCloseTest()
         {
             MockDocumentType documentType = new MockDocumentType("Mock Document", ".mock");
             IEnumerable<IDocument> documents = new IDocument[] 
@@ -23,7 +23,7 @@ namespace FMStudio.Application.Test.ViewModels
                 documentType.New(Path.Combine(Environment.CurrentDirectory, "Test3"))
             };
 
-            MockDialogView view = new MockDialogView();
+            MockSaveChangesDialogView view = new MockSaveChangesDialogView();
             SaveChangesDialogViewModel viewModel = new SaveChangesDialogViewModel(view, documents);
 
             Assert.AreEqual(documents, viewModel.Documents);

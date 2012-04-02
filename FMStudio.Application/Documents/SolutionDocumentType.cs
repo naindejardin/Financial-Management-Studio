@@ -8,7 +8,7 @@ namespace FMStudio.Application.Documents
     public class SolutionDocumentType:DocumentType
     {
         public SolutionDocumentType()
-            : base(Resources.SolutionDocuments, ".sln")
+            : base(Resources.SolutionDocuments, ".fmsln")
         {
         }
 

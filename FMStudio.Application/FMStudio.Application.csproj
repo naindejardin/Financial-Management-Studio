@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\SolutionDocumentController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\FileController.cs" />
@@ -69,6 +70,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\IEnvironmentService.cs" />
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Services\IShellService.cs" />
@@ -82,11 +84,11 @@
     <Compile Include="ViewModels\SolutionViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="Views\ContentViewState.cs" />
-    <Compile Include="Views\Dialog\IDialogView.cs" />
+    <Compile Include="Views\Dialogs\IDialogView.cs" />
     <Compile Include="Views\IMainView.cs" />
-    <Compile Include="Views\Dialog\INewDocumentDialogView.cs" />
-    <Compile Include="Views\Dialog\INewSolutionDialogView.cs" />
-    <Compile Include="Views\Dialog\ISaveChangesDialogView.cs" />
+    <Compile Include="Views\Dialogs\INewDocumentDialogView.cs" />
+    <Compile Include="Views\Dialogs\INewSolutionDialogView.cs" />
+    <Compile Include="Views\Dialogs\ISaveChangesDialogView.cs" />
     <Compile Include="Views\IShellView.cs" />
     <Compile Include="Views\ISolutionView.cs" />
     <Compile Include="Views\IStartView.cs" />

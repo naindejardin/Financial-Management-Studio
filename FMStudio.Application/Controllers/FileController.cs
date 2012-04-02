@@ -14,8 +14,8 @@ using BillList.Applications.Documents;
 using FMStudio.Application.Documents;
 using FMStudio.Application.Properties;
 using FMStudio.Application.Services;
-using FMStudio.Application.ViewModels;
-using FMStudio.Application.Views;
+using FMStudio.Application.ViewModels.Dialogs;
+using FMStudio.Application.Views.Dialogs;
 
 namespace FMStudio.Application.Controllers
 {
@@ -111,6 +111,19 @@ namespace FMStudio.Application.Controllers
         {
             Settings.Default.RecentSolutionList = recentSolutionList;
         }
+
+        public bool CloseSolution()
+        {
+            if (!CanDocumentsClose(OpenedDocuments)) { return false; }
+
+            SolutionDoc = null;
+            ActiveDocument = null;
+            while (OpenedDocuments.Any())
+            {
+                fileService.RemoveDocument(OpenedDocuments.First());
+            }
+            return true;
+        }
         #endregion
 
         #region Command Implement
@@ -129,19 +142,6 @@ namespace FMStudio.Application.Controllers
         #endregion
 
         #region Command Methods
-        private bool CloseSolution()
-        {
-            if (!CanDocumentsClose(OpenedDocuments)) { return false; }
-
-            SolutionDoc = null;
-            ActiveDocument = null;
-            while (OpenedDocuments.Any())
-            {
-                fileService.RemoveDocument(OpenedDocuments.First());
-            }
-            return true;
-        }
-
         private bool CanDocumentsClose(IEnumerable<IDocument> documentsToClose)
         {
             List<IDocument> modifiedDocuments = documentsToClose.Where(d => d.Modified).ToList();
@@ -242,8 +242,17 @@ namespace FMStudio.Application.Controllers
 
         private void SaveDocument(IDocument document)
         {
-            IEnumerable<IDocumentType> saveTypes = documentTypes.Where(d => d.CanSave(document));
-            IDocumentType documentType = saveTypes.First(d => d.FileExtension == Path.GetExtension(document.FullFilePath));
+            IDocumentType documentType;
+
+            if (document is SolutionDocument)
+            {
+                documentType = new SolutionDocumentType();
+            }
+            else
+            {
+                IEnumerable<IDocumentType> saveTypes = documentTypes.Where(d => d.CanSave(document));
+                documentType = saveTypes.First(d => d.FileExtension == Path.GetExtension(document.FullFilePath));
+            }
             SaveCore(documentType, document);
         }
 
@@ -326,9 +335,16 @@ namespace FMStudio.Application.Controllers
         private void ShowSolution()
         {
             List<IDocument> solutionDocuments = OpenedDocuments.Where(d => d is SolutionDocument).ToList();
-            if (solutionDocuments.Any()) { return; }
+            if (solutionDocuments.Any())
+            {
+                return;
+            }
+            else
+            {
+                this.fileService.AddDocument(this.fileService.SolutionDoc);
+            }
 
-            this.fileService.AddDocument(this.fileService.SolutionDoc);
+            this.fileService.ActiveDocument = this.fileService.SolutionDoc;
         }
         #endregion
 
@@ -356,9 +372,10 @@ namespace FMStudio.Application.Controllers
                 fullFilePath = fullFilePath + documentType.FileExtension;
             }
 
-            NewCore(fullFilePath);
+            SolutionDocument document = documentType.New(fullFilePath) as SolutionDocument;
 
             this.recentSolutionList.AddFile(fullFilePath);
+            fileService.AddDocument(document);
             return this.fileService.SolutionDoc;
         }
 
@@ -380,7 +397,7 @@ namespace FMStudio.Application.Controllers
             }
             if (document != null)
             {
-                SolutionDoc = document as SolutionDocument;
+                fileService.AddDocument(document);
                 this.recentSolutionList.AddFile(document.FullFilePath);
             }
             return document;

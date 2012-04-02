@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using BillList.Applications.Documents;
 using FMStudio.Application.Properties;
-using FMStudio.Application.Views;
+using FMStudio.Application.Views.Dialogs;
 
-namespace FMStudio.Application.ViewModels
+namespace FMStudio.Application.ViewModels.Dialogs
 {
-    class NewDocumentDialogViewModel : DialogViewModel<INewDocumentDialogView>
+    public class NewDocumentDialogViewModel : DialogViewModel<INewDocumentDialogView>
     {
         private IEnumerable<IDocumentType> documentTypes;
 

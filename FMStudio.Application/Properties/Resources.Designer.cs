@@ -151,7 +151,7 @@ namespace FMStudio.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FMStuido Solution Documents (*.sln).
+        ///   Looks up a localized string similar to FMStuido Solution Documents (*.fmsln).
         /// </summary>
         internal static string SolutionDocuments {
             get {

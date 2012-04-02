@@ -27,6 +27,7 @@ namespace FMStudio.Application.Test.Controllers
                 Directory.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution2"), true);
         }
 
+
         [TestMethod]
         public void NewSolutionViaCommandLineTest()
         {
@@ -35,13 +36,15 @@ namespace FMStudio.Application.Test.Controllers
 
             Assert.IsNull(fileService.SolutionDoc);
 
-            // NewSolution is called with a fileName which might be a command line parameter.
+            // NewSolution is called with a path and solution name which might be a command line parameter.
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
             IDocument document = fileService.SolutionDoc;
+            Assert.IsNotNull(fileService.SolutionDoc);
             Assert.AreEqual(Path.Combine(
-                Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"), document.FullFilePath);
+                Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"), document.FullFilePath);
             Assert.AreEqual(document, fileService.SolutionDoc);
+            Assert.IsTrue(fileService.OpenedDocuments.Any());
 
             // Call NewSolution with a fileName that has already exist.
             MockMessageService messageService = Container.GetExportedValue<MockMessageService>();
@@ -62,6 +65,25 @@ namespace FMStudio.Application.Test.Controllers
 
 
         [TestMethod]
+        public void CloseSolutionTest()
+        {
+            FileController fileController = Container.GetExportedValue<FileController>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
+
+            //  Create a new solution document for testing.
+            fileService.NewSolutionCommand.Execute(new List<string> {
+                Environment.CurrentDirectory, "NewSolution"});
+            IDocument document = fileService.SolutionDoc;
+            Assert.IsNotNull(fileService.SolutionDoc);
+            Assert.IsTrue(fileService.OpenedDocuments.Any());
+
+            fileService.CloseSolutionCommand.Execute(null);
+            Assert.IsNull(fileService.SolutionDoc);
+            Assert.IsFalse(fileService.OpenedDocuments.Any());
+        }
+
+
+        [TestMethod]
         public void OpenSolutionTest()
         {
             MockFileDialogService fileDialogService = Container.GetExportedValue<MockFileDialogService>();
@@ -73,23 +95,22 @@ namespace FMStudio.Application.Test.Controllers
             //  Create a new solution document for testing.
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
-            fileService.SolutionDoc = null;
+            fileService.CloseSolutionCommand.Execute(null);
 
 
             fileDialogService.Result = new FileDialogResult(
-                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"),
-                new FileType("FMStuido Solution Documents (*.sln)", ".sln"));
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"),
+                new FileType("FMStuido Solution Documents (*.fmsln)", ".fmsln"));
             fileService.OpenSolutionCommand.Execute(null);
 
             Assert.AreEqual(FileDialogType.OpenFileDialog, fileDialogService.FileDialogType);
-            Assert.AreEqual("FMStuido Solution Documents (*.sln)", fileDialogService.FileTypes.Last().Description);
-            Assert.AreEqual(".sln", fileDialogService.FileTypes.Last().FileExtension);
+            Assert.AreEqual("FMStuido Solution Documents (*.fmsln)", fileDialogService.FileTypes.Last().Description);
+            Assert.AreEqual(".fmsln", fileDialogService.FileTypes.Last().FileExtension);
 
             IDocument document = fileService.SolutionDoc;
             Assert.AreEqual(
-                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"),
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"),
                 document.FullFilePath);
-
             Assert.AreEqual(document, fileService.SolutionDoc);
 
             // Open the same file again -> It's not opened again.
@@ -106,7 +127,6 @@ namespace FMStudio.Application.Test.Controllers
             Assert.AreEqual(document, fileService.SolutionDoc);
         }
 
-
         [TestMethod]
         public void OpenSolutionViaCommandLineTest()
         {
@@ -118,31 +138,33 @@ namespace FMStudio.Application.Test.Controllers
             //  Create a new solution document for testing.
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
-            fileService.SolutionDoc = null;
+            fileService.CloseSolutionCommand.Execute(null);
 
 
             // Open is called with a fileName which might be a command line parameter.
-            fileService.OpenSolutionCommand.Execute(Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"));
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"));
             IDocument document = fileService.SolutionDoc;
             Assert.AreEqual(
-                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"),
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"),
                 document.FullFilePath);
             Assert.AreEqual(document, fileService.SolutionDoc);
 
             // Call open with a fileName that has an invalid extension
             MockMessageService messageService = Container.GetExportedValue<MockMessageService>();
             messageService.Clear();
-            fileService.OpenSolutionCommand.Execute("Document.wrongextension");
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.wrongextension"));
             Assert.AreEqual(MessageType.Error, messageService.MessageType);
             Assert.IsFalse(string.IsNullOrEmpty(messageService.Message));
 
             // Call open with a fileName that doesn't exist
             messageService.Clear();
-            fileService.OpenSolutionCommand.Execute("2i0501fh-89f1-4197-a318-d5241135f4f6.sln");
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "2i0501fh-89f1-4197-a318-d5241135f4f6.fmsln"));
             Assert.AreEqual(MessageType.Error, messageService.MessageType);
             Assert.IsFalse(string.IsNullOrEmpty(messageService.Message));
         }
-
 
         [TestMethod]
         public void OpenSolutionExceptionsTest()
@@ -151,23 +173,28 @@ namespace FMStudio.Application.Test.Controllers
             AssertHelper.ExpectedException<ArgumentException>(() => fileController.OpenSolution(null));
         }
 
+
         [TestMethod]
         public void SaveSolutionTest()
         {
             FileController fileController = Container.GetExportedValue<FileController>();
             IFileService fileService = Container.GetExportedValue<IFileService>();
 
+            //  Create a new solution document for testing.
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
-            SolutionDocument document = fileService.SolutionDoc;
 
+            SolutionDocument document = fileService.SolutionDoc;
             document.AliasName = "NewAlias";
             Assert.AreEqual("NewAlias", document.AliasName);
-            fileService.SaveSolutionCommand.Execute(null); 
-            fileService.OpenSolutionCommand.Execute(Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"));
+            fileService.ActiveDocument = document;
+
+            fileService.SaveDocumentCommand.Execute(document);
+            fileService.CloseSolutionCommand.Execute(null);
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"));
             Assert.AreEqual("NewAlias", fileService.SolutionDoc.AliasName);
         }
-
 
         [TestMethod]
         public void OpenSaveSolutionTest()
@@ -177,31 +204,73 @@ namespace FMStudio.Application.Test.Controllers
 
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
-            Assert.IsFalse(fileService.SaveSolutionCommand.CanExecute(null));
+            Assert.IsFalse(fileService.SaveDocumentCommand.CanExecute(null));
 
-            fileService.SolutionDoc = null;
-            fileDialogService.Result = new FileDialogResult();
+            fileService.CloseSolutionCommand.Execute(null);
 
             fileDialogService.Result = new FileDialogResult(
-                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.sln"),
-                new FileType("FMStuido Solution Documents (*.sln)", ".sln"));
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"),
+                new FileType("FMStuido Solution Documents (*.fmsln)", ".fmsln"));
             fileService.OpenSolutionCommand.Execute(null);
             Assert.AreEqual(FileDialogType.OpenFileDialog, fileDialogService.FileDialogType);
-            Assert.IsFalse(fileService.SaveSolutionCommand.CanExecute(null));
+            Assert.IsFalse(fileService.SaveDocumentCommand.CanExecute(null));
 
-            //  NOTE: Not test when solution document is modified.
+            //  Test when solution document is modified.
+            SolutionDocument document = fileService.SolutionDoc;
+            document.AliasName = "NewAlias";
+            Assert.AreEqual("NewAlias", document.AliasName);
+            fileService.ActiveDocument = document;
+
+            fileService.SaveDocumentCommand.Execute(document);
+            fileService.CloseSolutionCommand.Execute(null);
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"));
+            Assert.AreEqual("NewAlias", fileService.SolutionDoc.AliasName);
         }
 
+
         [TestMethod]
-        public void CloseDocumentTest()
+        public void CloseSolutionDocumentAndShowTest()
         {
             FileController fileController = Container.GetExportedValue<FileController>();
             IFileService fileService = Container.GetExportedValue<IFileService>();
 
             fileService.NewSolutionCommand.Execute(new List<string> {
                 Environment.CurrentDirectory, "NewSolution"});
+            fileService.ActiveDocument = fileService.SolutionDoc;
+
+            fileService.CloseDocumentCommand.Execute(null);
+            Assert.IsNull(fileService.ActiveDocument);
+            Assert.IsNotNull(fileService.SolutionDoc);
+            Assert.IsFalse(fileService.OpenedDocuments.Any());
+
+            //  Show solution document
+            fileService.ShowSolutionCommand.Execute(null);
+            Assert.IsTrue(fileService.OpenedDocuments.Any());
+            Assert.AreEqual(fileService.ActiveDocument, fileService.SolutionDoc);
+        }
+
+
+
+        [TestMethod]
+        public void SaveAllDocumentTest()
+        {
+            FileController fileController = Container.GetExportedValue<FileController>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
+
+            //  Create a new solution document for testing.
+            fileService.NewSolutionCommand.Execute(new List<string> {
+                Environment.CurrentDirectory, "NewSolution"});
+
+            SolutionDocument document = fileService.SolutionDoc;
+            document.AliasName = "NewAlias";
+            Assert.AreEqual("NewAlias", document.AliasName);
+
+            fileService.SaveAllDocumentCommand.Execute(null);
             fileService.CloseSolutionCommand.Execute(null);
-            Assert.IsNull(fileService.SolutionDoc);
+            fileService.OpenSolutionCommand.Execute(
+                Path.Combine(Environment.CurrentDirectory, "NewSolution", "NewSolution.fmsln"));
+            Assert.AreEqual("NewAlias", fileService.SolutionDoc.AliasName);
         }
     }
 }

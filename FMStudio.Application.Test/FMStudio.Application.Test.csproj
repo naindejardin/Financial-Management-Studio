@@ -60,25 +60,33 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApplicationControllerTest.cs" />
     <Compile Include="Controllers\FileControllerTest.cs" />
+    <Compile Include="Controllers\SolutionDocumentControllerTest.cs" />
     <Compile Include="Documents\DocumentTypeTest.cs" />
     <Compile Include="Documents\MockDocumentType.cs" />
     <Compile Include="Documents\SolutionDocumentTypeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileServiceTest.cs" />
+    <Compile Include="Services\MockEnvironmentService.cs" />
     <Compile Include="Services\MockFileDialogService.cs" />
     <Compile Include="Services\MockMessageService.cs" />
     <Compile Include="Services\MockPresentationService.cs" />
     <Compile Include="TestClassBase.cs" />
-    <Compile Include="ViewModels\DialogViewModelTest.cs" />
+    <Compile Include="ViewModels\Dialogs\DialogViewModelBaseTest.cs" />
+    <Compile Include="ViewModels\Dialogs\NewDocumentDialogViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTest.cs" />
-    <Compile Include="ViewModels\NewSolutionViewModelTest.cs" />
-    <Compile Include="ViewModels\SaveChangesViewModelTest.cs" />
+    <Compile Include="ViewModels\Dialogs\NewSolutionDialogViewModelTest.cs" />
+    <Compile Include="ViewModels\Dialogs\SaveChangesDialogViewModelTest.cs" />
     <Compile Include="ViewModels\ShellViewModelTest.cs" />
     <Compile Include="ViewModels\StartViewModelTest.cs" />
-    <Compile Include="Views\MockDialogView.cs" />
+    <Compile Include="Views\Dialogs\MockDialogViewBase.cs" />
+    <Compile Include="Views\Dialogs\MockNewDocumentDialogView.cs" />
+    <Compile Include="Views\Dialogs\MockNewSolutionDialogView.cs" />
+    <Compile Include="Views\Dialogs\MockSaveChangesDialogView.cs" />
     <Compile Include="Views\MockMainView.cs" />
     <Compile Include="Views\MockShellView.cs" />
+    <Compile Include="Views\MockSolutionView.cs" />
     <Compile Include="Views\MockStartView.cs" />
     <Compile Include="Views\MockView.cs" />
   </ItemGroup>
