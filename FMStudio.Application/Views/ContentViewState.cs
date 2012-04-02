@@ -1,4 +1,4 @@
-﻿namespace FMStudio.Application.Views
+﻿namespace FMStudio.Applications.Views
 {
     public enum ContentViewState
     {

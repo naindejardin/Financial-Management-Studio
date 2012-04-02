@@ -4,13 +4,13 @@ using System.Linq;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.UnitTesting;
 using BillList.Applications.Documents;
-using FMStudio.Application.Controllers;
-using FMStudio.Application.Services;
-using FMStudio.Application.ViewModels;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Controllers;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.ViewModels;
+using FMStudio.Applications.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.Controllers
+namespace FMStudio.Applications.Test.Controllers
 {
     [TestClass]
     public class SolutionDocumentControllerTest : TestClassBase

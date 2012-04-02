@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.UnitTesting;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.Services
+namespace FMStudio.Applications.Test.Services
 {
     [TestClass]
     public class FileServiceTest : TestClassBase

@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using BillList.Applications.Documents;
 
-namespace FMStudio.Application.Documents
+namespace FMStudio.Applications.Documents
 {
     public class SolutionDocument : Document
     {

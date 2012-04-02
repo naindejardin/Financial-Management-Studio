@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using BillList.Applications.Documents;
-using FMStudio.Application.Views.Dialogs;
+using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.ViewModels.Dialogs
+namespace FMStudio.Applications.ViewModels.Dialogs
 {
     public class SaveChangesDialogViewModel : DialogViewModel<ISaveChangesDialogView>
     {

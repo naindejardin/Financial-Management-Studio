@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using BigEgg.Framework.Applications.Services;
 
-namespace FMStudio.Application.Test.Services
+namespace FMStudio.Applications.Test.Services
 {
     [Export(typeof(IFileDialogService)), Export]
     public class MockFileDialogService : IFileDialogService

@@ -2,7 +2,7 @@
 using System.IO;
 using BillList.Applications.Documents;
 
-namespace FMStudio.Application.Test.Documents
+namespace FMStudio.Applications.Test.Documents
 {
     public class MockDocumentType : DocumentType
     {

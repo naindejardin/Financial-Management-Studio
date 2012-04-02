@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FMStudio.Application.Services
+namespace FMStudio.Applications.Services
 {
     public interface IShellService : INotifyPropertyChanged
     {

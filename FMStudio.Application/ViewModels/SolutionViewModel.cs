@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Views;
-using FMStudio.Application.Documents;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Views;
+using FMStudio.Applications.Documents;
+using FMStudio.Applications.Services;
 
-namespace FMStudio.Application.ViewModels
+namespace FMStudio.Applications.ViewModels
 {
     public class SolutionViewModel : ViewModel<ISolutionView>
     {

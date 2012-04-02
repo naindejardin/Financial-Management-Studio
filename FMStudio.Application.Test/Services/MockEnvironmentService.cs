@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Services;
 
-namespace FMStudio.Application.Test.Services
+namespace FMStudio.Applications.Test.Services
 {
     [Export(typeof(IEnvironmentService)), Export]
     public class MockEnvironmentService : IEnvironmentService

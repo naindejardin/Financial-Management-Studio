@@ -3,10 +3,10 @@ using System.IO;
 using System.Xml.Linq;
 using BigEgg.Framework.UnitTesting;
 using BillList.Applications.Documents;
-using FMStudio.Application.Documents;
+using FMStudio.Applications.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.Documents
+namespace FMStudio.Applications.Test.Documents
 {
     [TestClass]
     public class SolutionDocumentTypeTest

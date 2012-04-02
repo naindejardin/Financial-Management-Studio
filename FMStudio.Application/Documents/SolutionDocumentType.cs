@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 using BillList.Applications.Documents;
-using FMStudio.Application.Properties;
+using FMStudio.Applications.Properties;
 
-namespace FMStudio.Application.Documents
+namespace FMStudio.Applications.Documents
 {
     public class SolutionDocumentType:DocumentType
     {

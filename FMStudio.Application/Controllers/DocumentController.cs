@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using BigEgg.Framework.Applications;
 using BillList.Applications.Documents;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Services;
 
-namespace FMStudio.Application.Controllers
+namespace FMStudio.Applications.Controllers
 {
     /// <summary>
     /// Responsible to synchronize the Documents with the UI Elements that represent these Documents.

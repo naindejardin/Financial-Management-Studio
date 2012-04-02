@@ -1,10 +1,10 @@
 ﻿using System;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Test.Views.Dialogs;
-using FMStudio.Application.ViewModels.Dialogs;
+using FMStudio.Applications.Test.Views.Dialogs;
+using FMStudio.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels.Dialogs
+namespace FMStudio.Applications.Test.ViewModels.Dialogs
 {
     [TestClass]
     public class DialogViewModelBaseTest

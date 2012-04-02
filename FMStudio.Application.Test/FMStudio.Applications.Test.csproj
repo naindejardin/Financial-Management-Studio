@@ -9,8 +9,8 @@
     <ProjectGuid>{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FMStudio.Application.Test</RootNamespace>
-    <AssemblyName>FMStudio.Application.Test</AssemblyName>
+    <RootNamespace>FMStudio.Applications.Test</RootNamespace>
+    <AssemblyName>FMStudio.Applications.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -94,9 +94,9 @@
     <Shadow Include="Test References\FMStudio.accessor" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FMStudio.Application\FMStudio.Application.csproj">
+    <ProjectReference Include="..\FMStudio.Application\FMStudio.Applications.csproj">
       <Project>{62C0496C-FB93-4C42-830B-2A29FAF102DD}</Project>
-      <Name>FMStudio.Application</Name>
+      <Name>FMStudio.Applications</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

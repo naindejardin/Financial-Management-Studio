@@ -1,6 +1,6 @@
-﻿using FMStudio.Application.Views.Dialogs;
+﻿using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.Test.Views.Dialogs
+namespace FMStudio.Applications.Test.Views.Dialogs
 {
     public abstract class MockDialogViewBase : MockView, IDialogView
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{62C0496C-FB93-4C42-830B-2A29FAF102DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FMStudio.Application</RootNamespace>
-    <AssemblyName>FMStudio</AssemblyName>
+    <RootNamespace>FMStudio.Applications</RootNamespace>
+    <AssemblyName>FMStudio.Applications</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,7 +42,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

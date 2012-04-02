@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Test.Views.Dialogs;
-using FMStudio.Application.ViewModels.Dialogs;
-using FMStudio.Application.Views.Dialogs;
+using FMStudio.Applications.Test.Views.Dialogs;
+using FMStudio.Applications.ViewModels.Dialogs;
+using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.Test.Views
+namespace FMStudio.Applications.Test.Views
 {
     [Export(typeof(ISaveChangesDialogView)), Export]
     public class MockSaveChangesDialogView : MockDialogViewBase, ISaveChangesDialogView

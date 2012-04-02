@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Views;
 
-namespace FMStudio.Application.Test.Views
+namespace FMStudio.Applications.Test.Views
 {
     [Export(typeof(IShellView))]
     public class MockShellView : MockView, IShellView

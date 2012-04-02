@@ -1,6 +1,6 @@
 ﻿using BigEgg.Framework.Applications;
 
-namespace FMStudio.Application.Views.Dialogs
+namespace FMStudio.Applications.Views.Dialogs
 {
     public interface IDialogView : IView
     {

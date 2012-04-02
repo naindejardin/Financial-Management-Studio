@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using BigEgg.Framework.Applications;
 
-namespace FMStudio.Application.Services
+namespace FMStudio.Applications.Services
 {
     [Export(typeof(IShellService)), Export]
     internal class ShellService : DataModel, IShellService

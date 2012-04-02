@@ -1,14 +1,14 @@
 ﻿using BigEgg.Framework.Applications;
 using BigEgg.Framework.UnitTesting;
-using FMStudio.Application.Properties;
-using FMStudio.Application.Services;
-using FMStudio.Application.Test.Services;
-using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Properties;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Test.Services;
+using FMStudio.Applications.Test.Views;
+using FMStudio.Applications.ViewModels;
+using FMStudio.Applications.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Applications.Test.ViewModels
 {
     [TestClass]
     public class ShellViewModelTest : TestClassBase

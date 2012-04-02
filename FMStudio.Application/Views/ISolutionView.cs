@@ -1,6 +1,6 @@
 ﻿using BigEgg.Framework.Applications;
 
-namespace FMStudio.Application.Views
+namespace FMStudio.Applications.Views
 {
     public interface ISolutionView : IView
     {

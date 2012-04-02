@@ -5,11 +5,11 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.Threading;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Properties;
-using FMStudio.Application.Services;
-using FMStudio.Application.ViewModels;
+using FMStudio.Applications.Properties;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.ViewModels;
 
-namespace FMStudio.Application.Controllers
+namespace FMStudio.Applications.Controllers
 {
     /// <summary>
     /// Responsible for the application lifecycle.

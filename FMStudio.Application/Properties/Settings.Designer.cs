@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FMStudio.Application.Properties {
+namespace FMStudio.Applications.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

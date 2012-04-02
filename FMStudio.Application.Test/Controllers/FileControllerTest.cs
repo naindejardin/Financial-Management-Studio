@@ -5,13 +5,13 @@ using System.Linq;
 using BigEgg.Framework.Applications.Services;
 using BigEgg.Framework.UnitTesting;
 using BillList.Applications.Documents;
-using FMStudio.Application.Controllers;
-using FMStudio.Application.Documents;
-using FMStudio.Application.Services;
-using FMStudio.Application.Test.Services;
+using FMStudio.Applications.Controllers;
+using FMStudio.Applications.Documents;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Test.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.Controllers
+namespace FMStudio.Applications.Test.Controllers
 {
     [TestClass]
     public class FileControllerTest : TestClassBase

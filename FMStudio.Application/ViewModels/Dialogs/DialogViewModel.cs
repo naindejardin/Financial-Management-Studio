@@ -1,8 +1,8 @@
 ﻿using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Views.Dialogs;
+using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.ViewModels.Dialogs
+namespace FMStudio.Applications.ViewModels.Dialogs
 {
     public abstract class DialogViewModel<TView> : ViewModel<TView> where TView : IDialogView
     {

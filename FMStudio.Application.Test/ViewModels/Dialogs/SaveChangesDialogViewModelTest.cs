@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using BillList.Applications.Documents;
-using FMStudio.Application.Test.Documents;
-using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels.Dialogs;
+using FMStudio.Applications.Test.Documents;
+using FMStudio.Applications.Test.Views;
+using FMStudio.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Applications.Test.ViewModels
 {
     [TestClass]
     public class SaveChangesDialogViewModelTest

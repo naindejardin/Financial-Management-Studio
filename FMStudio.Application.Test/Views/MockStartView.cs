@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Views;
 
-namespace FMStudio.Application.Test.Views
+namespace FMStudio.Applications.Test.Views
 {
     [Export(typeof(IStartView))]
     public class MockStartView : MockView, IStartView

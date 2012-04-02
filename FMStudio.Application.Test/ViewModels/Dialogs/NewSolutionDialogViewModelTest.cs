@@ -1,9 +1,9 @@
 ﻿using System;
-using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels.Dialogs;
+using FMStudio.Applications.Test.Views;
+using FMStudio.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Applications.Test.ViewModels
 {
     [TestClass]
     public class NewSolutionDialogViewModelTest

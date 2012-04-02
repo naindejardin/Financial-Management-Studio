@@ -6,13 +6,13 @@ using System.Linq;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
-using FMStudio.Application.Properties;
-using FMStudio.Application.Services;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Properties;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Views;
 using System.ComponentModel;
 using System.IO;
 
-namespace FMStudio.Application.ViewModels
+namespace FMStudio.Applications.ViewModels
 {
     [Export]
     public class MainViewModel : ViewModel<IMainView>

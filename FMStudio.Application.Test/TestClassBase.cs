@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using FMStudio.Application.Controllers;
-using FMStudio.Application.Services;
-using FMStudio.Application.Test.Services;
-using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
+using FMStudio.Applications.Controllers;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Test.Services;
+using FMStudio.Applications.Test.Views;
+using FMStudio.Applications.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test
+namespace FMStudio.Applications.Test
 {
     [TestClass]
     public abstract class TestClassBase

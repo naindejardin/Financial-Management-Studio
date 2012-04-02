@@ -1,4 +1,4 @@
-﻿namespace FMStudio.Application.Services
+﻿namespace FMStudio.Applications.Services
 {
     public interface IEnvironmentService
     {

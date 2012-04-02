@@ -1,4 +1,4 @@
-﻿namespace FMStudio.Application.Views.Dialogs
+﻿namespace FMStudio.Applications.Views.Dialogs
 {
     public interface ISaveChangesDialogView : IDialogView
     {

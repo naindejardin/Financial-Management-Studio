@@ -1,6 +1,6 @@
 ﻿using BigEgg.Framework.Applications;
 
-namespace FMStudio.Application.Test.Views
+namespace FMStudio.Applications.Test.Views
 {
     public class MockView : IView
     {

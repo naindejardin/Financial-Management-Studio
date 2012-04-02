@@ -1,7 +1,7 @@
-﻿using FMStudio.Application.ViewModels;
+﻿using FMStudio.Applications.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Applications.Test.ViewModels
 {
     [TestClass]
     public class StartViewModelTest : TestClassBase

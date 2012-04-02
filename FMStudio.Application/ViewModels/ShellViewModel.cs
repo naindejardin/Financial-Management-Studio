@@ -2,11 +2,11 @@
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Properties;
-using FMStudio.Application.Services;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Properties;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Views;
 
-namespace FMStudio.Application.ViewModels
+namespace FMStudio.Applications.ViewModels
 {
     [Export]
     public class ShellViewModel : ViewModel<IShellView>

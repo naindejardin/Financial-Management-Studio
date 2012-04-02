@@ -1,7 +1,7 @@
-﻿using FMStudio.Application.Properties;
-using FMStudio.Application.Views.Dialogs;
+﻿using FMStudio.Applications.Properties;
+using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.ViewModels.Dialogs
+namespace FMStudio.Applications.ViewModels.Dialogs
 {
     public class NewSolutionDialogViewModel : DialogViewModel<INewSolutionDialogView>
     {

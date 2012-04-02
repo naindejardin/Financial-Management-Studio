@@ -16,14 +16,14 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="FMStudio.Application.Documents.SolutionDocument">
+  <Class Name="FMStudio.Applications.Documents.SolutionDocument">
     <Position X="12.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Documents\SolutionDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FMStudio.Application.Documents.SolutionDocumentType">
+  <Class Name="FMStudio.Applications.Documents.SolutionDocumentType">
     <Position X="6.5" Y="1.75" Width="1.5" />
     <InheritanceLine Type="BillList.Applications.Documents.DocumentType" FixedToPoint="true">
       <Path>

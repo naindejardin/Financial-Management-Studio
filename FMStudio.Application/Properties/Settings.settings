@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FMStudio.Application.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FMStudio.Applications.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="RecentSolutionList" Type="BigEgg.Framework.Applications.RecentFileList" Scope="User">

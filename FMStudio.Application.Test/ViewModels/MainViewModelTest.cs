@@ -1,17 +1,17 @@
-﻿using FMStudio.Application.ViewModels;
+﻿using FMStudio.Applications.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Services;
 using BigEgg.Framework.UnitTesting;
 using System.IO;
 using System;
 using System.Collections.Generic;
-using FMStudio.Application.Test.Services;
+using FMStudio.Applications.Test.Services;
 using BigEgg.Framework.Applications.Services;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using System.Linq;
 
-namespace FMStudio.Application.Test.ViewModels
+namespace FMStudio.Applications.Test.ViewModels
 {
     [TestClass]
     public class MainViewModelTest : TestClassBase

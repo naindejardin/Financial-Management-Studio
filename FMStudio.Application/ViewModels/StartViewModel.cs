@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BigEgg.Framework.Applications;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Views;
 using System.ComponentModel.Composition;
-using FMStudio.Application.Services;
+using FMStudio.Applications.Services;
 
-namespace FMStudio.Application.ViewModels
+namespace FMStudio.Applications.ViewModels
 {
     [Export]
     public class StartViewModel : ViewModel<IStartView>

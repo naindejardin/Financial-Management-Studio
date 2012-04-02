@@ -6,9 +6,9 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using BillList.Applications.Documents;
-using FMStudio.Application.Documents;
+using FMStudio.Applications.Documents;
 
-namespace FMStudio.Application.Services
+namespace FMStudio.Applications.Services
 {
     [Export(typeof(IFileService)), Export]
     internal class FileService : DataModel, IFileService

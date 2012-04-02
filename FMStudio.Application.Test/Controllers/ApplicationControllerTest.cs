@@ -1,21 +1,21 @@
 ﻿using BigEgg.Framework.Applications;
-using FMStudio.Application.Controllers;
-using FMStudio.Application.Services;
-using FMStudio.Application.Test.Views;
-using FMStudio.Application.ViewModels;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Controllers;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.Test.Views;
+using FMStudio.Applications.ViewModels;
+using FMStudio.Applications.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FMStudio.Application.Test.Services;
+using FMStudio.Applications.Test.Services;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.IO;
-using FMStudio.Application.ViewModels.Dialogs;
+using FMStudio.Applications.ViewModels.Dialogs;
 using BigEgg.Framework.Applications.Services;
-using FMStudio.Application.Properties;
+using FMStudio.Applications.Properties;
 using System.Globalization;
 
-namespace FMStudio.Application.Test.Controllers
+namespace FMStudio.Applications.Test.Controllers
 {
     [TestClass]
     public class ApplicationControllerTest : TestClassBase

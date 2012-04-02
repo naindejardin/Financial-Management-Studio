@@ -1,7 +1,7 @@
 ﻿using System;
 using BigEgg.Framework.Applications;
 
-namespace BillList.Applications.Documents
+namespace FMStudio.Applications.Documents
 {
     public abstract class Document : DataModel, IDocument
     {

@@ -11,13 +11,13 @@ using System.Linq;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
 using BillList.Applications.Documents;
-using FMStudio.Application.Documents;
-using FMStudio.Application.Properties;
-using FMStudio.Application.Services;
-using FMStudio.Application.ViewModels.Dialogs;
-using FMStudio.Application.Views.Dialogs;
+using FMStudio.Applications.Documents;
+using FMStudio.Applications.Properties;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.ViewModels.Dialogs;
+using FMStudio.Applications.Views.Dialogs;
 
-namespace FMStudio.Application.Controllers
+namespace FMStudio.Applications.Controllers
 {
     /// <summary>
     /// Responsible for the file related commands.

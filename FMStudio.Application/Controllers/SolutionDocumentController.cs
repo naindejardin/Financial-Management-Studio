@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using FMStudio.Application.Services;
-using FMStudio.Application.ViewModels;
+using FMStudio.Applications.Services;
+using FMStudio.Applications.ViewModels;
 using BillList.Applications.Documents;
 using BigEgg.Framework.Applications;
 using System.ComponentModel;
-using FMStudio.Application.Documents;
-using FMStudio.Application.Views;
+using FMStudio.Applications.Documents;
+using FMStudio.Applications.Views;
 
-namespace FMStudio.Application.Controllers
+namespace FMStudio.Applications.Controllers
 {
     /// <summary>
     /// Responsible to synchronize RTF Documents with RichTextViewModels.

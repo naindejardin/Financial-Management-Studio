@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using BillList.Applications.Documents;
-using FMStudio.Application.Documents;
+using FMStudio.Applications.Documents;
 
-namespace FMStudio.Application.Services
+namespace FMStudio.Applications.Services
 {
     public interface IFileService : INotifyPropertyChanged
     {
