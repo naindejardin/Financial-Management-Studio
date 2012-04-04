@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using BigEgg.Framework.Applications.Services;
 using BigEgg.Framework.UnitTesting;
-using BillList.Applications.Documents;
 using FMStudio.Applications.Controllers;
 using FMStudio.Applications.Documents;
 using FMStudio.Applications.Services;

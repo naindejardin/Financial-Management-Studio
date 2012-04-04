@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using BigEgg.Framework.UnitTesting;
-using BillList.Applications.Documents;
+using FMStudio.Applications.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Applications.Test

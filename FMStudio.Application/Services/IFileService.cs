@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using BillList.Applications.Documents;
 using FMStudio.Applications.Documents;
 
 namespace FMStudio.Applications.Services

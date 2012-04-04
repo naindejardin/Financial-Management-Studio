@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BillList.Applications.Documents;
+using FMStudio.Applications.Documents;
 using FMStudio.Applications.Test.Documents;
 using FMStudio.Applications.Test.Views;
 using FMStudio.Applications.ViewModels.Dialogs;

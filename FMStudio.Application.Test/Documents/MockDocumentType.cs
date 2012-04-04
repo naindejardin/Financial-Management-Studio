@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using BillList.Applications.Documents;
+using FMStudio.Applications.Documents;
 
 namespace FMStudio.Applications.Test.Documents
 {

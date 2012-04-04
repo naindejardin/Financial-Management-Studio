@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using BigEgg.Framework.Applications;
+using FMStudio.Applications.Documents;
 using FMStudio.Applications.Services;
 using FMStudio.Applications.ViewModels;
-using BillList.Applications.Documents;
-using BigEgg.Framework.Applications;
-using System.ComponentModel;
-using FMStudio.Applications.Documents;
 using FMStudio.Applications.Views;
 
 namespace FMStudio.Applications.Controllers

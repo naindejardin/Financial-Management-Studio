@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
-using BillList.Applications.Documents;
+using FMStudio.Applications.Documents;
 
 namespace FMStudio.Applications.Documents
 {

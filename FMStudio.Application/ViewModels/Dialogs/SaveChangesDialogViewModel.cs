@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BillList.Applications.Documents;
+using FMStudio.Applications.Documents;
 using FMStudio.Applications.Views.Dialogs;
 
 namespace FMStudio.Applications.ViewModels.Dialogs
