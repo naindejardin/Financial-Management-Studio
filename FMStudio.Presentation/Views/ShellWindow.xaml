@@ -1,0 +1,35 @@
+﻿<Window x:Class="FMStudio.Presentation.Views.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:FMStudio.Presentation.Converters"
+        xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
+        xmlns:dd="clr-namespace:FMStudio.Presentation.DesignData"
+        xmlns:vm="clr-namespace:FMStudio.Applications.ViewModels;assembly=FMStudio.Applications"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance dd:SampleShellViewModel, IsDesignTimeCreatable=True}"
+        Height="600" Width="900">
+
+    <Window.Title>
+        <MultiBinding Converter="{x:Static c:TitleConverter.Default}">
+            <Binding Path="Title"/>
+            <Binding Path="ShellService.DocumentName"/>
+        </MultiBinding>
+    </Window.Title>
+
+
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="TEST" Margin="3,0,0,0"/>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="TEST" VerticalAlignment="Center" Padding="0" Margin="0"/>
+                    <ComboBox x:Name="zoomBox"></ComboBox>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+
+        <ContentPresenter Content="{Binding ContentView}"/>
+    </DockPanel>
+
+</Window>

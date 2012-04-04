@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="FMStudio.Presentation.Views.StartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:FMStudio.Presentation.Converters"
+             xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dd="clr-namespace:FMStudio.Presentation.DesignData"
+             mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance dd:SampleStartViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="500" x:Name="startView">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1.5">
+                <GradientStop Color="White" Offset="0" />
+                <GradientStop Color="#FFDCE1F5" Offset="0.662" />
+                <GradientStop Color="#FFAFBFF8" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+</UserControl>
