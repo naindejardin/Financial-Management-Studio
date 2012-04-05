@@ -13,7 +13,7 @@ namespace FMStudio.Presentation.DesignData
         }
 
 
-        public new string Title { get { return "WAF Writer (Design Time)"; } }
+        public new string Title { get { return "Financial Management Studio (Design Time)"; } }
 
 
         private class MockShellView : MockView, IShellView

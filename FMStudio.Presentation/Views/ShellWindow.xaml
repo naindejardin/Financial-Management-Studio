@@ -9,27 +9,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance dd:SampleShellViewModel, IsDesignTimeCreatable=True}"
         Height="600" Width="900">
+	<Window.Foreground>
+		<SolidColorBrush Color="{DynamicResource Application_Windows_Foreground}"/>
+	</Window.Foreground>
+	<Window.BorderBrush>
+		<SolidColorBrush Color="{DynamicResource Application_Windows_BorderBrush}"/>
+	</Window.BorderBrush>
+	<Window.Background>
+		<SolidColorBrush Color="{DynamicResource Application_Windows_Background}"/>
+	</Window.Background>
 
     <Window.Title>
         <MultiBinding Converter="{x:Static c:TitleConverter.Default}">
             <Binding Path="Title"/>
-            <Binding Path="ShellService.DocumentName"/>
+            <Binding Path="ShellService.SolutionName"/>
         </MultiBinding>
     </Window.Title>
 
 
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem Content="TEST" Margin="3,0,0,0"/>
-            <StatusBarItem HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="TEST" VerticalAlignment="Center" Padding="0" Margin="0"/>
-                    <ComboBox x:Name="zoomBox"></ComboBox>
-                </StackPanel>
-            </StatusBarItem>
+        	<StatusBar.Foreground>
+        		<SolidColorBrush Color="{DynamicResource Application_StatusBar_Foreground}"/>
+        	</StatusBar.Foreground>
+        	<StatusBar.Background>
+        		<SolidColorBrush Color="{DynamicResource Application_StatusBar_Background}"/>
+        	</StatusBar.Background>
+            <StatusBarItem Content="{x:Static p:Resources.Ready}" Margin="3,0,0,0"/>
         </StatusBar>
 
-        <ContentPresenter Content="{Binding ContentView}"/>
+        <ContentPresenter Content="{Binding ContentView}" OpacityMask="White"/>
+
     </DockPanel>
 
 </Window>
