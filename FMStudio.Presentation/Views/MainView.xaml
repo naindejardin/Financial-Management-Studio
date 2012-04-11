@@ -3,8 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:FMStudio.Presentation.Converters"
+             xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
+             xmlns:dd="clr-namespace:FMStudio.Presentation.DesignData"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DataContext="{d:DesignInstance dd:SampleMainViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="400" d:DesignWidth="800">
+	<UserControl.Foreground>
+		<SolidColorBrush Color="{DynamicResource Application_Windows_Foreground}"/>
+	</UserControl.Foreground>
+	<UserControl.Background>
+		<SolidColorBrush Color="{DynamicResource Application_Windows_Background}"/>
+	</UserControl.Background>
+
+    
     <DockPanel x:Name="rootContainer">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ContentView">
+                <VisualState x:Name="StartViewVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="documentView">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="documentView">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="400"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="documentView">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="DocumentViewVisible">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="documentView">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="startView">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="startView">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Menu DockPanel.Dock="Top">
+        	<Menu.Background>
+        		<SolidColorBrush Color="{DynamicResource Application_Menu_Background}"/>
+        	</Menu.Background>
+            
+            <MenuItem Header="{x:Static p:Resources.FileMenu}" SubmenuOpened="FileMenuItemSubmenuOpened" SubmenuClosed="FileMenuItemSubmenuClosed" Style="{DynamicResource MenuItemSytle}">
+                <MenuItem Command="{Binding FileService.NewDocumentCommand}" Header="{x:Static p:Resources.NewDocumentMenu}" InputGestureText="{x:Static p:Resources.ControlN}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem Command="{Binding FileService.NewSolutionCommand}" Header="{x:Static p:Resources.NewSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlShiftN}" Style="{DynamicResource MenuItemSytle}"/>
+                <Separator Style="{DynamicResource SeparatorStyle}"/>
+                <MenuItem Command="{Binding FileService.OpenSolutionCommand}" Header="{x:Static p:Resources.OpenSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlO}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem x:Name="recentSolutionMenuItem" Header="{x:Static p:Resources.RecentSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                <Separator Style="{DynamicResource SeparatorStyle}"/>
+                <MenuItem Command="{Binding FileService.CloseDocumentCommand}" Header="{x:Static p:Resources.CloseDocumentMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem Command="{Binding FileService.CloseSolutionCommand}" Header="{x:Static p:Resources.CloseSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                <Separator Style="{DynamicResource SeparatorStyle}"/>
+                <MenuItem Command="{Binding FileService.SaveDocumentCommand}" Header="{x:Static p:Resources.SaveDocumentMenu}" InputGestureText="{x:Static p:Resources.ControlS}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem Command="{Binding FileService.SaveAllDocumentCommand}" Header="{x:Static p:Resources.SaveAllDocumentMenu}" InputGestureText="{x:Static p:Resources.ControlShiftS}" Style="{DynamicResource MenuItemSytle}"/>
+                <Separator Style="{DynamicResource SeparatorStyle}"/>
+                <MenuItem Command="{Binding ExitCommand}" Header="{x:Static p:Resources.ExitMenu}" Style="{DynamicResource MenuItemSytle}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.ViewMenu}" Style="{DynamicResource MenuItemSytle}">
+                <MenuItem Command="{Binding FileService.ShowDocumentCommand}" Header="{x:Static p:Resources.SolutionExploreMenu}" Style="{DynamicResource MenuItemSytle}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.ToolsMenu}" Style="{DynamicResource MenuItemSytle}">
+                <MenuItem Header="{x:Static p:Resources.LanguageMenu}" Style="{DynamicResource MenuItemSytle}">
+                    <MenuItem Command="{Binding ChineseCommand}" Header="{x:Static p:Resources.ChineseMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                    <MenuItem Command="{Binding EnglishCommand}" Header="{x:Static p:Resources.EnglishMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid>
+        </Grid>
     </DockPanel>
 </UserControl>

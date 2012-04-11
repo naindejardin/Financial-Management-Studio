@@ -18,13 +18,12 @@ namespace FMStudio.Presentation.Views
     {
         private readonly Lazy<MainViewModel> viewModel;
         private ContentViewState contentViewState;
-        private IEnumerable<Control> dynamicFileMenuItems = new Control[] { };
 
 
         public MainView()
         {
             InitializeComponent();
-            VisualStateManager.GoToElementState(rootContainer, ContentViewState.ToString(), false);
+            //VisualStateManager.GoToElementState(rootContainer, ContentViewState.ToString(), false);
 
             viewModel = new Lazy<MainViewModel>(() => ViewHelper.GetViewModel<MainViewModel>(this));
         }
@@ -46,43 +45,30 @@ namespace FMStudio.Presentation.Views
         private MainViewModel ViewModel { get { return viewModel.Value; } }
 
 
-        //private void FileMenuItemSubmenuOpened(object sender, RoutedEventArgs e)
-        //{
-        //    if (ViewModel.FileService.RecentSolutionList.RecentFiles.Any())
-        //    {
-        //        List<Control> menuItems = new List<Control>();
+        private void FileMenuItemSubmenuOpened(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.FileService.RecentSolutionList.RecentFiles.Any())
+            {
+                for (int i = 0; i < ViewModel.FileService.RecentSolutionList.RecentFiles.Count; i++)
+                {
+                    RecentFile recentSolution = ViewModel.FileService.RecentSolutionList.RecentFiles[i];
+                    MenuItem menuItem = new MenuItem()
+                    {
+                        Header = GetNumberText(i) + " "
+                            + MenuFileNameConverter.Default.Convert(recentSolution.Path, null, null, CultureInfo.CurrentCulture),
+                        ToolTip = recentSolution.Path,
+                        Command = ViewModel.FileService.OpenSolutionCommand,
+                        CommandParameter = recentSolution.Path
+                    };
+                    recentSolutionMenuItem.Items.Add(menuItem);
+                }
+            }
+        }
 
-        //        menuItems.Add(new Separator());
-        //        for (int i = 0; i < ViewModel.FileService.RecentSolutionList.RecentFiles.Count; i++)
-        //        {
-        //            RecentFile recentFile = ViewModel.FileService.RecentSolutionList.RecentFiles[i];
-        //            MenuItem menuItem = new MenuItem()
-        //            {
-        //                Header = GetNumberText(i) + " "
-        //                    + MenuFileNameConverter.Default.Convert(recentFile.Path, null, null, CultureInfo.CurrentCulture),
-        //                ToolTip = recentFile.Path,
-        //                Command = ViewModel.FileService.OpenSolutionCommand,
-        //                CommandParameter = recentFile.Path
-        //            };
-        //            menuItems.Add(menuItem);
-        //        }
-
-        //        foreach (Control item in menuItems)
-        //        {
-        //            fileMenuItem.Items.Add(item);
-        //        }
-
-        //        dynamicFileMenuItems = menuItems;
-        //    }
-        //}
-
-        //private void FileMenuItemSubmenuClosed(object sender, RoutedEventArgs e)
-        //{
-        //    foreach (Control menuItem in dynamicFileMenuItems)
-        //    {
-        //        fileMenuItem.Items.Remove(menuItem);
-        //    }
-        //}
+        private void FileMenuItemSubmenuClosed(object sender, RoutedEventArgs e)
+        {
+            recentSolutionMenuItem.Items.Clear();
+        }
 
         private static string GetNumberText(int index)
         {

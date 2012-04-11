@@ -1,36 +1,51 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    mc:Ignorable="d">
 	<!-- Resource dictionary entries should be defined here. -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style x:Key="ButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonTemplate, TypeInTargetAssembly={x:Type Button}}}"/>
+	</Style>
 	
-	<ControlTemplate x:Key="BEButton" TargetType="{x:Type Button}">
+    <ControlTemplate x:Key="{ComponentResourceKey ResourceId=ButtonTemplate, TypeInTargetAssembly={x:Type Button}}" TargetType="{x:Type Button}">
 		<Grid x:Name="MainGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
 			<VisualStateManager.VisualStateGroups>
 				<VisualStateGroup x:Name="CommonStates">
 					<VisualStateGroup.Transitions>
 						<VisualTransition From="Normal" GeneratedDuration="0:0:0.3" To="MouseOver">
 							<Storyboard>
-								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Buttons_Foreground_Move}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock"/>
+								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Control_Foreground_Move}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Contect"/>
 							</Storyboard>
 						</VisualTransition>
 						<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.4" To="Normal">
 							<Storyboard>
-								<ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock"/>
+								<ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Contect"/>
 							</Storyboard>
 						</VisualTransition>
 						<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.2" To="Pressed">
 							<Storyboard>
-								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Buttons_Foreground_Pressed}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock"/>
+								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Control_Foreground_Pressed}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Contect"/>
 							</Storyboard>
 						</VisualTransition>
 						<VisualTransition From="Pressed" GeneratedDuration="0:0:0.4" To="Normal">
 							<Storyboard>
-								<ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock"/>
+								<ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Contect"/>
 							</Storyboard>
 						</VisualTransition>
 						<VisualTransition From="Pressed" GeneratedDuration="0:0:0.2" To="MouseOver">
 							<Storyboard>
-								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Buttons_Foreground_Move}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock"/>
+								<ColorAnimation Duration="0:0:0.1" To="{StaticResource Application_Control_Foreground_Move}" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Contect"/>
 							</Storyboard>
 						</VisualTransition>
 						<VisualTransition GeneratedDuration="0:0:0.2" To="Disabled">
@@ -41,36 +56,36 @@
 					<VisualState x:Name="MouseOver">
 						<Storyboard>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBorder">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_BorderBrush_Move}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_BorderBrush_Move}"/>
 							</ColorAnimationUsingKeyFrames>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBorder">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Background_Move}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Background_Move}"/>
 							</ColorAnimationUsingKeyFrames>
-							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Foreground_Move}"/>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
 							</ColorAnimationUsingKeyFrames>
 						</Storyboard>
 					</VisualState>
 					<VisualState x:Name="Pressed">
 						<Storyboard>
-							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Foreground_Pressed}"/>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Pressed}"/>
 							</ColorAnimationUsingKeyFrames>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBorder">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Background_Pressed}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Background_Pressed}"/>
 							</ColorAnimationUsingKeyFrames>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBorder">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_BorderBrush_Pressed}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_BorderBrush_Pressed}"/>
 							</ColorAnimationUsingKeyFrames>
 						</Storyboard>
 					</VisualState>
 					<VisualState x:Name="Disabled">
 						<Storyboard>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBorder">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Background_Disabled}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Background_Disabled}"/>
 							</ColorAnimationUsingKeyFrames>
-							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Buttons_Foreground_Disabled}"/>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Disabled}"/>
 							</ColorAnimationUsingKeyFrames>
 						</Storyboard>
 					</VisualState>
@@ -97,21 +112,16 @@
 			</VisualStateManager.CustomVisualStateManager>
             <Border x:Name="ButtonBorder" BorderThickness="1" CornerRadius="5" Height="Auto" Width="Auto" Margin="0">
             	<Border.BorderBrush>
-            		<SolidColorBrush Color="{DynamicResource Application_Buttons_BorderBrush}"/>
+            		<SolidColorBrush Color="{StaticResource Application_Control_BorderBrush}"/>
             	</Border.BorderBrush>
             	<Border.Background>
-            		<SolidColorBrush Color="{DynamicResource Application_Buttons_Background}" 
-					/>
+            		<SolidColorBrush Color="{StaticResource Application_Control_Background}"/>
             	</Border.Background>
             </Border>
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Content}" Margin="{TemplateBinding Margin}"  VerticalAlignment="Center" HorizontalAlignment="Center">
-            	<TextBlock.Foreground>
-            		<SolidColorBrush Color="{DynamicResource Application_Buttons_Foreground}"/>
-            	</TextBlock.Foreground>
-            </TextBlock>
+            <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" Margin="{TemplateBinding Margin}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Border x:Name="FocusBorder" BorderThickness="1" CornerRadius="5" Opacity="1" Visibility="Hidden">
             	<Border.BorderBrush>
-            		<SolidColorBrush Color="{DynamicResource Application_Buttons_BorderBrush_Focus}"/>
+            		<SolidColorBrush Color="{StaticResource Application_Control_BorderBrush_Focus}"/>
             	</Border.BorderBrush>
             </Border>
 		</Grid>

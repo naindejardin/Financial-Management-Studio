@@ -5,8 +5,7 @@
     <Application.Resources>
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Skins/BlendSkin.xaml"/>
-                <ResourceDictionary Source="Resources/Controls/BEButton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FMStudio.Skins;component/Skins/BlackSkin/BlackSkin.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
     	</ResourceDictionary>
     </Application.Resources>

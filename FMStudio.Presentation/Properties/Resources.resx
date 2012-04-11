@@ -117,13 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChineseMenu" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="CloseDocumentMenu" xml:space="preserve">
+    <value>_Close</value>
+  </data>
+  <data name="CloseSolutionMenu" xml:space="preserve">
+    <value>Close Solu_tion</value>
+  </data>
+  <data name="ControlN" xml:space="preserve">
+    <value>Ctrl+N</value>
+  </data>
+  <data name="ControlO" xml:space="preserve">
+    <value>Ctrl+O</value>
+  </data>
+  <data name="ControlS" xml:space="preserve">
+    <value>Ctrl+S</value>
+  </data>
+  <data name="ControlShiftN" xml:space="preserve">
+    <value>Ctrl+Shift+N</value>
+  </data>
+  <data name="ControlShiftS" xml:space="preserve">
+    <value>Ctrl+Shift+S</value>
+  </data>
+  <data name="EnglishMenu" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="ExitMenu" xml:space="preserve">
+    <value>E_xit</value>
+  </data>
+  <data name="FileMenu" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="LanguageMenu" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="NewDocumentMenu" xml:space="preserve">
+    <value>New _Document</value>
+  </data>
+  <data name="NewSolutionMenu" xml:space="preserve">
+    <value>New _Solution</value>
+  </data>
+  <data name="OpenSolutionMenu" xml:space="preserve">
+    <value>Open _Solution</value>
+  </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready.</value>
+  </data>
+  <data name="RecentSolutionMenu" xml:space="preserve">
+    <value>_Recent Solution</value>
+  </data>
+  <data name="SaveAllDocumentMenu" xml:space="preserve">
+    <value>Save A_ll</value>
+  </data>
+  <data name="SaveDocumentMenu" xml:space="preserve">
+    <value>_Save</value>
+  </data>
+  <data name="SolutionExploreMenu" xml:space="preserve">
+    <value>Solution Explore</value>
   </data>
   <data name="TitleFormatString" xml:space="preserve">
     <value>{0} - {1}</value>
   </data>
+  <data name="ToolsMenu" xml:space="preserve">
+    <value>Tools</value>
+  </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Unknown Application Error</value>
+  </data>
+  <data name="ViewMenu" xml:space="preserve">
+    <value>_View</value>
   </data>
 </root>
