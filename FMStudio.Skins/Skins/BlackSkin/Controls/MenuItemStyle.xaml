@@ -16,7 +16,7 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+                <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
             </Setter.Value>
         </Setter>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
@@ -59,7 +59,7 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Menu_Background}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
             </Storyboard>
@@ -151,7 +151,7 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Menu_Background}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
             </Storyboard>
@@ -204,8 +204,8 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Control_Background_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground}"/>
-                    <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InputGesture">
                     <EasingColorKeyFrame KeyTime="0" Value="White"/>
@@ -222,15 +222,15 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Menu_Background}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InputGesture">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
             </Storyboard>
@@ -253,19 +253,19 @@
                 <Border x:Name="GlyphPanel" CornerRadius="3" Height="12" Margin="1" Visibility="Hidden" Width="12">
                     <Path x:Name="Glyph" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Height="10" Width="10">
                         <Path.Stroke>
-                            <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+                            <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
                         </Path.Stroke>
                     </Path>
                 </Border>
                 <ContentPresenter Grid.Column="2" Content="{TemplateBinding Header}" RecognizesAccessKey="True" Margin="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                 <TextBlock x:Name="InputGesture" Grid.Column="4" Margin="1" FontFamily="Segoe UI" Text="{TemplateBinding InputGestureText}" Visibility="Collapsed">
             	    <TextBlock.Foreground>
-            		    <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+            		    <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
             	    </TextBlock.Foreground>
                 </TextBlock>
                 <Path Grid.Column="5" Data="{StaticResource RightArrow}" Margin="4,0,0,0" VerticalAlignment="Center">
                     <Path.Fill>
-                        <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+                        <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
                     </Path.Fill>
                 </Path>
             </Grid>
@@ -338,8 +338,8 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Control_Background_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground}"/>
-                    <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InputGesture">
                     <EasingColorKeyFrame KeyTime="0" Value="White"/>
@@ -356,15 +356,15 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Application_Menu_Background}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InputGesture">
-                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                     <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
                 </ColorAnimationUsingKeyFrames>
             </Storyboard>
@@ -387,14 +387,14 @@
                 <Border x:Name="GlyphPanel" CornerRadius="3" Height="17" Margin="1" Visibility="Hidden" Width="12">
                     <Path x:Name="Glyph" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Height="10" Width="10">
                         <Path.Stroke>
-                            <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+                            <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
                         </Path.Stroke>
                     </Path>
                 </Border>
                 <ContentPresenter Grid.Column="2" Content="{TemplateBinding Header}" RecognizesAccessKey="True" Margin="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                 <TextBlock x:Name="InputGesture" Grid.Column="4" Margin="1" FontFamily="Segoe UI" Text="{TemplateBinding InputGestureText}" d:IsHidden="True">
             	    <TextBlock.Foreground>
-            		    <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+            		    <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
             	    </TextBlock.Foreground>
                 </TextBlock>
             </Grid>

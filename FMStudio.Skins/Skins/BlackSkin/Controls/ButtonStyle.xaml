@@ -15,6 +15,8 @@
                 <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="MinWidth" Value="73"/>
+        <Setter Property="MinHeight" Value="23"/>
         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonTemplate, TypeInTargetAssembly={x:Type Button}}}"/>
 	</Style>
 	
@@ -118,7 +120,7 @@
             		<SolidColorBrush Color="{StaticResource Application_Control_Background}"/>
             	</Border.Background>
             </Border>
-            <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" Margin="{TemplateBinding Margin}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Border x:Name="FocusBorder" BorderThickness="1" CornerRadius="5" Opacity="1" Visibility="Hidden">
             	<Border.BorderBrush>
             		<SolidColorBrush Color="{StaticResource Application_Control_BorderBrush_Focus}"/>
