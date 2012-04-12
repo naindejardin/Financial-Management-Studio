@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using BigEgg.Framework.Applications;
 using FMStudio.Applications.Documents;
 using FMStudio.Applications.Properties;
 using FMStudio.Applications.Views.Dialogs;
@@ -9,6 +11,7 @@ namespace FMStudio.Applications.ViewModels.Dialogs
 {
     public class NewDocumentDialogViewModel : DialogViewModel<INewDocumentDialogView>
     {
+        private readonly DelegateCommand okCommand;
         private IEnumerable<IDocumentType> documentTypes;
 
 
@@ -19,8 +22,12 @@ namespace FMStudio.Applications.ViewModels.Dialogs
             this.documentTypes = documentTypes;
             FileName = Resources.DefaultNewDocumentName;
             SelectDocumentType = this.DocumentTypes.First();
+
+            this.okCommand = new DelegateCommand(() => Close(true));
         }
 
+
+        public ICommand OKCommand { get { return this.okCommand; } }
 
         public string FileName { get; set; }
 

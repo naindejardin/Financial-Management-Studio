@@ -28,20 +28,6 @@ namespace FMStudio.Applications.Test.ViewModels.Dialogs
             bool? dialogResult = viewModel.ShowDialog(owner);
             Assert.IsNull(dialogResult);
             Assert.IsFalse(view.IsVisible);
-
-            view.ShowDialogAction = v =>
-            {
-                viewModel.YesCommand.Execute(null);
-            };
-            dialogResult = viewModel.ShowDialog(owner);
-            Assert.AreEqual(true, dialogResult);
-
-            view.ShowDialogAction = v =>
-            {
-                viewModel.NoCommand.Execute(null);
-            };
-            dialogResult = viewModel.ShowDialog(owner);
-            Assert.AreEqual(false, dialogResult);
         }
 
 

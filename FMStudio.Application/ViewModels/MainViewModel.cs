@@ -1,16 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
 using FMStudio.Applications.Properties;
 using FMStudio.Applications.Services;
 using FMStudio.Applications.Views;
-using System.ComponentModel;
-using System.IO;
 
 namespace FMStudio.Applications.ViewModels
 {

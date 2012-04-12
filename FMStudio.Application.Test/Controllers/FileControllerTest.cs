@@ -9,6 +9,7 @@ using FMStudio.Applications.Documents;
 using FMStudio.Applications.Services;
 using FMStudio.Applications.Test.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FMStudio.Applications.Test.Views;
 
 namespace FMStudio.Applications.Test.Controllers
 {
@@ -26,6 +27,45 @@ namespace FMStudio.Applications.Test.Controllers
                 Directory.Delete(Path.Combine(Environment.CurrentDirectory, "TestSolution2"), true);
         }
 
+
+        [TestMethod]
+        public void NewSolutionTest()
+        {
+            FileController fileController = Container.GetExportedValue<FileController>();
+            IFileService fileService = Container.GetExportedValue<IFileService>();
+
+            Assert.IsNull(fileService.SolutionDoc);
+
+            //  New solution dialog canceled.
+            bool showDialogCalled = false;
+            MockNewSolutionDialogView saveChangesView = Container.GetExportedValue<MockNewSolutionDialogView>();
+            saveChangesView.ShowDialogAction = (view) =>
+            {
+                showDialogCalled = true;
+                view.Close();
+            };
+            fileService.NewSolutionCommand.Execute(null);
+            Assert.IsTrue(showDialogCalled);
+            Assert.IsNull(fileService.SolutionDoc);
+
+            //  New solution dialog click OK.
+            showDialogCalled = false;
+            saveChangesView.ShowDialogAction = (view) =>
+            {
+                showDialogCalled = true;
+                view.ViewModel.Location = Environment.CurrentDirectory;
+                view.ViewModel.SolutionName = "TestSolution";
+                view.ViewModel.OKCommand.Execute(null);
+            };
+            fileService.NewSolutionCommand.Execute(null);
+            Assert.IsTrue(showDialogCalled);
+            IDocument document = fileService.SolutionDoc;
+            Assert.IsNotNull(fileService.SolutionDoc);
+            Assert.AreEqual(Path.Combine(
+                Environment.CurrentDirectory, "TestSolution", "TestSolution.fmsln"), document.FullFilePath);
+            Assert.AreEqual(document, fileService.SolutionDoc);
+            Assert.IsTrue(fileService.OpenedDocuments.Any());
+        }
 
         [TestMethod]
         public void NewSolutionViaCommandLineTest()

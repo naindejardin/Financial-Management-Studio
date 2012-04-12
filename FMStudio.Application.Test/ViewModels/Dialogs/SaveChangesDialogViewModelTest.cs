@@ -27,6 +27,21 @@ namespace FMStudio.Applications.Test.ViewModels
             SaveChangesDialogViewModel viewModel = new SaveChangesDialogViewModel(view, documents);
 
             Assert.AreEqual(documents, viewModel.Documents);
+
+            object owner = new object();
+            view.ShowDialogAction = v =>
+            {
+                viewModel.YesCommand.Execute(null);
+            };
+            bool? dialogResult = viewModel.ShowDialog(owner);
+            Assert.AreEqual(true, dialogResult);
+
+            view.ShowDialogAction = v =>
+            {
+                viewModel.NoCommand.Execute(null);
+            };
+            dialogResult = viewModel.ShowDialog(owner);
+            Assert.AreEqual(false, dialogResult);
         }
     }
 }
