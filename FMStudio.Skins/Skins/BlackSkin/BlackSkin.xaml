@@ -8,6 +8,7 @@
         <ResourceDictionary Source="Controls/ButtonStyle.xaml"/>
         <ResourceDictionary Source="Controls/MenuItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/SeparatorStyle.xaml"/>
+        <ResourceDictionary Source="Controls/DialogStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

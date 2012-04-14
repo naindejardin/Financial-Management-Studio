@@ -61,6 +61,15 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chinese.
         /// </summary>
         public static string ChineseMenu {
@@ -133,6 +142,15 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do_n&apos;t Save.
+        /// </summary>
+        public static string DontSaveButton {
+            get {
+                return ResourceManager.GetString("DontSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string EnglishMenu {
@@ -187,6 +205,24 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Solution.
+        /// </summary>
+        public static string NewSolutionTitle {
+            get {
+                return ResourceManager.GetString("NewSolutionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _OK.
+        /// </summary>
+        public static string OKButton {
+            get {
+                return ResourceManager.GetString("OKButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open _Solution.
         /// </summary>
         public static string OpenSolutionMenu {
@@ -214,11 +250,38 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (Null).
+        /// </summary>
+        public static string RecentSolutionNullMenu {
+            get {
+                return ResourceManager.GetString("RecentSolutionNullMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save A_ll.
         /// </summary>
         public static string SaveAllDocumentMenu {
             get {
                 return ResourceManager.GetString("SaveAllDocumentMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Save.
+        /// </summary>
+        public static string SaveButton {
+            get {
+                return ResourceManager.GetString("SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes to the following items?.
+        /// </summary>
+        public static string SaveChangesTo {
+            get {
+                return ResourceManager.GetString("SaveChangesTo", resourceCulture);
             }
         }
         

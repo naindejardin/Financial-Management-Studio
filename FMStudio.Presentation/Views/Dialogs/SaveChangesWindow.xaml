@@ -1,8 +1,46 @@
 ﻿<Window x:Class="FMStudio.Presentation.Views.Dialogs.SaveChangesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SaveChangesWindow" Height="300" Width="300">
-    <Grid>
+        xmlns:vm="clr-namespace:FMStudio.Applications.ViewModels.Dialogs;assembly=FMStudio.Applications"
+        xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SaveChangesDialogViewModel}"
+        Title="{Binding Title}" SizeToContent="WidthAndHeight" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" 
+        d:DesignHeight="300" d:DesignWidth="260" WindowStartupLocation="CenterScreen">
+    <Window.Foreground>
+        <SolidColorBrush Color="{DynamicResource Application_Dialog_Foreground}"/>
+    </Window.Foreground>
+    <Window.Background>
+        <SolidColorBrush Color="{DynamicResource Application_Dialog_Background}"/>
+    </Window.Background>
+
+    <Grid Margin="11">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{x:Static p:Resources.SaveChangesTo}" Padding="0" Grid.ColumnSpan="3" Height="30">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource Application_Windows_Foreground}"/>
+            </TextBlock.Foreground> 
+        </TextBlock>
         
+        <Border BorderBrush="#828790" BorderThickness="1" Grid.ColumnSpan="3" Grid.Row="1" Margin="0,0,0,11">
+            <ScrollViewer Padding="4">
+                <ItemsControl ItemsSource="{Binding Documents}" DisplayMemberPath="FileName"/>
+            </ScrollViewer>
+        </Border>
+
+        <Button Command="{Binding YesCommand}" Content="{x:Static p:Resources.SaveButton}" IsDefault="True" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  Style="{DynamicResource ButtonSytle}" TabIndex="0" />
+        <Button Command="{Binding NoCommand}" Content="{x:Static p:Resources.DontSaveButton}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Style="{DynamicResource ButtonSytle}" TabIndex="1" />
+        <Button Content="{x:Static p:Resources.CancelButton}" IsCancel="True" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Style="{DynamicResource ButtonSytle}" TabIndex="3" Width="60" />
     </Grid>
 </Window>

@@ -63,7 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\MenuFileNameConverter.cs" />
+    <Compile Include="Converters\TabFileNameConverter.cs" />
     <Compile Include="DesignData\SampleMainViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -71,6 +73,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\PresentationService.cs" />
+    <Compile Include="Views\Dialogs\DialogWindow.cs" />
     <Compile Include="Views\Dialogs\NewDocumentWindow.xaml.cs">
       <DependentUpon>NewDocumentWindow.xaml</DependentUpon>
     </Compile>

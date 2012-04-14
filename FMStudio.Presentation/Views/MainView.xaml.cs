@@ -19,7 +19,6 @@ namespace FMStudio.Presentation.Views
         private readonly Lazy<MainViewModel> viewModel;
         private ContentViewState contentViewState;
 
-
         public MainView()
         {
             InitializeComponent();
@@ -49,6 +48,8 @@ namespace FMStudio.Presentation.Views
         {
             if (ViewModel.FileService.RecentSolutionList.RecentFiles.Any())
             {
+                recentSolutionMenuItem.Items.Clear();
+
                 for (int i = 0; i < ViewModel.FileService.RecentSolutionList.RecentFiles.Count; i++)
                 {
                     RecentFile recentSolution = ViewModel.FileService.RecentSolutionList.RecentFiles[i];
@@ -68,6 +69,13 @@ namespace FMStudio.Presentation.Views
         private void FileMenuItemSubmenuClosed(object sender, RoutedEventArgs e)
         {
             recentSolutionMenuItem.Items.Clear();
+
+            MenuItem menuItem = new MenuItem()
+            {
+                Header = FMStudio.Presentation.Properties.Resources.RecentSolutionNullMenu,
+                IsEnabled = false
+            };
+            recentSolutionMenuItem.Items.Add(menuItem);
         }
 
         private static string GetNumberText(int index)

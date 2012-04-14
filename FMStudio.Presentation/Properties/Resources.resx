@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CancelButton" xml:space="preserve">
+    <value>_Cancel</value>
+  </data>
   <data name="ChineseMenu" xml:space="preserve">
     <value>Chinese</value>
   </data>
@@ -141,6 +144,9 @@
   <data name="ControlShiftS" xml:space="preserve">
     <value>Ctrl+Shift+S</value>
   </data>
+  <data name="DontSaveButton" xml:space="preserve">
+    <value>Do_n't Save</value>
+  </data>
   <data name="EnglishMenu" xml:space="preserve">
     <value>English</value>
   </data>
@@ -159,6 +165,12 @@
   <data name="NewSolutionMenu" xml:space="preserve">
     <value>New _Solution</value>
   </data>
+  <data name="NewSolutionTitle" xml:space="preserve">
+    <value>New Solution</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>_OK</value>
+  </data>
   <data name="OpenSolutionMenu" xml:space="preserve">
     <value>Open _Solution</value>
   </data>
@@ -168,8 +180,17 @@
   <data name="RecentSolutionMenu" xml:space="preserve">
     <value>_Recent Solution</value>
   </data>
+  <data name="RecentSolutionNullMenu" xml:space="preserve">
+    <value>(Null)</value>
+  </data>
   <data name="SaveAllDocumentMenu" xml:space="preserve">
     <value>Save A_ll</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>_Save</value>
+  </data>
+  <data name="SaveChangesTo" xml:space="preserve">
+    <value>Save changes to the following items?</value>
   </data>
   <data name="SaveDocumentMenu" xml:space="preserve">
     <value>_Save</value>

@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Applications", "FMStudio.Application\FMStudio.Applications.csproj", "{62C0496C-FB93-4C42-830B-2A29FAF102DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2ECF149-6405-49D4-BE9D-F0E193D290F0} = {F2ECF149-6405-49D4-BE9D-F0E193D290F0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Applications.Test", "FMStudio.Application.Test\FMStudio.Applications.Test.csproj", "{7C4A9EE3-C50D-4E5B-BE99-F673DB69A150}"
 EndProject
@@ -21,6 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{86EDB89B-0
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Presentation", "FMStudio.Presentation\FMStudio.Presentation.csproj", "{17D7D79F-E566-4043-8981-4AB9459BEAB5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2ECF149-6405-49D4-BE9D-F0E193D290F0} = {F2ECF149-6405-49D4-BE9D-F0E193D290F0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Skins", "FMStudio.Skins\FMStudio.Skins.csproj", "{F2ECF149-6405-49D4-BE9D-F0E193D290F0}"
 EndProject

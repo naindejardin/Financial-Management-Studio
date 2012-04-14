@@ -15,51 +15,21 @@
 	<UserControl.Background>
 		<SolidColorBrush Color="{DynamicResource Application_Windows_Background}"/>
 	</UserControl.Background>
-
     
     <DockPanel x:Name="rootContainer">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="ContentView">
-                <VisualState x:Name="StartViewVisible">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="documentView">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="documentView">
-                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="400"/>
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="documentView">
-                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                        </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="DocumentViewVisible">
-                    <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="documentView">
-                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                        </DoubleAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="startView">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="startView">
-                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                        </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <Menu DockPanel.Dock="Top">
         	<Menu.Background>
         		<SolidColorBrush Color="{DynamicResource Application_Menu_Background}"/>
         	</Menu.Background>
             
-            <MenuItem Header="{x:Static p:Resources.FileMenu}" SubmenuOpened="FileMenuItemSubmenuOpened" SubmenuClosed="FileMenuItemSubmenuClosed" Style="{DynamicResource MenuItemSytle}">
+            <MenuItem Header="{x:Static p:Resources.FileMenu}" Style="{DynamicResource MenuItemSytle}">
                 <MenuItem Command="{Binding FileService.NewDocumentCommand}" Header="{x:Static p:Resources.NewDocumentMenu}" InputGestureText="{x:Static p:Resources.ControlN}" Style="{DynamicResource MenuItemSytle}"/>
                 <MenuItem Command="{Binding FileService.NewSolutionCommand}" Header="{x:Static p:Resources.NewSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlShiftN}" Style="{DynamicResource MenuItemSytle}"/>
                 <Separator Style="{DynamicResource SeparatorStyle}"/>
                 <MenuItem Command="{Binding FileService.OpenSolutionCommand}" Header="{x:Static p:Resources.OpenSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlO}" Style="{DynamicResource MenuItemSytle}"/>
-                <MenuItem x:Name="recentSolutionMenuItem" Header="{x:Static p:Resources.RecentSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem x:Name="recentSolutionMenuItem" Header="{x:Static p:Resources.RecentSolutionMenu}" SubmenuOpened="FileMenuItemSubmenuOpened" SubmenuClosed="FileMenuItemSubmenuClosed" Style="{DynamicResource MenuItemSytle}">
+                    <MenuItem Header="{x:Static p:Resources.RecentSolutionNullMenu}" IsEnabled="False"/>
+                </MenuItem>
                 <Separator Style="{DynamicResource SeparatorStyle}"/>
                 <MenuItem Command="{Binding FileService.CloseDocumentCommand}" Header="{x:Static p:Resources.CloseDocumentMenu}" Style="{DynamicResource MenuItemSytle}"/>
                 <MenuItem Command="{Binding FileService.CloseSolutionCommand}" Header="{x:Static p:Resources.CloseSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
@@ -81,6 +51,50 @@
         </Menu>
 
         <Grid>
+            <TabControl x:Name="documentView" ItemsSource="{Binding DocumentViews}" SelectedItem="{Binding ActiveDocumentView}">
+                <TabControl.RenderTransform>
+                    <TranslateTransform/>
+                </TabControl.RenderTransform>
+                
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Header" Value="{Binding Content.DataContext}"/>
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{x:Static c:TabFileNameConverter.Default}">
+                                                    <Binding Path="Document.FileName"/>
+                                                    <Binding Path="Document.Modified"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <Button Command="{Binding Command, ElementName=closeMenuItem}" Content="X"
+                                            Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}},
+                                                Converter={x:Static c:BoolToVisibilityConverter.Default}}"
+                                            Width="16" Height="16" BorderThickness="0"
+                                            MinWidth="0" MinHeight="0" Padding="0" Margin="7,0,0,0">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <ContentPresenter Margin="{TemplateBinding Control.Padding}" 
+                                                                  HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                                  VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                                                  SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                                                  ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                                                  RecognizesAccessKey="True"
+                                                                  Content="{TemplateBinding ContentControl.Content}"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.ItemContainerStyle>
+            </TabControl>
         </Grid>
     </DockPanel>
 </UserControl>
