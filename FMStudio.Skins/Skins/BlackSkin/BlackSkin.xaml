@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Controls/MenuItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/SeparatorStyle.xaml"/>
         <ResourceDictionary Source="Controls/DialogStyle.xaml"/>
+        <ResourceDictionary Source="Controls/TextBoxStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -50,30 +50,40 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Skins\BlackSkin\BlackSkin.xaml">
+    <Resource Include="Skins\BlackSkin\BlackSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Skins\BlackSkin\Controls\ButtonStyle.xaml">
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Controls\ButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Skins\BlackSkin\Colors.xaml">
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Colors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Skins\BlackSkin\Controls\DialogStyle.xaml">
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Controls\DialogStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Skins\BlackSkin\Controls\MenuItemStyle.xaml">
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Controls\MenuItemStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Skins\BlackSkin\Controls\SeparatorStyle.xaml">
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Controls\SeparatorStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
+    </Resource>
+    <Resource Include="Skins\BlackSkin\Controls\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Skins\BlackSkin\Controls\ToolTipTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

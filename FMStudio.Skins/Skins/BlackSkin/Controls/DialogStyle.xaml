@@ -4,7 +4,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
 	
 	<Style x:Key="DialogStyle" TargetType="{x:Type Window}">
         <Setter Property="Foreground">
@@ -19,6 +18,7 @@
 		</Setter>
 		<Setter Property="Template" Value="{DynamicResource DialogTemplate}"/>
 	</Style>
+    
 	<ControlTemplate x:Key="DialogTemplate" TargetType="{x:Type Window}">
     	<DockPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
     		<Border x:Name="HeadBar" BorderThickness="2,2,2,0" DockPanel.Dock="Top" Height="24">
@@ -78,7 +78,6 @@
 				<VisualStateGroup x:Name="CommonStates">
 					<VisualStateGroup.Transitions>
 						<VisualTransition From="Normal" GeneratedDuration="0:0:0.2" To="MouseOver"/>
-						<VisualTransition From="Pressed" GeneratedDuration="0:0:0.2" To="Normal"/>
 						<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.2" To="Normal"/>
 					</VisualStateGroup.Transitions>
 					<VisualState x:Name="Normal"/>
@@ -95,10 +94,10 @@
 					<VisualState x:Name="Pressed">
 						<Storyboard>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Background_Move}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_Background_Pressed}"/>
 							</ColorAnimationUsingKeyFrames>
 							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_BorderBrush_Move}"/>
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Control_BorderBrush_Pressed}"/>
 							</ColorAnimationUsingKeyFrames>
 						</Storyboard>
 					</VisualState>

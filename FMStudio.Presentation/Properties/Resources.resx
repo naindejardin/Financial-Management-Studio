@@ -156,14 +156,32 @@
   <data name="FileMenu" xml:space="preserve">
     <value>_File</value>
   </data>
+  <data name="InstalledTemplates" xml:space="preserve">
+    <value>Installed Templates</value>
+  </data>
   <data name="LanguageMenu" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="NewDocumentMenu" xml:space="preserve">
     <value>New _Document</value>
   </data>
+  <data name="NewSolutionBrowseButton" xml:space="preserve">
+    <value>_Browse</value>
+  </data>
+  <data name="NewSolutionLocation" xml:space="preserve">
+    <value>Location:</value>
+  </data>
   <data name="NewSolutionMenu" xml:space="preserve">
     <value>New _Solution</value>
+  </data>
+  <data name="NewSolutionName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="NewSolutionRecentTemplates" xml:space="preserve">
+    <value>Recent Templates</value>
+  </data>
+  <data name="NewSolutionTemplateSortBy" xml:space="preserve">
+    <value>SortBy:</value>
   </data>
   <data name="NewSolutionTitle" xml:space="preserve">
     <value>New Solution</value>

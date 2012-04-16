@@ -21,15 +21,13 @@
         	<Menu.Background>
         		<SolidColorBrush Color="{DynamicResource Application_Menu_Background}"/>
         	</Menu.Background>
-            
-            <MenuItem Header="{x:Static p:Resources.FileMenu}" Style="{DynamicResource MenuItemSytle}">
+
+            <MenuItem x:Name="fileMenu" Header="{x:Static p:Resources.FileMenu}" SubmenuOpened="FileMenuItemSubmenuOpened" SubmenuClosed="FileMenuItemSubmenuClosed" Style="{DynamicResource MenuItemSytle}">
                 <MenuItem Command="{Binding FileService.NewDocumentCommand}" Header="{x:Static p:Resources.NewDocumentMenu}" InputGestureText="{x:Static p:Resources.ControlN}" Style="{DynamicResource MenuItemSytle}"/>
                 <MenuItem Command="{Binding FileService.NewSolutionCommand}" Header="{x:Static p:Resources.NewSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlShiftN}" Style="{DynamicResource MenuItemSytle}"/>
                 <Separator Style="{DynamicResource SeparatorStyle}"/>
                 <MenuItem Command="{Binding FileService.OpenSolutionCommand}" Header="{x:Static p:Resources.OpenSolutionMenu}" InputGestureText="{x:Static p:Resources.ControlO}" Style="{DynamicResource MenuItemSytle}"/>
-                <MenuItem x:Name="recentSolutionMenuItem" Header="{x:Static p:Resources.RecentSolutionMenu}" SubmenuOpened="FileMenuItemSubmenuOpened" SubmenuClosed="FileMenuItemSubmenuClosed" Style="{DynamicResource MenuItemSytle}">
-                    <MenuItem Header="{x:Static p:Resources.RecentSolutionNullMenu}" IsEnabled="False"/>
-                </MenuItem>
+                <MenuItem x:Name="recentSolutionMenuItem" Header="{x:Static p:Resources.RecentSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
                 <Separator Style="{DynamicResource SeparatorStyle}"/>
                 <MenuItem Command="{Binding FileService.CloseDocumentCommand}" Header="{x:Static p:Resources.CloseDocumentMenu}" Style="{DynamicResource MenuItemSytle}"/>
                 <MenuItem Command="{Binding FileService.CloseSolutionCommand}" Header="{x:Static p:Resources.CloseSolutionMenu}" Style="{DynamicResource MenuItemSytle}"/>
@@ -51,7 +49,20 @@
         </Menu>
 
         <Grid>
-            <TabControl x:Name="documentView" ItemsSource="{Binding DocumentViews}" SelectedItem="{Binding ActiveDocumentView}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25"/>
+                <RowDefinition Height="0.25"/>
+                <RowDefinition Height="0.25"/>
+                <RowDefinition Height="0.25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25"/>
+                <ColumnDefinition Width="0.25"/>
+                <ColumnDefinition Width="0.25"/>
+                <ColumnDefinition Width="0.25"/>
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="documentView" ItemsSource="{Binding DocumentViews}" SelectedItem="{Binding ActiveDocumentView}" 
+                        Grid.Column="3" Grid.RowSpan="2">
                 <TabControl.RenderTransform>
                     <TranslateTransform/>
                 </TabControl.RenderTransform>

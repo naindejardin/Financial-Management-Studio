@@ -46,10 +46,11 @@ namespace FMStudio.Presentation.Views
 
         private void FileMenuItemSubmenuOpened(object sender, RoutedEventArgs e)
         {
+            if (recentSolutionMenuItem.HasItems)
+                return;
+
             if (ViewModel.FileService.RecentSolutionList.RecentFiles.Any())
             {
-                recentSolutionMenuItem.Items.Clear();
-
                 for (int i = 0; i < ViewModel.FileService.RecentSolutionList.RecentFiles.Count; i++)
                 {
                     RecentFile recentSolution = ViewModel.FileService.RecentSolutionList.RecentFiles[i];
@@ -59,23 +60,29 @@ namespace FMStudio.Presentation.Views
                             + MenuFileNameConverter.Default.Convert(recentSolution.Path, null, null, CultureInfo.CurrentCulture),
                         ToolTip = recentSolution.Path,
                         Command = ViewModel.FileService.OpenSolutionCommand,
-                        CommandParameter = recentSolution.Path
+                        CommandParameter = recentSolution.Path,
+                        IsEnabled = true
                     };
                     recentSolutionMenuItem.Items.Add(menuItem);
                 }
+            }
+            else
+            {
+                MenuItem menuItem = new MenuItem()
+                {
+                    Header = FMStudio.Presentation.Properties.Resources.RecentSolutionNullMenu,
+                    IsEnabled = false
+                };
+                recentSolutionMenuItem.Items.Add(menuItem);
             }
         }
 
         private void FileMenuItemSubmenuClosed(object sender, RoutedEventArgs e)
         {
-            recentSolutionMenuItem.Items.Clear();
+            if (fileMenu.IsSubmenuOpen)
+                return;
 
-            MenuItem menuItem = new MenuItem()
-            {
-                Header = FMStudio.Presentation.Properties.Resources.RecentSolutionNullMenu,
-                IsEnabled = false
-            };
-            recentSolutionMenuItem.Items.Add(menuItem);
+            recentSolutionMenuItem.Items.Clear();
         }
 
         private static string GetNumberText(int index)

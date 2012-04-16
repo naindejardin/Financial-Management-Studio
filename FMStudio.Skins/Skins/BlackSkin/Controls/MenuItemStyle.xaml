@@ -192,7 +192,7 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Control_BorderBrush_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="PART_Popup">
-                	<DiscreteBooleanKeyFrame KeyTime="0:0:0.4" Value="True"/>
+                	<DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
                 </BooleanAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Key="MouseOut">
@@ -209,7 +209,7 @@
                     <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Menu_Foreground}"/>
                 </ColorAnimationUsingKeyFrames>
                 <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="PART_Popup">
-                	<DiscreteBooleanKeyFrame KeyTime="0:0:0.4" Value="False"/>
+                	<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
                 </BooleanAnimationUsingKeyFrames>
             </Storyboard>
         </ControlTemplate.Resources>
@@ -317,11 +317,11 @@
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InputGesture">
                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground}"/>
-                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Control_BorderBrush_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                 </ColorAnimationUsingKeyFrames>
                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Menu_Foreground}"/>
-                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Control_BorderBrush_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Menu_Foreground_Move}"/>
                 </ColorAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Key="MouseOut">
@@ -382,6 +382,23 @@
                     <BeginStoryboard x:Name="MouseIn_BeginStoryboard" Storyboard="{StaticResource MouseIn}"/>
                 </Trigger.EnterActions>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" TargetName="InputGesture">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Stroke" TargetName="Glyph">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource Application_Menu_Foreground}"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground">
                     <Setter.Value>
@@ -400,7 +417,7 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsChecked" Value="true">
-                <Setter Property="Visibility" TargetName="Glyph" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

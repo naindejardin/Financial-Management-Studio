@@ -43,4 +43,10 @@
     <Color x:Key="Application_Control_BorderBrush_Focus" A="255" R="255" G="255" B="255"/>
     <Color x:Key="Application_Control_BorderBrush_Default" A="255" R="155" G="177" B="197"/>
 
+    <!-- TextBox Color -->
+    <Color x:Key="Application_TextBox_Background" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_TextBox_Background_Move" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_TextBox_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_TextBox_BorderBrush_ValidationError" A="255" R="255" G="0" B="0"/>
+    <Color x:Key="Application_TextBox_Foreground_Disabled" A="255" R="128" G="128" B="128"/>
 </ResourceDictionary>

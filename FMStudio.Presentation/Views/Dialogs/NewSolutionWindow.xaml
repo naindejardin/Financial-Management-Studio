@@ -1,22 +1,15 @@
-﻿<Window x:Class="FMStudio.Presentation.Views.Dialogs.NewSolutionWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:FMStudio.Applications.ViewModels.Dialogs;assembly=FMStudio.Applications"
-        xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SaveChangesDialogViewModel}"
-        Title="{x:Static p:Resources.NewSolutionTitle}" Width="700" Height="500" SizeToContent="WidthAndHeight" ShowInTaskbar="False" ResizeMode="NoResize"
-        WindowStyle="None" WindowStartupLocation="CenterScreen"
-        Style="{DynamicResource DialogStyle}">
-    <Window.Foreground>
-        <SolidColorBrush Color="{DynamicResource Application_Windows_Foreground}"/>
-    </Window.Foreground>
-    <Window.Background>
-        <SolidColorBrush Color="{DynamicResource Application_Windows_Background}"/>
-    </Window.Background>
-    
-    <Grid>
+﻿<dialog:DialogWindow x:Class="FMStudio.Presentation.Views.Dialogs.NewSolutionWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:vm="clr-namespace:FMStudio.Applications.ViewModels.Dialogs;assembly=FMStudio.Applications"
+                     xmlns:p="clr-namespace:FMStudio.Presentation.Properties"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:dialog="clr-namespace:FMStudio.Presentation.Views.Dialogs"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SaveChangesDialogViewModel}"
+                     Title="{x:Static p:Resources.NewSolutionTitle}" Width="700" Height="500" SizeToContent="WidthAndHeight"
+                     Style="{DynamicResource DialogStyle}">
+    <Grid Margin="11">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
@@ -27,14 +20,44 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="227*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-
-        <Button Command="{Binding YesCommand}" Content="{x:Static p:Resources.OKButton}" IsDefault="True" Grid.Column="5" Grid.Row="3" Width="75" HorizontalAlignment="Right" Style="{DynamicResource ButtonSytle}" Margin="0,11" />
-        <Button Content="{x:Static p:Resources.CancelButton}" IsCancel="True" Grid.Column="6" Grid.Row="3" Width="75" HorizontalAlignment="Right" Style="{DynamicResource ButtonSytle}" Margin="0,11,11,11" />
+        <Button Command="{Binding OKCommand}" Content="{x:Static p:Resources.OKButton}" IsDefault="True" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Right" Style="{DynamicResource ButtonSytle}" Margin="0" VerticalAlignment="Center" />
+        <Button Content="{x:Static p:Resources.CancelButton}" IsCancel="True" Grid.Column="6" Grid.Row="4" Style="{DynamicResource ButtonSytle}" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBlock Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="{x:Static p:Resources.NewSolutionName}" VerticalAlignment="Center">
+        	<TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource Application_Dialog_Foreground}"/>
+            </TextBlock.Foreground> 
+        </TextBlock>
+        <TextBlock Margin="0" Grid.Row="3" TextWrapping="Wrap" Text="{x:Static p:Resources.NewSolutionLocation}" VerticalAlignment="Center">
+        	<TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource Application_Dialog_Foreground}"/>
+            </TextBlock.Foreground> 
+        </TextBlock>
+        <Button Content="{x:Static p:Resources.NewSolutionBrowseButton}" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonSytle}" Margin="0" VerticalAlignment="Center" />
+        <TextBox Text="{Binding SolutionName, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, 
+            NotifyOnValidationError=true}" Grid.ColumnSpan="4" Grid.Column="1" Margin="0" Grid.Row="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}"/>
+        <TextBox Text="{Binding Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, 
+            NotifyOnValidationError=true}" Grid.ColumnSpan="4" Grid.Column="1" Margin="0" Grid.Row="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}"/>
+        <TextBox Margin="0" TextWrapping="Wrap" Text="Search Template (Construct)" d:LayoutOverrides="Width, Height" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}"/>
+        <TextBlock Margin="10,0,0,0" Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Text="{x:Static p:Resources.NewSolutionTemplateSortBy}" VerticalAlignment="Center">
+        	<TextBlock.Foreground>
+        		<SolidColorBrush Color="{DynamicResource Application_Dialog_Foreground}"/>
+        	</TextBlock.Foreground> 
+        </TextBlock>
+		<ListBox Grid.ColumnSpan="2" Grid.RowSpan="2">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Expander Header="Recent">
+					</Expander>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ListBox Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="1"/>
     </Grid>
-</Window>
+</dialog:DialogWindow>

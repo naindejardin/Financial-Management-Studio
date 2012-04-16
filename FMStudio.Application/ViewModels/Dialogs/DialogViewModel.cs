@@ -1,16 +1,20 @@
-﻿using BigEgg.Framework.Applications;
+﻿using System.ComponentModel;
+using BigEgg.Framework.Applications;
+using BigEgg.Framework.Foundation;
 using FMStudio.Applications.Views.Dialogs;
 
 namespace FMStudio.Applications.ViewModels.Dialogs
 {
-    public abstract class DialogViewModel<TView> : ViewModel<TView> where TView : IDialogView
+    public abstract class DialogViewModel<TView> : ViewModel<TView>, IDataErrorInfo where TView : IDialogView
     {
         private bool? dialogResult;
+        private readonly DataErrorInfoSupport dataErrorInfoSupport;
 
 
         public DialogViewModel(TView view)
             : base(view)
         {
+            dataErrorInfoSupport = new DataErrorInfoSupport(this);
         }
 
 
@@ -28,5 +32,10 @@ namespace FMStudio.Applications.ViewModels.Dialogs
             this.dialogResult = dialogResult;
             ViewCore.Close();
         }
+
+
+        string IDataErrorInfo.Error { get { return dataErrorInfoSupport.Error; } }
+
+        string IDataErrorInfo.this[string columnName] { get { return dataErrorInfoSupport[columnName]; } }
     }
 }

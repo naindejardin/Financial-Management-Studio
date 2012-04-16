@@ -178,6 +178,15 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Installed Templates.
+        /// </summary>
+        public static string InstalledTemplates {
+            get {
+                return ResourceManager.GetString("InstalledTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageMenu {
@@ -196,11 +205,56 @@ namespace FMStudio.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Browse.
+        /// </summary>
+        public static string NewSolutionBrowseButton {
+            get {
+                return ResourceManager.GetString("NewSolutionBrowseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location:.
+        /// </summary>
+        public static string NewSolutionLocation {
+            get {
+                return ResourceManager.GetString("NewSolutionLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New _Solution.
         /// </summary>
         public static string NewSolutionMenu {
             get {
                 return ResourceManager.GetString("NewSolutionMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string NewSolutionName {
+            get {
+                return ResourceManager.GetString("NewSolutionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Templates.
+        /// </summary>
+        public static string NewSolutionRecentTemplates {
+            get {
+                return ResourceManager.GetString("NewSolutionRecentTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SortBy:.
+        /// </summary>
+        public static string NewSolutionTemplateSortBy {
+            get {
+                return ResourceManager.GetString("NewSolutionTemplateSortBy", resourceCulture);
             }
         }
         
