@@ -7,8 +7,7 @@
                      xmlns:dialog="clr-namespace:FMStudio.Presentation.Views.Dialogs"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SaveChangesDialogViewModel}"
-                     Title="{x:Static p:Resources.NewSolutionTitle}" Width="700" Height="500" SizeToContent="WidthAndHeight"
-                     Style="{DynamicResource DialogStyle}">
+                     Title="{x:Static p:Resources.NewSolutionTitle}" Width="700" Height="500" SizeToContent="WidthAndHeight">
     <Grid Margin="11">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />

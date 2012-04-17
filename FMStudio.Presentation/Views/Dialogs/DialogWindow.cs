@@ -12,6 +12,8 @@ namespace FMStudio.Presentation.Views.Dialogs
             this.ShowInTaskbar = false;
             this.WindowStyle = System.Windows.WindowStyle.None;
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
+
+            this.Style = (Style)FindResource("DialogStyle");
         }
 
         public override void OnApplyTemplate()

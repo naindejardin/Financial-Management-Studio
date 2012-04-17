@@ -8,8 +8,7 @@
                      mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SaveChangesDialogViewModel}"
                      Title="{Binding Title}" SizeToContent="WidthAndHeight"
                      xmlns:dialog="clr-namespace:FMStudio.Presentation.Views.Dialogs"
-                     d:DesignHeight="300" d:DesignWidth="260" 
-                     Style="{DynamicResource DialogStyle}">
+                     d:DesignHeight="300" d:DesignWidth="260">
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
