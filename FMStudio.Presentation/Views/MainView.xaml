@@ -50,16 +50,16 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.25"/>
-                <RowDefinition Height="0.25"/>
-                <RowDefinition Height="0.25"/>
-                <RowDefinition Height="0.25"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.25"/>
-                <ColumnDefinition Width="0.25"/>
-                <ColumnDefinition Width="0.25"/>
-                <ColumnDefinition Width="0.25"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
             <TabControl x:Name="documentView" ItemsSource="{Binding DocumentViews}" SelectedItem="{Binding ActiveDocumentView}" 
                         Grid.Column="3" Grid.RowSpan="2">

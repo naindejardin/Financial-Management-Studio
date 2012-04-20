@@ -15,6 +15,10 @@
     <Color x:Key="Application_Dialog_HeaderBrush" A="255" R="89" G="89" B="89"/>
     <Color x:Key="Application_Dialog_HeaderAlphaBrush" A="0" R="89" G="89" B="89"/>
 
+    <!-- Views Color -->
+    <Color x:Key="Application_Views_Background" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Views_Foreground" A="255" R="255" G="255" B="255"/>
+
     <!-- Menu Color -->
     <Color x:Key="Application_Menu_Background" A="255" R="58" G="58" B="58"/>
     <Color x:Key="Application_Menu_Foreground" A="255" R="255" G="255" B="255"/>
@@ -49,4 +53,12 @@
     <Color x:Key="Application_TextBox_BorderBrush" A="255" R="51" G="51" B="51"/>
     <Color x:Key="Application_TextBox_BorderBrush_ValidationError" A="255" R="255" G="0" B="0"/>
     <Color x:Key="Application_TextBox_Foreground_Disabled" A="255" R="128" G="128" B="128"/>
+
+    <!-- Treeview Color -->
+    <Color x:Key="Application_Treeview_Background" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_Treeview_Background_Move" A="255" R="74" G="74" B="74"/>
+    <Color x:Key="Application_Treeview_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Treeview_Background_Selection" A="128" R="100" G="149" B="237"/>
+    <Color x:Key="Application_Treeview_BorderBrush_Selection" A="255" R="100" G="149" B="237"/>
+    <Color x:Key="Application_Treeview_Foreground_Disabled" A="255" R="102" G="102" B="102"/>
 </ResourceDictionary>

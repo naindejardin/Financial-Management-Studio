@@ -10,6 +10,8 @@
         <ResourceDictionary Source="Controls/SeparatorStyle.xaml"/>
         <ResourceDictionary Source="Controls/DialogStyle.xaml"/>
         <ResourceDictionary Source="Controls/TextBoxStyle.xaml"/>
+        <ResourceDictionary Source="Controls/TreeViewStyle.xaml"/>
+        <ResourceDictionary Source="Controls/TreeViewItemStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

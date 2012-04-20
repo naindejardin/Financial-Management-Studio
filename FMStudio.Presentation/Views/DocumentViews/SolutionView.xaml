@@ -3,9 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:FMStudio.Applications.ViewModels;assembly=FMStudio.Applications"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:SolutionViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Foreground>
+        <SolidColorBrush Color="{DynamicResource Application_Views_Foreground}"/>
+    </UserControl.Foreground>
+    <UserControl.Background>
+        <SolidColorBrush Color="{DynamicResource Application_Views_Background}"/>
+    </UserControl.Background>
+    
+    <DockPanel>
+        <TreeView Style="{DynamicResource TreeViewStyle}">
+            <TreeViewItem Header="{Binding Document.AliasName}" IsExpanded="True" Style="{DynamicResource TreeViewItemStyle}">
+                <TreeViewItem Header="Properties" Style="{DynamicResource TreeViewItemStyle}"/>
+                <TreeViewItem Header="Data Files" Style="{DynamicResource TreeViewItemStyle}"/>
+            </TreeViewItem>
+        </TreeView>
+    </DockPanel>
 </UserControl>
