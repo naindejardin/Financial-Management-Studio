@@ -1,0 +1,51 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Resource dictionary entries should be defined here. -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{DynamicResource TabControlTemplate}"/>
+    </Style>
+
+    <ControlTemplate x:Key="TabControlTemplate" TargetType="TabControl">
+        <Grid>
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="20"/>
+        		<ColumnDefinition/>
+        	</Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+			
+            <Border Grid.Row="1" CornerRadius="0,5,0,0" Grid.ColumnSpan="2">
+            	<Border.Background>
+            		<SolidColorBrush Color="{DynamicResource Application_Views_Background}"/>
+            	</Border.Background>
+            	<ContentPresenter ContentSource="SelectedContent" Margin="5"/>
+            </Border>
+            <TabPanel Grid.Row="0" IsItemsHost="true" Grid.Column="1"/>
+            <Path Data="M0,20 L5,0 15,0 20,20 " HorizontalAlignment="Left" Stretch="Fill" Width="Auto" Margin="0,5,0,0">
+            	<Path.Fill>
+            		<SolidColorBrush Color="{DynamicResource Application_TabItem_Background_Selection}"/>
+            	</Path.Fill>
+            </Path>
+            <Ellipse Margin="7.5,10,7.5,5" >
+            	<Ellipse.Stroke>
+            		<SolidColorBrush Color="{DynamicResource Application_TabItem_Foreground}"/>
+            	</Ellipse.Stroke>
+            	<Ellipse.Fill>
+            		<SolidColorBrush Color="{DynamicResource Application_TabItem_Background_Selection}"/>
+            	</Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

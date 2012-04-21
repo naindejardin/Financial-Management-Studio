@@ -61,14 +61,15 @@
                 <ColumnDefinition Width="0.25*"/>
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
+            
             <TabControl x:Name="documentView" ItemsSource="{Binding DocumentViews}" SelectedItem="{Binding ActiveDocumentView}" 
-                        Grid.Column="3" Grid.RowSpan="2">
+                        Grid.Column="3" Grid.RowSpan="2" Style="{DynamicResource TabControlStyle}">
                 <TabControl.RenderTransform>
                     <TranslateTransform/>
                 </TabControl.RenderTransform>
                 
                 <TabControl.ItemContainerStyle>
-                    <Style TargetType="TabItem">
+                    <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}">
                         <Setter Property="Header" Value="{Binding Content.DataContext}"/>
                         <Setter Property="HeaderTemplate">
                             <Setter.Value>
@@ -77,7 +78,7 @@
                                         <TextBlock VerticalAlignment="Center">
                                             <TextBlock.Text>
                                                 <MultiBinding Converter="{x:Static c:TabFileNameConverter.Default}">
-                                                    <Binding Path="Document.FileName"/>
+                                                    <Binding Path="Document.FullFilePath"/>
                                                     <Binding Path="Document.Modified"/>
                                                 </MultiBinding>
                                             </TextBlock.Text>

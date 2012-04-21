@@ -12,6 +12,8 @@
         <ResourceDictionary Source="Controls/TextBoxStyle.xaml"/>
         <ResourceDictionary Source="Controls/TreeViewStyle.xaml"/>
         <ResourceDictionary Source="Controls/TreeViewItemStyle.xaml"/>
+        <ResourceDictionary Source="Controls/TabControlStyle.xaml"/>
+        <ResourceDictionary Source="Controls/TabItemStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

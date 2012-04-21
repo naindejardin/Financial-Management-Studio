@@ -22,7 +22,7 @@ namespace FMStudio.Presentation.Converters
                 return DependencyProperty.UnsetValue;
             }
 
-            string fileName = Path.GetFileName((string)values[0]);
+            string fileName = Path.GetFileNameWithoutExtension((string)values[0]);
             if (fileName.Length > MaxCharacters)
             {
                 fileName = fileName.Remove(MaxCharacters - 3) + "...";

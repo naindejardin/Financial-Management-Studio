@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Financial Management Studio")]
+[assembly: AssemblyTitle("FMStudio.Presentation.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Financial Management Studio")]
+[assembly: AssemblyProduct("FMStudio.Presentation.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("18ef9dfe-f7d5-4c91-b210-0e48120227d1")]
+[assembly: Guid("0c66f69e-dd4a-4909-a0a8-c5e8d3817033")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,8 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.1.*")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
-
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("FMStudio.Applications.Test")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

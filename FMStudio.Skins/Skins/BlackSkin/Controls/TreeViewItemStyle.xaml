@@ -5,6 +5,8 @@
     <!-- Resource dictionary entries should be defined here. -->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Colors.xaml"/>
+        <ResourceDictionary Source="TabControlStyle.xaml"/>
+        <ResourceDictionary Source="TabItemStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="TreeViewItemStyle" TargetType="{x:Type TreeViewItem}">
@@ -20,6 +22,7 @@
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Margin" Value="0,1,0,0" />
         <Setter Property="Template" Value="{DynamicResource TreeViewItemTemplate}"/>
+        <Setter Property="MinHeight" Value="22"/>
     </Style>
 
     <ControlTemplate x:Key="TreeViewItemTemplate" TargetType="{x:Type TreeViewItem}">
@@ -122,7 +125,7 @@
     		</VisualStateManager.VisualStateGroups>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="22" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>

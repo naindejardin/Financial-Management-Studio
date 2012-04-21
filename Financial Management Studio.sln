@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Presentation", "FM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Skins", "FMStudio.Skins\FMStudio.Skins.csproj", "{F2ECF149-6405-49D4-BE9D-F0E193D290F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Presentation.Test", "FMStudio.Presentation.Test\FMStudio.Presentation.Test.csproj", "{13565694-AB4D-49A6-B40B-440868206314}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Financial Management Studio.vsmdi
@@ -83,6 +85,16 @@ Global
 		{F2ECF149-6405-49D4-BE9D-F0E193D290F0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F2ECF149-6405-49D4-BE9D-F0E193D290F0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F2ECF149-6405-49D4-BE9D-F0E193D290F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{13565694-AB4D-49A6-B40B-440868206314}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
