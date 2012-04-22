@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FMStudio.Applications.Properties {
+namespace FMStudio.SolutionTemplate.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FMStudio.Applications.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FMStudio.Applications.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FMStudio.SolutionTemplate.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,29 @@ namespace FMStudio.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application cannot create the solution &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Common.
         /// </summary>
-        internal static string CannotNewSolution {
+        internal static string CommonCategoryName {
             get {
-                return ResourceManager.GetString("CannotNewSolution", resourceCulture);
+                return ResourceManager.GetString("CommonCategoryName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application cannot open the solution &apos;{0}&apos;..
+        ///   Looks up a localized string similar to An empty solution..
         /// </summary>
-        internal static string CannotOpenSolution {
+        internal static string EmptyTemplateDescription {
             get {
-                return ResourceManager.GetString("CannotOpenSolution", resourceCulture);
+                return ResourceManager.GetString("EmptyTemplateDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application cannot save the file &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Empty Template.
         /// </summary>
-        internal static string CannotSaveFile {
+        internal static string EmptyTemplateName {
             get {
-                return ResourceManager.GetString("CannotSaveFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Financial Data Documents (*.data).
-        /// </summary>
-        internal static string DataDocuments {
-            get {
-                return ResourceManager.GetString("DataDocuments", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to NewFile.
-        /// </summary>
-        internal static string DefaultNewDocumentName {
-            get {
-                return ResourceManager.GetString("DefaultNewDocumentName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to NewSolution.
-        /// </summary>
-        internal static string DefaultNewSolutionName {
-            get {
-                return ResourceManager.GetString("DefaultNewSolutionName", resourceCulture);
+                return ResourceManager.GetString("EmptyTemplateName", resourceCulture);
             }
         }
         
@@ -124,38 +97,11 @@ namespace FMStudio.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please restart the application so that the configuration changes take effect..
-        /// </summary>
-        internal static string RestartApplication {
-            get {
-                return ResourceManager.GetString("RestartApplication", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The solution &apos;{0}&apos; has already existed..
         /// </summary>
         internal static string SolutionAlreadyExisted {
             get {
                 return ResourceManager.GetString("SolutionAlreadyExisted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The solution &apos;{0}&apos; has already opened..
-        /// </summary>
-        internal static string SolutionAlreadyOpened {
-            get {
-                return ResourceManager.GetString("SolutionAlreadyOpened", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to FMStuido Solution Documents (*.fmsln).
-        /// </summary>
-        internal static string SolutionDocuments {
-            get {
-                return ResourceManager.GetString("SolutionDocuments", resourceCulture);
             }
         }
     }

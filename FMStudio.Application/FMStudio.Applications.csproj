@@ -76,7 +76,7 @@
     <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\ShellService.cs" />
-    <Compile Include="Validations\PathValidationAttribute.cs" />
+    <Compile Include="Validations\PathCheckValidationAttribute.cs" />
     <Compile Include="ViewModels\Dialogs\DialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\NewDocumentDialogViewModel.cs" />

@@ -38,7 +38,7 @@
                 <MenuItem Command="{Binding ExitCommand}" Header="{x:Static p:Resources.ExitMenu}" Style="{DynamicResource MenuItemSytle}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.ViewMenu}" Style="{DynamicResource MenuItemSytle}">
-                <MenuItem Command="{Binding FileService.ShowDocumentCommand}" Header="{x:Static p:Resources.SolutionExploreMenu}" Style="{DynamicResource MenuItemSytle}"/>
+                <MenuItem Command="{Binding FileService.ShowSolutionCommand}" Header="{x:Static p:Resources.SolutionExploreMenu}" Style="{DynamicResource MenuItemSytle}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.ToolsMenu}" Style="{DynamicResource MenuItemSytle}">
                 <MenuItem Header="{x:Static p:Resources.LanguageMenu}" Style="{DynamicResource MenuItemSytle}">

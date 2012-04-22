@@ -37,6 +37,7 @@ namespace FMStudio.Applications.Documents
             }
         }
 
+
         private XDocument GenerateSolutionXML()
         {
             XDocument xdoc = new XDocument(

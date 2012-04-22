@@ -30,7 +30,7 @@
             	<Border.Background>
             		<SolidColorBrush Color="{DynamicResource Application_Views_Background}"/>
             	</Border.Background>
-            	<ContentPresenter ContentSource="SelectedContent" Margin="5"/>
+            	<ContentPresenter ContentSource="SelectedContent" Margin="1"/>
             </Border>
             <TabPanel Grid.Row="0" IsItemsHost="true" Grid.Column="1"/>
             <Path Data="M0,20 L5,0 15,0 20,20 " HorizontalAlignment="Left" Stretch="Fill" Width="Auto" Margin="0,5,0,0">

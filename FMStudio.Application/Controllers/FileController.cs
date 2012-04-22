@@ -316,16 +316,6 @@ namespace FMStudio.Applications.Controllers
 
             if (result.IsValid)
             {
-                if ((SolutionDoc != null) && (SolutionDoc.FullFilePath == result.FileName))
-                {
-                    this.messageService.ShowMessage(shellService.ShellView,
-                        string.Format(CultureInfo.CurrentCulture,
-                        Resources.SolutionAlreadyOpened, Path.GetFileNameWithoutExtension(result.FileName)));
-                    return null;
-                }
-
-                if (!CloseSolution()) { return SolutionDoc; }
-
                 return OpenSolutionCore(result.FileName);
             }
             return null;
@@ -380,6 +370,16 @@ namespace FMStudio.Applications.Controllers
 
         private SolutionDocument OpenSolutionCore(string fullFilePath)
         {
+            if ((SolutionDoc != null) && (SolutionDoc.FullFilePath == fullFilePath))
+            {
+                this.messageService.ShowMessage(shellService.ShellView,
+                    string.Format(CultureInfo.CurrentCulture,
+                    Resources.SolutionAlreadyOpened, Path.GetFileNameWithoutExtension(fullFilePath)));
+                return null;
+            }
+
+            if (!CloseSolution()) { return SolutionDoc; }
+
             SolutionDocumentType documentType = new SolutionDocumentType();
             SolutionDocument document = null;
             try
@@ -457,7 +457,7 @@ namespace FMStudio.Applications.Controllers
             }
             else if (e.PropertyName == "SolutionDoc")
             {
-                newDocumentCommand.RaiseCanExecuteChanged();
+                UpdateCommands();
             }
         }
 
@@ -471,9 +471,12 @@ namespace FMStudio.Applications.Controllers
 
         private void UpdateCommands()
         {
+            newDocumentCommand.RaiseCanExecuteChanged();
             closeDocumentCommand.RaiseCanExecuteChanged();
             saveDocumentCommand.RaiseCanExecuteChanged();
             saveAllDocumentCommand.RaiseCanExecuteChanged();
+            closeSolutionCommand.RaiseCanExecuteChanged();
+            showSolutionCommand.RaiseCanExecuteChanged();
         }
         #endregion
     }

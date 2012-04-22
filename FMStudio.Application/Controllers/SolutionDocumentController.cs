@@ -10,7 +10,7 @@ using FMStudio.Applications.Views;
 namespace FMStudio.Applications.Controllers
 {
     /// <summary>
-    /// Responsible to synchronize RTF Documents with RichTextViewModels.
+    /// Responsible to synchronize Solution Documents with SolutionViewModels.
     /// </summary>
     [Export]
     internal class SolutionDocumentController : DocumentController

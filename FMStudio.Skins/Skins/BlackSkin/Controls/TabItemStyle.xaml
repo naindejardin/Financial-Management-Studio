@@ -91,7 +91,7 @@
 			</Path>
 			<ContentPresenter ContentSource="Header" 
 				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-				VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="5,1,1,1"/>
+				VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="8,1,1,1"/>
     	</Grid>
     </ControlTemplate>
 </ResourceDictionary>
