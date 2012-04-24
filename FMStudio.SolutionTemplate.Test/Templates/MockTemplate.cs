@@ -1,7 +1,7 @@
 ﻿using System;
-using FMStudio.Applications.Documents;
-using FMStudio.SolutionTemplate.Templates;
 using System.Xml.Linq;
+using FMStudio.Documents;
+using FMStudio.SolutionTemplate.Templates;
 
 namespace FMStudio.SolutionTemplate.Test.Templates
 {

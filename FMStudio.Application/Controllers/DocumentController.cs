@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using BigEgg.Framework.Applications;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.Applications.Services;
 
 namespace FMStudio.Applications.Controllers

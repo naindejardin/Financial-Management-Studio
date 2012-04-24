@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using BigEgg.Framework.Applications;
 using FMStudio.Applications.Views;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.Applications.Services;
 
 namespace FMStudio.Applications.ViewModels

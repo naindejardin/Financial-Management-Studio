@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 
 namespace FMStudio.Applications.Services
 {

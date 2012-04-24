@@ -4,10 +4,10 @@ using System.Linq;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.UnitTesting;
 using FMStudio.Applications.Controllers;
-using FMStudio.Applications.Documents;
 using FMStudio.Applications.Services;
 using FMStudio.Applications.ViewModels;
 using FMStudio.Applications.Views;
+using FMStudio.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Applications.Test.Controllers

@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using BigEgg.Framework.Applications;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.Applications.Services;
 using FMStudio.Applications.ViewModels;
 using FMStudio.Applications.Views;

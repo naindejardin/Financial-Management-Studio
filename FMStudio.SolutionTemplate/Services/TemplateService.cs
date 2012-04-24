@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using BigEgg.Framework.Applications;
 using FMStudio.SolutionTemplate.Templates;
-using System;
-using System.Linq;
-using System.Collections.ObjectModel;
 
 namespace FMStudio.SolutionTemplate.Services
 {

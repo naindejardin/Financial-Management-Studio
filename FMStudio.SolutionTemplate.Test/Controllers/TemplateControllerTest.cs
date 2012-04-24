@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BigEgg.Framework.UnitTesting;
 using FMStudio.SolutionTemplate.Controllers;
 using FMStudio.SolutionTemplate.Services;
 using FMStudio.SolutionTemplate.Templates;
 using FMStudio.SolutionTemplate.Test.Templates;
-using BigEgg.Framework.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.SolutionTemplate.Test.Controllers
 {

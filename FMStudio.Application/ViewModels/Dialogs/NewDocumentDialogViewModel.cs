@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.Applications.Properties;
 using FMStudio.Applications.Views.Dialogs;
 

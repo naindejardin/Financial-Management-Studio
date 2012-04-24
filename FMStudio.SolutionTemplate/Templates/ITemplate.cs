@@ -1,5 +1,4 @@
-﻿using FMStudio.Applications.Documents;
-using FMStudio.SolutionTemplate.Templates;
+﻿using FMStudio.Documents;
 
 namespace FMStudio.SolutionTemplate.Templates
 {

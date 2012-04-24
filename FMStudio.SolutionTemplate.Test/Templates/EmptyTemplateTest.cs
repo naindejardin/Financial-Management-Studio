@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using FMStudio.Documents;
 using FMStudio.SolutionTemplate.Templates;
-using FMStudio.Applications.Documents;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.SolutionTemplate.Test.Templates
 {

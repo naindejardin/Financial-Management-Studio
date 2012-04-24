@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using FMStudio.Applications.Documents;
-using FMStudio.Applications.Test.Documents;
+﻿using System.Collections.Generic;
 using FMStudio.Applications.Test.Views;
 using FMStudio.Applications.ViewModels.Dialogs;
+using FMStudio.Documents;
+using FMStudio.Test.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMStudio.Applications.Test.ViewModels.Dialogs

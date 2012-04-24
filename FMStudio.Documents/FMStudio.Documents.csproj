@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{913DD9BC-C94D-4850-9DC1-D9B4545D8F25}</ProjectGuid>
+    <ProjectGuid>{4EC00A45-2794-4690-8F4D-6BD867C0E1DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FMStudio.SolutionTemplate</RootNamespace>
-    <AssemblyName>FMStudio.SolutionTemplate</AssemblyName>
+    <RootNamespace>FMStudio.Documents</RootNamespace>
+    <AssemblyName>FMStudio.Documents</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,12 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Common">
       <HintPath>..\Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,44 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentType.cs" />
+    <Compile Include="IDocument.cs" />
+    <Compile Include="IDocumentType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Services\ITemplateService.cs" />
-    <Compile Include="Services\TemplateService.cs" />
-    <Compile Include="Templates\EmptyTemplate.cs" />
-    <Compile Include="Templates\ITemplate.cs" />
+    <Compile Include="SolutionDocument.cs" />
+    <Compile Include="SolutionDocumentType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Templates\ITemplateCategory.cs" />
-    <Compile Include="Templates\Template.cs" />
-    <Compile Include="Templates\TemplateCategory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OverView.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FMStudio.Documents\FMStudio.Documents.csproj">
-      <Project>{4EC00A45-2794-4690-8F4D-6BD867C0E1DA}</Project>
-      <Name>FMStudio.Documents</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

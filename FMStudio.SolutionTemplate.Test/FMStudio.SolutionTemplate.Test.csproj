@@ -66,9 +66,9 @@
     <Compile Include="TestClassBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FMStudio.Application\FMStudio.Applications.csproj">
-      <Project>{62C0496C-FB93-4C42-830B-2A29FAF102DD}</Project>
-      <Name>FMStudio.Applications</Name>
+    <ProjectReference Include="..\FMStudio.Documents\FMStudio.Documents.csproj">
+      <Project>{4EC00A45-2794-4690-8F4D-6BD867C0E1DA}</Project>
+      <Name>FMStudio.Documents</Name>
     </ProjectReference>
     <ProjectReference Include="..\FMStudio.SolutionTemplate\FMStudio.SolutionTemplate.csproj">
       <Project>{913DD9BC-C94D-4850-9DC1-D9B4545D8F25}</Project>

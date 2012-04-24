@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FMStudio.Applications.Documents
+namespace FMStudio.Documents
 {
     public interface IDocument : INotifyPropertyChanged
     {

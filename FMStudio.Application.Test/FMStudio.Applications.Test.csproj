@@ -63,9 +63,6 @@
     <Compile Include="Controllers\ApplicationControllerTest.cs" />
     <Compile Include="Controllers\FileControllerTest.cs" />
     <Compile Include="Controllers\SolutionDocumentControllerTest.cs" />
-    <Compile Include="Documents\DocumentTypeTest.cs" />
-    <Compile Include="Documents\MockDocumentType.cs" />
-    <Compile Include="Documents\SolutionDocumentTypeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileServiceTest.cs" />
     <Compile Include="Services\MockEnvironmentService.cs" />
@@ -97,6 +94,14 @@
     <ProjectReference Include="..\FMStudio.Application\FMStudio.Applications.csproj">
       <Project>{62C0496C-FB93-4C42-830B-2A29FAF102DD}</Project>
       <Name>FMStudio.Applications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMStudio.Documents.Test\FMStudio.Documents.Test.csproj">
+      <Project>{63F47594-A255-4E25-82EE-81B9D8A35B38}</Project>
+      <Name>FMStudio.Documents.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMStudio.Documents\FMStudio.Documents.csproj">
+      <Project>{4EC00A45-2794-4690-8F4D-6BD867C0E1DA}</Project>
+      <Name>FMStudio.Documents</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

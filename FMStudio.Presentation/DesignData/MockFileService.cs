@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using FMStudio.Applications.Documents;
 using FMStudio.Applications.Services;
+using FMStudio.Documents;
 
 namespace FMStudio.Presentation.DesignData
 {

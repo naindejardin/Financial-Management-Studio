@@ -1,4 +1,4 @@
-﻿namespace FMStudio.Applications.Documents
+﻿namespace FMStudio.Documents
 {
     public interface IDocumentType
     {

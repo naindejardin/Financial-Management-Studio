@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using BigEgg.Framework.Applications.Services;
-using FMStudio.SolutionTemplate.Services;
-using System.Collections.ObjectModel;
-using FMStudio.SolutionTemplate.Templates;
+using System.Linq;
 using FMStudio.SolutionTemplate.Properties;
+using FMStudio.SolutionTemplate.Services;
+using FMStudio.SolutionTemplate.Templates;
 
 namespace FMStudio.SolutionTemplate.Controllers
 {

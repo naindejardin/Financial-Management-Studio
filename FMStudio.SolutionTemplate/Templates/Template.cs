@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.SolutionTemplate.Properties;
 
 namespace FMStudio.SolutionTemplate.Templates

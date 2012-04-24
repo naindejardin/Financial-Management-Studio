@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Linq;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 
-namespace FMStudio.Applications.Documents
+namespace FMStudio.Documents
 {
     public class SolutionDocument : Document
     {

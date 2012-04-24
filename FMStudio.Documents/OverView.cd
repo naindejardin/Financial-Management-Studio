@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="FMStudio.Applications.Documents.DocumentType" Collapsed="true">
+  <Class Name="FMStudio.Documents.DocumentType" Collapsed="true">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAoAIAAAAAgICAAIAAAAQAKAAAAASAAAAEAAAAAAAA=</HashCode>
@@ -8,7 +8,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="FMStudio.Applications.Documents.Document" Collapsed="true">
+  <Class Name="FMStudio.Documents.Document" Collapsed="true">
     <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAEAQAABAAAAAAAAAAAEAAAEBAAABAAAA=</HashCode>
@@ -16,16 +16,16 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="FMStudio.Applications.Documents.SolutionDocument">
+  <Class Name="FMStudio.Documents.SolutionDocument">
     <Position X="12.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Documents\SolutionDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FMStudio.Applications.Documents.SolutionDocumentType">
+  <Class Name="FMStudio.Documents.SolutionDocumentType">
     <Position X="6.5" Y="1.75" Width="1.5" />
-    <InheritanceLine Type="FMStudio.Applications.Documents.DocumentType" FixedToPoint="true">
+    <InheritanceLine Type="FMStudio.Documents.DocumentType" FixedToPoint="true">
       <Path>
         <Point X="7.25" Y="1.191" />
         <Point X="7.25" Y="1.75" />
@@ -36,7 +36,7 @@
       <FileName>Documents\SolutionDocumentType.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="FMStudio.Applications.Documents.IDocument">
+  <Interface Name="FMStudio.Documents.IDocument">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAABAAAAAAAAAAAAAAAABAAABAAAA=</HashCode>
@@ -46,7 +46,7 @@
       <Property Name="DocumentType" />
     </ShowAsAssociation>
   </Interface>
-  <Interface Name="FMStudio.Applications.Documents.IDocumentType">
+  <Interface Name="FMStudio.Documents.IDocumentType">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAoAIAAAAAgICAAAAAAAAACAAAAAAAAAAEAAAAAAAA=</HashCode>

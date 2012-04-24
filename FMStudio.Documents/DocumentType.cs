@@ -2,7 +2,7 @@
 using System.IO;
 using BigEgg.Framework.Applications;
 
-namespace FMStudio.Applications.Documents
+namespace FMStudio.Documents
 {
     public abstract class DocumentType : DataModel, IDocumentType
     {

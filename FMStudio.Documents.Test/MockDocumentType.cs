@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 
-namespace FMStudio.Applications.Test.Documents
+namespace FMStudio.Test.Documents
 {
     public class MockDocumentType : DocumentType
     {

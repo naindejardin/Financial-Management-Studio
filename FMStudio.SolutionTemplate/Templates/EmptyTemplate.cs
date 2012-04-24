@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FMStudio.Applications.Documents;
+﻿using FMStudio.Documents;
 using FMStudio.SolutionTemplate.Properties;
 
 namespace FMStudio.SolutionTemplate.Templates

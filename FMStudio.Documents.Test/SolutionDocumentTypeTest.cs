@@ -2,10 +2,9 @@
 using System.IO;
 using System.Xml.Linq;
 using BigEgg.Framework.UnitTesting;
-using FMStudio.Applications.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FMStudio.Applications.Test.Documents
+namespace FMStudio.Documents.Test
 {
     [TestClass]
     public class SolutionDocumentTypeTest
@@ -96,7 +95,7 @@ namespace FMStudio.Applications.Test.Documents
             SolutionDocument document =
                 documentType.New(Path.Combine(Environment.CurrentDirectory, "TestSolution")) as SolutionDocument;
             document.AliasName = "NewAlias";
-            
+
             XDocument xdoc = new XDocument(
                 new XComment("Financial Management Studio Solution File, Format Version 1.00"),
                 new XComment("FM Studio 1.0.0"),

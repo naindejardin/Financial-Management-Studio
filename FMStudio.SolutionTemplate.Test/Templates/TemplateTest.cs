@@ -1,6 +1,6 @@
 ﻿using System;
 using BigEgg.Framework.UnitTesting;
-using FMStudio.Applications.Documents;
+using FMStudio.Documents;
 using FMStudio.SolutionTemplate.Templates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

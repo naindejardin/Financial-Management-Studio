@@ -1,14 +1,13 @@
 ﻿using System.IO;
 using System.Xml.Linq;
-using FMStudio.Applications.Documents;
-using FMStudio.Applications.Properties;
+using FMStudio.Documents.Properties;
 
-namespace FMStudio.Applications.Documents
+namespace FMStudio.Documents
 {
     public class SolutionDocumentType:DocumentType
     {
         public SolutionDocumentType()
-            : base(Resources.SolutionDocuments, ".fmsln")
+            : base(Resources.SolutionDocuments, Resources.SolutionDocumentExtension)
         {
         }
 
