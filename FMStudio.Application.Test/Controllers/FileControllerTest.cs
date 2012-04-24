@@ -289,8 +289,6 @@ namespace FMStudio.Applications.Test.Controllers
             Assert.AreEqual(fileService.ActiveDocument, fileService.SolutionDoc);
         }
 
-
-
         [TestMethod]
         public void SaveAllDocumentTest()
         {

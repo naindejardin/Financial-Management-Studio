@@ -28,7 +28,6 @@ namespace FMStudio.SolutionTemplate.Controllers
         {
             this.container = container;
             this.templateService = templateService;
-
         }
 
         #region Properties
@@ -38,15 +37,15 @@ namespace FMStudio.SolutionTemplate.Controllers
 
         private ITemplate SelectTemplate
         {
-            get { return this.templateService.SelectTemplate; }
-            set { this.templateService.SelectTemplate = value; }
+            get { return this.templateService.SelectedTemplate; }
+            set { this.templateService.SelectedTemplate = value; }
         }
         #endregion
 
         #region Public Methods
         public void Initialize()
         {
-            TemplateCategories.Add(new TemplateCategory(Resources.CommonCategoryName));
+            RegisterTemplateCategory(Resources.CommonCategoryName);
 
             RegisterTemplate(new EmptyTemplate());
 
@@ -58,32 +57,28 @@ namespace FMStudio.SolutionTemplate.Controllers
 
         internal void RegisterTemplate(ITemplate template)
         {
-            bool contains = false;
+            bool containsFlag = false;
             foreach (TemplateCategory categories in TemplateCategories)
             {
                 if (categories.Name == template.Category) 
                 { 
-                    contains = true;
+                    containsFlag = true;
                     break;
                 }
             }
-            if (!contains)
+            if (!containsFlag)
                 throw new ArgumentException("Template category is not an item of the Template Categories collection.");
 
             if (Templates.Contains(template))
                 throw new ArgumentException("Template had already added into the Templates collection.");
 
-            contains = false;
             foreach (ITemplate temp in Templates)
             {
                 if (temp.Name == template.Name)
                 {
-                    contains = true;
-                    break;
+                    throw new ArgumentException("Template with the same name had already add into the Templates collection.");
                 }
             }
-            if (!contains)
-                throw new ArgumentException("Template with the same name had already add into the Templates collection.");
 
             Templates.Add(template);
         }
@@ -95,22 +90,31 @@ namespace FMStudio.SolutionTemplate.Controllers
 
         internal void RegisterTemplateCategory(ITemplateCategory templateCategory)
         {
-            bool contains = false;
+            bool containsFlag = false;
             foreach (TemplateCategory categories in TemplateCategories)
             {
                 if (categories.Name == templateCategory.Name)
                 {
-                    contains = true;
-                    break;
+                    throw new ArgumentException("Template Category with the same name had already add into the Template Categories collection.");
+                }
+                
+                if (templateCategory.Parent != null)
+                {
+                    if (categories.Name == templateCategory.Parent.Name)
+                    {
+                        containsFlag = true;
+                    }
+                }
+                else if (templateCategory.Parent == null)
+                {
+                    containsFlag = true;
                 }
             }
-            if (!contains)
-                throw new ArgumentException("Template Category with the same name had already add into the Template Categories collection.");
 
-
-            if (templateCategory.Parent != null) 
-                if (TemplateCategories.Contains(templateCategory.Parent))
-                    throw new ArgumentException("Template Category's parent not an item of the Templates Category collection.");
+            if ((!containsFlag) && (TemplateCategories.Any()))
+            {
+                throw new ArgumentException("Template Category's parent not an item of the Templates Category collection.");
+            }
 
             TemplateCategories.Add(templateCategory);
         }

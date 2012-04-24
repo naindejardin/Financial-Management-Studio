@@ -10,6 +10,6 @@ namespace FMStudio.SolutionTemplate.Services
 
         List<ITemplateCategory> TemplateCategories { get; }
 
-        ITemplate SelectTemplate { get; set; }
+        ITemplate SelectedTemplate { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace FMStudio.SolutionTemplate.Services
         #region Members
         private readonly List<ITemplate> templates;
         private readonly List<ITemplateCategory> templateCategories;
-        private ITemplate selectTemplate;
+        private ITemplate selectedTemplate;
         #endregion
 
         [ImportingConstructor]
@@ -22,7 +22,7 @@ namespace FMStudio.SolutionTemplate.Services
         {
             this.templates = new List<ITemplate>();
             this.templateCategories = new List<ITemplateCategory>();
-            this.selectTemplate = null;
+            this.selectedTemplate = null;
         }
 
         #region Properties
@@ -30,19 +30,19 @@ namespace FMStudio.SolutionTemplate.Services
 
         public List<ITemplateCategory> TemplateCategories { get { return this.templateCategories; } }
 
-        public ITemplate SelectTemplate
+        public ITemplate SelectedTemplate
         {
-            get { return this.selectTemplate; }
+            get { return this.selectedTemplate; }
             set
             {
-                if (this.selectTemplate != value)
+                if (this.selectedTemplate != value)
                 {
                     if (value != null && !this.templates.Contains(value))
                     {
                         throw new ArgumentException("value is not an item of the Templates collection.");
                     }
-                    this.selectTemplate = value;
-                    RaisePropertyChanged("SelectTemplate");
+                    this.selectedTemplate = value;
+                    RaisePropertyChanged("SelectedTemplate");
                 }
             }
         }

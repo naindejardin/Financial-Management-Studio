@@ -10,14 +10,14 @@ namespace FMStudio.Applications.Test.Services
     public class FileServiceTest : TestClassBase
     {
         [TestMethod]
-        public void RecentFileList()
+        public void RecentSolutionListTest()
         {
             FileService fileService = Container.GetExportedValue<FileService>();
 
-            RecentFileList recentFileList = new RecentFileList();
-            recentFileList.AddFile("TestFile");
-            AssertHelper.PropertyChangedEvent(fileService, x => x.RecentSolutionList, () => fileService.RecentSolutionList = recentFileList);
-            Assert.AreEqual(recentFileList, fileService.RecentSolutionList);
+            RecentFileList recentSolutionList = new RecentFileList();
+            recentSolutionList.AddFile("TestFile");
+            AssertHelper.PropertyChangedEvent(fileService, x => x.RecentSolutionList, () => fileService.RecentSolutionList = recentSolutionList);
+            Assert.AreEqual(recentSolutionList, fileService.RecentSolutionList);
         }
     }
 }
