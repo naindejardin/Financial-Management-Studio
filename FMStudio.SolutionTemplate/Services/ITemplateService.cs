@@ -6,10 +6,16 @@ namespace FMStudio.SolutionTemplate.Services
 {
     public interface ITemplateService  : INotifyPropertyChanged
     {
-        List<ITemplate> Templates { get; }
+        IList<ITemplate> AllTemplates { get; }
 
-        List<ITemplateCategory> TemplateCategories { get; }
+        IList<ITemplate> TemplatesInCategory { get; }
+
+        IList<TemplateCategory> RootTemplateCategories { get; }
+
+        IList<TemplateCategory> TemplateCategories { get; }
 
         ITemplate SelectedTemplate { get; set; }
+
+        TemplateCategory SelectedCategory { get; set; }
     }
 }

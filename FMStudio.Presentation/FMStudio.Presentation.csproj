@@ -157,6 +157,10 @@
       <Project>{4EC00A45-2794-4690-8F4D-6BD867C0E1DA}</Project>
       <Name>FMStudio.Documents</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMStudio.SolutionTemplate\FMStudio.SolutionTemplate.csproj">
+      <Project>{913DD9BC-C94D-4850-9DC1-D9B4545D8F25}</Project>
+      <Name>FMStudio.SolutionTemplate</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

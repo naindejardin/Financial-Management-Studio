@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BigEgg.Framework.UnitTesting;
 using FMStudio.SolutionTemplate.Controllers;
 using FMStudio.SolutionTemplate.Services;
@@ -20,9 +21,11 @@ namespace FMStudio.SolutionTemplate.Test.Controllers
             Assert.IsNotNull(templateController);
             Assert.IsNotNull(templateService);
 
-            Assert.AreEqual(1, templateService.Templates.Count);
-            Assert.AreEqual(1, templateService.TemplateCategories.Count);
+            Assert.AreEqual(2, templateService.AllTemplates.Count);
+            Assert.AreEqual(1, templateService.RootTemplateCategories.Count);
+            Assert.AreEqual(2, templateService.TemplateCategories.Count);
             Assert.IsNotNull(templateService.SelectedTemplate);
+            Assert.IsNotNull(templateService.SelectedCategory);
         }
 
         [TestMethod()]
@@ -33,7 +36,7 @@ namespace FMStudio.SolutionTemplate.Test.Controllers
 
             MockTemplate template = new MockTemplate("Test", "Test Description", "Common");
             templateController.RegisterTemplate(template);
-            Assert.AreEqual(2, templateService.Templates.Count);
+            Assert.AreEqual(3, templateService.AllTemplates.Count);
 
             //  Template had already been added.
             template = new MockTemplate("Test", "Test Description", "Common");
@@ -54,14 +57,24 @@ namespace FMStudio.SolutionTemplate.Test.Controllers
         {
             TemplateController templateController = Container.GetExportedValue<TemplateController>();
             ITemplateService templateService = Container.GetExportedValue<ITemplateService>();
-            templateController.RegisterTemplateCategory("CategoryA");
-            templateController.RegisterTemplateCategory("CategoryB", new TemplateCategory("CategoryA"));
-            Assert.AreEqual(3, templateService.TemplateCategories.Count);
 
             AssertHelper.ExpectedException<ArgumentException>(() => templateController.RegisterTemplateCategory("Common"));
+            AssertHelper.ExpectedException<ArgumentException>(() =>
+                templateController.RegisterTemplateCategory("NewCategory", "AnotherCategory"));
+            
+            templateController.RegisterTemplateCategory("CategoryA");
+            templateController.RegisterTemplateCategory("CategoryB", "CategoryA");
+            Assert.AreEqual(2, templateService.RootTemplateCategories.Count);
 
-            AssertHelper.ExpectedException<ArgumentException>(() => 
-                templateController.RegisterTemplateCategory("NewCategory", new TemplateCategory("AnotherCategory")));
+            ITemplateCategory category = templateService.RootTemplateCategories.First(c => c.Name == "CategoryA");
+            Assert.AreEqual(0, category.Level);
+            Assert.AreEqual(1, category.Children.First().Level);
+            Assert.AreEqual("CategoryB", category.Children.First().Name);
+
+            templateController.RegisterTemplateCategory("CategoryC", "CategoryB");
+            Assert.AreEqual("CategoryC", category.Children.First().Children.First().Name);
+
+            AssertHelper.ExpectedException<IndexOutOfRangeException>(() => templateController.RegisterTemplateCategory("CategoryD", "CategoryC"));
         }
     }
 }

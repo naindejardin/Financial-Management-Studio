@@ -25,13 +25,24 @@ namespace FMStudio.SolutionTemplate.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::FMStudio.SolutionTemplate.Templates.ITemplate SelectTemplate
-        {
+        public global::FMStudio.SolutionTemplate.Templates.ITemplate SelectedTemplate {
             get {
-                return ((global::FMStudio.SolutionTemplate.Templates.ITemplate)(this["SelectTemplate"]));
+                return ((global::FMStudio.SolutionTemplate.Templates.ITemplate)(this["SelectedTemplate"]));
             }
             set {
-                this["SelectTemplate"] = value;
+                this["SelectedTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::FMStudio.SolutionTemplate.Templates.TemplateCategory SelectedCategory
+        {
+            get {
+                return ((global::FMStudio.SolutionTemplate.Templates.TemplateCategory)(this["SelectedCategory"]));
+            }
+            set {
+                this["SelectedTemplate"] = value;
             }
         }
     }

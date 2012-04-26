@@ -124,10 +124,19 @@
     <value>An empty solution.</value>
   </data>
   <data name="EmptyTemplateName" xml:space="preserve">
-    <value>Empty Template</value>
+    <value>Empty Solution</value>
   </data>
   <data name="NewSolutionPathInvalid" xml:space="preserve">
     <value>The solution path '{0}' is invalid.</value>
+  </data>
+  <data name="PersonalBillListTemplateDescription" xml:space="preserve">
+    <value>A Personal BillList solution. Contains data files and basic analysis charts.</value>
+  </data>
+  <data name="PersonalBillListTemplateName" xml:space="preserve">
+    <value>Personal BillList Solution</value>
+  </data>
+  <data name="PrivateCategoryName" xml:space="preserve">
+    <value>Private Financial Solution</value>
   </data>
   <data name="SolutionAlreadyExisted" xml:space="preserve">
     <value>The solution '{0}' has already existed.</value>

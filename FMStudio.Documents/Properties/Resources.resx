@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DataDocumentExtension" xml:space="preserve">
-    <value>*.data</value>
+    <value>.data</value>
   </data>
   <data name="DataDocuments" xml:space="preserve">
     <value>Financial Data Documents (*.data)</value>
   </data>
   <data name="SolutionDocumentExtension" xml:space="preserve">
-    <value>*.fmsln</value>
+    <value>.fmsln</value>
   </data>
   <data name="SolutionDocuments" xml:space="preserve">
     <value>FMStuido Solution Documents (*.fmsln)</value>

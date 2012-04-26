@@ -26,6 +26,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Presentation", "FMStudio.Presentation\FMStudio.Presentation.csproj", "{17D7D79F-E566-4043-8981-4AB9459BEAB5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F2ECF149-6405-49D4-BE9D-F0E193D290F0} = {F2ECF149-6405-49D4-BE9D-F0E193D290F0}
+		{913DD9BC-C94D-4850-9DC1-D9B4545D8F25} = {913DD9BC-C94D-4850-9DC1-D9B4545D8F25}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMStudio.Skins", "FMStudio.Skins\FMStudio.Skins.csproj", "{F2ECF149-6405-49D4-BE9D-F0E193D290F0}"

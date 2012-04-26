@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using BigEgg.Framework.Applications;
 using FMStudio.SolutionTemplate.Properties;
 using FMStudio.SolutionTemplate.Services;
 using FMStudio.SolutionTemplate.Templates;
@@ -13,7 +14,7 @@ namespace FMStudio.SolutionTemplate.Controllers
     /// Responsible to synchronize template.
     /// </summary>
     [Export]
-    public class TemplateController
+    public class TemplateController : Controller
     {
         #region Members
         private readonly CompositionContainer container;
@@ -25,31 +26,47 @@ namespace FMStudio.SolutionTemplate.Controllers
         {
             this.container = container;
             this.templateService = templateService;
+
+            IsInitialized = false;
         }
 
         #region Properties
-        private List<ITemplate> Templates { get { return this.templateService.Templates; } }
+        private IList<ITemplate> Templates { get { return this.templateService.AllTemplates; } }
 
-        private List<ITemplateCategory> TemplateCategories { get { return this.templateService.TemplateCategories; } }
+        private IList<TemplateCategory> TemplateCategories { get { return this.templateService.TemplateCategories; } }
 
         private ITemplate SelectTemplate
         {
             get { return this.templateService.SelectedTemplate; }
             set { this.templateService.SelectedTemplate = value; }
         }
+
+        public bool IsInitialized { get; set; }
         #endregion
 
         #region Public Methods
         public void Initialize()
         {
+            if (IsInitialized)
+                return;
+
             RegisterTemplateCategory(Resources.CommonCategoryName);
+            RegisterTemplateCategory(Resources.PrivateCategoryName, Resources.CommonCategoryName);
 
             RegisterTemplate(new EmptyTemplate());
+            RegisterTemplate(new PersonalBillListTemplate());
 
-            if (Settings.Default.SelectTemplate != null)
-                SelectTemplate = Settings.Default.SelectTemplate;
+            if (Settings.Default.SelectedTemplate != null)
+                SelectTemplate = Settings.Default.SelectedTemplate;
             else
                 SelectTemplate = Templates.First();
+
+            if (Settings.Default.SelectedCategory != null)
+                templateService.SelectedCategory = Settings.Default.SelectedCategory;
+            else
+                templateService.SelectedCategory = templateService.RootTemplateCategories.First();
+
+            IsInitialized = true;
         }
 
         internal void RegisterTemplate(ITemplate template)
@@ -80,45 +97,45 @@ namespace FMStudio.SolutionTemplate.Controllers
             Templates.Add(template);
         }
 
-        internal void RegisterTemplateCategory(string name, ITemplateCategory templateCategoryParent = null)
+        internal void RegisterTemplateCategory(string categoryName, string parentName = null)
         {
-            RegisterTemplateCategory(new TemplateCategory(name, templateCategoryParent));
-        }
-
-        internal void RegisterTemplateCategory(ITemplateCategory templateCategory)
-        {
-            bool containsFlag = false;
             foreach (TemplateCategory categories in TemplateCategories)
             {
-                if (categories.Name == templateCategory.Name)
+                if (categories.Name == categoryName)
                 {
                     throw new ArgumentException("Template Category with the same name had already add into the Template Categories collection.");
                 }
-                
-                if (templateCategory.Parent != null)
-                {
-                    if (categories.Name == templateCategory.Parent.Name)
-                    {
-                        containsFlag = true;
-                    }
-                }
-                else if (templateCategory.Parent == null)
-                {
-                    containsFlag = true;
-                }
             }
 
-            if ((!containsFlag) && (TemplateCategories.Any()))
+            TemplateCategory newCategory = new TemplateCategory(categoryName);
+
+            if (!string.IsNullOrEmpty(parentName))
             {
-                throw new ArgumentException("Template Category's parent not an item of the Templates Category collection.");
-            }
+                if (!TemplateCategories.Any()) { throw new ArgumentException("Template Category's parent not an item of the Templates Category collection."); }
 
-            TemplateCategories.Add(templateCategory);
+                try
+                {
+                    TemplateCategory parentCategory = TemplateCategories.First(c => c.Name == parentName);
+
+                    newCategory.Level = parentCategory.Level + 1;
+                    parentCategory.Children.Add(newCategory);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new IndexOutOfRangeException("Only support 3 level categories.");
+                }
+                catch
+                {
+                    throw new ArgumentException("Template Category's parent not an item of the Templates Category collection.");
+                }
+            }
+            TemplateCategories.Add(newCategory);
         }
         
         public void Shutdown()
         {
-            Settings.Default.SelectTemplate = SelectTemplate;
+            Settings.Default.SelectedTemplate = SelectTemplate;
+            Settings.Default.SelectedCategory = templateService.SelectedCategory;
             Settings.Default.Save();
         }
         #endregion

@@ -61,7 +61,7 @@ namespace FMStudio.Documents.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to *.data.
+        ///   Looks up a localized string similar to .data.
         /// </summary>
         internal static string DataDocumentExtension {
             get {
@@ -79,7 +79,7 @@ namespace FMStudio.Documents.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to *.fmsln.
+        ///   Looks up a localized string similar to .fmsln.
         /// </summary>
         internal static string SolutionDocumentExtension {
             get {

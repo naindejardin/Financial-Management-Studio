@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Services\ITemplateService.cs" />
     <Compile Include="Services\TemplateService.cs" />
+    <Compile Include="Templates\PersonalBillListTemplate.cs" />
     <Compile Include="Templates\EmptyTemplate.cs" />
     <Compile Include="Templates\ITemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

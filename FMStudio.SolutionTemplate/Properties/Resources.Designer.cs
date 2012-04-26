@@ -79,7 +79,7 @@ namespace FMStudio.SolutionTemplate.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empty Template.
+        ///   Looks up a localized string similar to Empty Solution.
         /// </summary>
         internal static string EmptyTemplateName {
             get {
@@ -93,6 +93,33 @@ namespace FMStudio.SolutionTemplate.Properties {
         internal static string NewSolutionPathInvalid {
             get {
                 return ResourceManager.GetString("NewSolutionPathInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Personal BillList solution. Contains data files and basic analysis charts..
+        /// </summary>
+        internal static string PersonalBillListTemplateDescription {
+            get {
+                return ResourceManager.GetString("PersonalBillListTemplateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal BillList Solution.
+        /// </summary>
+        internal static string PersonalBillListTemplateName {
+            get {
+                return ResourceManager.GetString("PersonalBillListTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private Financial Solution.
+        /// </summary>
+        internal static string PrivateCategoryName {
+            get {
+                return ResourceManager.GetString("PrivateCategoryName", resourceCulture);
             }
         }
         
